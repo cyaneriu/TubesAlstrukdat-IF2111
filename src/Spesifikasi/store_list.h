@@ -1,12 +1,9 @@
-#ifndef __STORE_LIST_H_
-#define __STORE_LIST_H_
+#ifndef STORE_LIST_H
+#define STORE_LIST_H
 
-#include "ADT/list_dinamis.h"
+#include "store.h"
 
-void start_store();
-
-void store_list();
-
-void display_store();
+// Fungsi untuk menampilkan daftar barang di toko
+void displayStore(Store store);
 
 #endif

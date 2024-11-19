@@ -1,23 +1,14 @@
+#include <stdio.h>
 #include "store_list.h"
-#include "store.h"
 
-int main() {
-    Store myStore;
-    initStore(&myStore, 10);
-
-    // Tambahkan barang ke toko
-    insertLast(&(myStore.barang), "Platypus Laser");
-    insertLast(&(myStore.barang), "Shrink Ray");
-    insertLast(&(myStore.barang), "Net Shooter");
-
-    // Tampilkan barang di toko
-    printf(">> STORE LIST\n");
-    displayStore(myStore);
-
-    // Toko kosong
-    dealocateList(&(myStore.barang));
-    printf("\n>> STORE LIST\n");
-    displayStore(myStore);
-
-    return 0;
+// Menampilkan daftar barang di toko
+void displayStore(Store store) {
+    if (isEmpty(store.barang)) {
+        printf("TOKO KOSONG\n");
+    } else {
+        printf("List barang yang ada di toko:\n");
+        for (int i = 0; i < listLength(store.barang); i++) {
+            printf("- %s\n", ELMT(store.barang, i));
+        }
+    }
 }
