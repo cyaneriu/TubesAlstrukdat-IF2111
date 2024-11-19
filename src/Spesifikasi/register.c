@@ -1,9 +1,5 @@
 #include <stdio.h>
 #include "register.h"
-#include "mesinkarakter.h"
-#include "mesinkata.h"
-#include "boolean.h"
-#include "load.h"
 
 #define MAX_USER 100
 #define FILENAME "user_data.txt"
