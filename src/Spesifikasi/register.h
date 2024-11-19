@@ -6,14 +6,13 @@
 #include "../ADT/mesinkata.h"
 #include "../ADT/boolean.h"
 #include "load.h"
-#include "save.h"
 
 
 #define MAX_USER 100
 #define FILENAME "user_data.txt"
 
-boolean usernamevalid(char usernames[][NMax], int userCount, const char *username);
-boolean satukata(const char *input) ;
+boolean usernamevalid(char usernames[][NMax], int userCount, Word usernameword);
+boolean satukata(Word masukan) ;
 void registeruser();
 
 #endif

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "store_list.h": "c",
+        "store_supply.h": "c",
+        "store.h": "c"
+    }
+}

@@ -1,76 +1,92 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "register.h"
+
 #define MAX_USER 100
 #define FILENAME "user_data.txt"
 
-boolean usernamevalid(char usernames[][NMax], int userCount, const char *username) {
+// fungsi buat ngecek username yg diinput sesuai ato ngga
+boolean usernamevalid(char usernames[][NMax], int userCount, Word usernameWord) {
     for (int i = 0; i < userCount; i++) {
-        if (strcmp(usernames[i], username) == 0) {
-            return false;
+        Word fileWord = stringToWord(usernames[i]);
+        // skenario kalau username udah ada di file txt
+        if (IsWordEqual(fileWord, usernameWord)) {
+            return false; 
         }
     }
     return true;
 }
 
-boolean satukata(const char *input) {
-    for (int i = 0; input[i] != '\0'; i++) {
-        if (input[i] == ' ' || input[i] == '\t') {
-            return false;
+// fungsi buat ngecek username yg di input satu kata atau engga
+boolean satukata(Word masukan) {
+    for (int i = 0; i < masukan.Length; i++) {
+        // skenario kalo ada spasi 
+        if (masukan.TabWord[i] == ' ' || masukan.TabWord[i] == '\t') {
+            return false; 
         }
     }
     return true;
 }
 
 void registeruser() {
-    char username[NMax];
-    char password[NMax];
+    Word usernameWord, passwordWord;
     char usernames[MAX_USER][NMax];
     int userCount = 0;
 
+    // buka file 
     FILE *file = fopen(FILENAME, "r");
     if (file) {
-        while (fscanf(file, "%*d %s %s", usernames[userCount], password) != EOF) {
-            userCount++;
+        // format file uang - username - password
+        while (fscanf(file, "%*d %s %*s", usernames[userCount]) != EOF) {
+            userCount++; // ngitung jumlah user yg udh ada di file
         }
         fclose(file);
     }
-    // user memasukkan username
-    printf("Enter username: ");
-    StartWordInput();
+
+    printf("Enter username: "); 
+    StartWordInput(); // input username pake ADT mesinkata
     CopyWordinput();
-    if (currentWord.Length >= NMax) {
-        printf("Akun gagal dibuat, username mencapai panjang max!\n");
-        return;
-    }
-    copyString(username, currentWord.TabWord, NMax);
-    // user memasukkan password
-    printf("Enter password: ");
-    StartWordInput();
-    CopyWordinput();
-    if (currentWord.Length >= NMax) {
-        printf("Akun gagal dibuat, password mencapai panjang max!\n");
-        return;
-    }
-    copyString(password, currentWord.TabWord, NMax);
-    // skenario apabila user memasukkan username atau password lebih dari satu kata
-    if (!satukata(username) || !satukata(password)) {
-        printf("Akun gagal dibuat! Tolong masukkan username dan password yang sesuai.\n");
-        return;
-    }
-    // skenario apabila username memasukkan username yang sudah terdaftar di file txt
-    if (!usernamevalid(usernames, userCount, username)) {
-        printf("Akun dengan username %s gagal dibuat. Silahkan lakukan REGISTER ulang!\n", username);
+    usernameWord = currentWord; 
+    if (usernameWord.Length >= NMax) { // cek apakah input melebihi Nmax (50)
+        printf("Username melebihi batas max!\n");
         return;
     }
 
+    printf("Enter password: ");
+    StartWordInput(); // input username pake ADT mesinkata
+    CopyWordinput();
+    passwordWord = currentWord; 
+    if (passwordWord.Length >= NMax) { // cek password melebihi Nmax (50) ga
+        printf("Password melebihi batas max!\n");
+        return;
+    }
+
+    // skenario kalo username ato password yg dibikin bkn 1 kata
+    if (!satukata(usernameWord) || !satukata(passwordWord)) {
+        printf("Username dan password tidak memenuhi ketentuan!\n");
+        return;
+    }
+
+    // skenario kalo username yg dibikin udh ada di file txt
+    if (!usernamevalid(usernames, userCount, usernameWord)) {
+        char usernameStr[NMax];
+        wordToString(usernameWord, usernameStr);
+        printf("Akun dengan username %s telah berhasil dibuat. Silakan LOGIN untuk melanjutkan.\n", usernameStr);
+        return;
+    }
+
+    // ngebuka file buat masukin username yg baru
     file = fopen(FILENAME, "a");
     if (!file) {
         printf("File tidak bisa dibuka!.\n");
         return;
     }
-    fprintf(file, "0\t%s\t%s\n", username, password);
-    fclose(file);
 
-    printf("Akun dengan username %s telah berhasil dibuat. Silakan LOGIN untuk melanjutkan\n", username);
+    // save data user yg baru ke file dengan uang di set menjadi 0 
+    char usernameStr[NMax], passwordStr[NMax];
+    wordToString(usernameWord, usernameStr); // ngeconvert usn biar jd string
+    wordToString(passwordWord, passwordStr); // ngeconvert password biar jd string
+    fprintf(file, "0\t%s\t%s\n", usernameStr, passwordStr); // uang di set 0 
+    fclose(file); // close file
+
+    printf("Akun dengan username %s telah berhasil dibuat dengan saldo awal 0. Silakan LOGIN untuk melanjutkan.\n", usernameStr);
 }
