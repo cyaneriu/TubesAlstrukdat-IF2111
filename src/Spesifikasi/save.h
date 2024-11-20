@@ -5,7 +5,8 @@
 #include "../ADT/mesinkata.h"
 #include <stdio.h>
 #include <stdlib.h> 
-#include "../Spesifikasi/load.h"
+#include"load.h"
+//#include "../Spesifikasi/load.h"
 #define MAX_LEN 100
 #define MAX_BARANG 100
 #define MAX_USER 100

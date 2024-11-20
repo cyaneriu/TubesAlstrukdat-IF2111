@@ -9,7 +9,10 @@ void startWriteFile(char *filename) {
     }
 }
 void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int jumlahUser) {
-    startWriteFile(filename); 
+    char fullPath[100];
+    char directory[100] = "../../save";
+    sprintf(fullPath, "%s/%s", directory, filename);
+    startWriteFile(fullPath); 
 
     char jumlahBarangStr[NMax];
     sprintf(jumlahBarangStr, "%d", jumlahBarang); 

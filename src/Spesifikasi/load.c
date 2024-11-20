@@ -21,8 +21,10 @@ void wordToString(Word word, char* str) {
 }
 
 void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser) {
-
-    StartWordFile(filename, 0);
+    char fullPath[100];
+    char directory[100] = "../../save";
+    sprintf(fullPath, "%s/%s", directory, filename);
+    StartWordFile(fullPath, 0);
 
     if (EndWord) {
         printf("File tidak dapat dibuka.\n");
