@@ -2,6 +2,8 @@
     "files.associations": {
         "store_list.h": "c",
         "store_supply.h": "c",
-        "store.h": "c"
+        "store.h": "c",
+        "string.h": "c",
+        "mesinkarakter.h": "c"
     }
 }

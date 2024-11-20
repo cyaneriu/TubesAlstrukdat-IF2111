@@ -4,7 +4,7 @@
 #include "store_supply.h"
 
 // Fungsi untuk memproses supply barang berdasarkan antrian permintaan
-void processStoreSupply(Store *store) {
+void storeSupply(Store *store) {
     if (isEmpty(store->barang)) {
         printf("Antrian permintaan kosong.\n");
         return;

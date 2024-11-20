@@ -4,6 +4,6 @@
 #include "store.h"
 
 // Fungsi untuk memproses barang yang diminta
-void processStoreSupply(Store *store);
+void storeSupply(Store *store);
 
 #endif

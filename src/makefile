@@ -9,7 +9,9 @@ SRCS = cobamain.c \
        spesifikasi/store_remove.c \
        spesifikasi/store_request.c \
        spesifikasi/store_supply.c \
-       ADT/list_dinamis.c
+       ADT/list_dinamis.c \
+       ADT/mesinkata.c \
+       ADT/mesinkarakter.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)

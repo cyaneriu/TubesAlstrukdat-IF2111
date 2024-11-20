@@ -3,11 +3,14 @@
 
 #include "../ADT/list_dinamis.h"
 #include "../ADT/boolean.h"
+#include "../ADT/mesinkata.h"
+#include "../ADT/mesinkarakter.h"
 
 // Definisi struktur Store yang berisi daftar barang (ListDin)
 typedef struct {
     ListDin barang;
 } Store;
+
 
 // Fungsi untuk membuat store baru
 void createStore(Store *store);

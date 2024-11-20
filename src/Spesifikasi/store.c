@@ -6,7 +6,7 @@
 
 // Fungsi untuk membuat store baru dengan kapasitas tertentu
 void createStore(Store *store) {
-    CreateListDin(&(store->barang), 10);  // Misalnya kapasitas default adalah 10
+    CreateListDin(&(store->barang), 100);  // Misalnya kapasitas default adalah 10
 }
 
 // Fungsi untuk menambahkan barang ke dalam store
