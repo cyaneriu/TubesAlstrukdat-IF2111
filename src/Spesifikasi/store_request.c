@@ -3,7 +3,7 @@
 #include "store_request.h"
 
 // Fungsi untuk mengecek apakah barang sudah ada dalam daftar barang di toko
-int isItemExistInStore(Store store, char *item) {
+int isItemInStore(Store store, char *item) {
     for (int i = 0; i < listLength(store.barang); i++) {
         char *currentItem = ELMT(store.barang, i);
         int j = 0;
@@ -22,7 +22,7 @@ int isItemExistInStore(Store store, char *item) {
 }
 
 // Fungsi untuk mengecek apakah barang sudah ada dalam antrian
-int isItemExistInQueue(Store store, char *item) {
+int isItemInQueue(Store store, char *item) {
     for (int i = 0; i < listLength(store.barang); i++) {
         char *currentItem = ELMT(store.barang, i);
         int j = 0;
@@ -42,9 +42,9 @@ int isItemExistInQueue(Store store, char *item) {
 
 // Fungsi untuk menambah permintaan barang baru ke dalam antrian
 void storeRequest(Store *store, char *item) {
-    if (isItemExistInStore(*store, item)) {
+    if (isItemInStore(*store, item)) {
         printf("Barang dengan nama yang sama sudah ada di toko!\n");
-    } else if (isItemExistInQueue(*store, item)) {
+    } else if (isItemInQueue(*store, item)) {
         printf("Barang dengan nama yang sama sudah ada di antrian!\n");
     } else {
         insertLast(&(store->barang), item);  // Menambahkan barang ke dalam antrian
