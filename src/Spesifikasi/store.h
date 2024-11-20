@@ -12,6 +12,8 @@ typedef struct {
 // Fungsi untuk membuat store baru
 void createStore(Store *store);
 
+void displayStore(Store store);
+
 // Fungsi untuk menambahkan barang ke dalam store
 void addItemToStore(Store *store, char *item);
 
@@ -23,5 +25,7 @@ void processStoreSupply(Store *store);
 
 // Fungsi untuk meminta barang baru ke dalam toko (Store Request)
 void storeRequest(Store *store, char *item);
+
+void removeItemFromStore(Store *store, char *item);
 
 #endif
