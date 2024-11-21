@@ -11,7 +11,7 @@
 #define MAX_USER 100
 #define FILENAME "user_data.txt"
 
-boolean usernamevalid(char usernames[][NMax], int userCount, Word usernameword);
+boolean usernamevalid(char usernames[][MAX_LEN], int userCount, Word usernameword);
 boolean satukata(Word masukan) ;
 void registeruser();
 

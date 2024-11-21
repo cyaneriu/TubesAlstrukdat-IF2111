@@ -9,7 +9,7 @@
 #define FILENAME "user_data.txt"
 
 // fungsi buat ngecek username yg diinput sesuai ato ngga
-boolean usernamevalid(char usernames[][NMax], int userCount, Word usernameWord) {
+boolean usernamevalid(char usernames[][MAX_LEN], int userCount, Word usernameWord) {
     for (int i = 0; i < userCount; i++) {
         Word fileWord = stringToWord(usernames[i]);
         // skenario kalau username udah ada di file txt
@@ -33,7 +33,7 @@ boolean satukata(Word masukan) {
 
 void registeruser() {
     Word usernameWord, passwordWord;
-    char usernames[MAX_USER][NMax];
+    char usernames[MAX_USER][MAX_LEN];
     int userCount = 0;
 
     // buka file 
@@ -50,7 +50,7 @@ void registeruser() {
     StartWordInput(); // input username pake ADT mesinkata
     CopyWordinput();
     usernameWord = currentWord; 
-    if (usernameWord.Length >= NMax) { // cek apakah input melebihi Nmax (50)
+    if (usernameWord.Length >= MAX_LEN) { // cek apakah input melebihi MAX_LEN (50)
         printf("Username melebihi batas max!\n");
         return;
     }
@@ -59,7 +59,7 @@ void registeruser() {
     StartWordInput(); // input username pake ADT mesinkata
     CopyWordinput();
     passwordWord = currentWord; 
-    if (passwordWord.Length >= NMax) { // cek password melebihi Nmax (50) ga
+    if (passwordWord.Length >= MAX_LEN) { // cek password melebihi MAX_LEN (50) ga
         printf("Password melebihi batas max!\n");
         return;
     }
@@ -72,7 +72,7 @@ void registeruser() {
 
     // skenario kalo username yg dibikin udh ada di file txt
     if (!usernamevalid(usernames, userCount, usernameWord)) {
-        char usernameStr[NMax];
+        char usernameStr[MAX_LEN];
         wordToString(usernameWord, usernameStr);
         printf("Akun dengan username %s telah berhasil dibuat. Silakan LOGIN untuk melanjutkan.\n", usernameStr);
         return;
@@ -86,7 +86,7 @@ void registeruser() {
     }
 
     // save data user yg baru ke file dengan uang di set menjadi 0 
-    char usernameStr[NMax], passwordStr[NMax];
+    char usernameStr[MAX_LEN], passwordStr[MAX_LEN];
     wordToString(usernameWord, usernameStr); // ngeconvert usn biar jd string
     wordToString(passwordWord, passwordStr); // ngeconvert password biar jd string
     fprintf(file, "0\t%s\t%s\n", usernameStr, passwordStr); // uang di set 0 
