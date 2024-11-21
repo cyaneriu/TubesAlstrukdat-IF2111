@@ -16,7 +16,7 @@ void IgnoreBlank()
 }
 
 void IgnoreNewline()
-{
+{ 
     while (currentChar == NEWLINE)
     {
         AdvFile();

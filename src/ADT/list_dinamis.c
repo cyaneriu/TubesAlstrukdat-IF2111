@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "list_dinamis.h"
 
 // Fungsi untuk membuat list dinamis dengan kapasitas tertentu
@@ -10,12 +9,26 @@ void CreateListDin(ListDin *list, int capacity) {
     list->capacity = capacity;
 }
 
-// Fungsi untuk menambah item pada list
+/*// Fungsi untuk menambah item pada list
 void insertLast(ListDin *list, char *item) {
     if (list->size < list->capacity) {
         list->items[list->size] = (char*)malloc(strlen(item) + 1);
         strcpy(list->items[list->size], item);
         list->size++;
+    }
+}*/
+
+void insertLast(ListDin *list, char *item) {
+    if (list->size < list->capacity) {
+        int length = strlen(item);
+        list->items[list->size] = (char *)malloc(length + 1);
+        if (list->items[list->size] != NULL) { 
+            for (int i = 0; i < length; i++) {
+                list->items[list->size][i] = item[i];
+            }
+            list->items[list->size][length] = '\0';
+            list->size++;
+        }
     }
 }
 
@@ -71,29 +84,15 @@ void deleteFirst(ListDin *list) {
     }
 }
 
-void deleteAt(ListDin *list, const char *item) {
-    if (list->size == 0) {
-        printf("List kosong. Tidak ada yang dapat dihapus.\n");
-        return;
-    }
-    int idx = -1;
-    for (int i = 0; i < list->size; i++) {
-        int j = 0;
-        while (list->items[i][j] == item[j] && list->items[i][j] != '\0') {
-            j++;
+void deleteAt(ListDin *list, int index) {
+    if (list->size > 0 && index >= 0 && index < list->size) {
+        free(list->items[index]);
+
+        // Geser elemen-elemen setelahnya
+        for (int i = index + 1; i < list->size; i++) {
+            list->items[i - 1] = list->items[i];
         }
-        if (list->items[i][j] == '\0' && item[j] == '\0') {
-            idx = i;
-            break;
-        }
+
+        list->size--;  // Kurangi ukuran list
     }
-    if (idx == -1) {
-        printf("Item '%s' tidak ditemukan dalam list.\n", item);
-        return;
-    }
-    free(list->items[idx]);
-    for (int i = idx + 1; i < list->size; i++) {
-        list->items[i - 1] = list->items[i];
-    }
-    list->size--;
 }

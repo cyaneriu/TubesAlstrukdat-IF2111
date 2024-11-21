@@ -27,7 +27,7 @@ int main() {
 
     while (store_running) {
         displayStoreMenu();
-        StartWordInput(); // Membaca input
+        StartWordInput();
 
         if (IsCommandEqual(currentWord, "STORE LIST\0")) {
             displayStore(store);
@@ -38,12 +38,7 @@ int main() {
         } else if (IsCommandEqual(currentWord, "STORE SUPPLY\0")) {
             storeSupply(&store);
         } else if (IsCommandEqual(currentWord, "STORE REMOVE\0")) {
-            StartWordInput();
-            if (currentWord.Length > 0 && currentWord.TabWord[currentWord.Length - 1] == '\n') {
-                currentWord.TabWord[currentWord.Length - 1] = '\0';
-            }
             storeRemove(&store);
-
         } else if (IsCommandEqual(currentWord, "EXIT")) {
             store_running = false;
             printf("Keluar dari STORE.\n");

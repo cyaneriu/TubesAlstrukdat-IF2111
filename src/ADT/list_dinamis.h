@@ -2,9 +2,9 @@
 #define LIST_DINAMIS_H
 
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
 
-#define CAPACITY 10
+#define CAPACITY 999
 
 // Definisi struktur ListDin
 typedef struct {
@@ -35,6 +35,6 @@ void copyFirst(ListDin list, char *variable);
 
 void deleteFirst(ListDin *list);
 
-void deleteAt(ListDin *list, const char *item);
+void deleteAt(ListDin *list, int index);
 
 #endif

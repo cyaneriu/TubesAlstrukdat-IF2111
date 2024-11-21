@@ -36,6 +36,9 @@ void storeRequest(Store *store) {
     while (getchar() != '\n'); 
     Word item = currentWord;
     item.TabWord[item.Length] = '\0';
+    if (currentWord.Length > 0 && currentWord.TabWord[currentWord.Length - 1] == '\n') {
+                currentWord.TabWord[currentWord.Length - 1] = '\0';
+    }
 
     if (isItemInStore(*store, item)) {
         printf("Barang dengan nama yang sama sudah ada di toko!\n");
