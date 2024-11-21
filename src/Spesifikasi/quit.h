@@ -5,6 +5,6 @@
 #include "load.h"
 #include <stdio.h>
 
-void quit();
+void quit(char * filename, Barang barang[MAX_BARANG], int *jumlahBarang, User user[MAX_USER], int *jumlahUser);
 
 #endif
