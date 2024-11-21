@@ -4,6 +4,12 @@
 #include "store.h"
 
 // Fungsi untuk menambah permintaan barang baru ke dalam antrian
-void storeRequest(Store *store, char *item);
+boolean isEqualWords(Word word1, char *str);
+
+boolean isItemInStore(Store store, Word item);
+
+boolean isItemInQueue(Store store, Word item);
+
+void storeRequest(Store *store);
 
 #endif

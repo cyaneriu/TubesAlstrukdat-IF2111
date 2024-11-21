@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #include "mesinkarakter.h"
 
 char currentChar;

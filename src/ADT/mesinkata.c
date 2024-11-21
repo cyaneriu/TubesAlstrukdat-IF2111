@@ -26,6 +26,7 @@ void IgnoreNewline()
 void StartWordInput()
 {
     START();
+    currentWord.Length = 0;
     IgnoreBlank();
     IgnoreNewline();
     if (IsEOP())

@@ -4,6 +4,8 @@
         "store_supply.h": "c",
         "store.h": "c",
         "string.h": "c",
-        "mesinkarakter.h": "c"
+        "mesinkarakter.h": "c",
+        "stdio.h": "c",
+        "store_remove.h": "c"
     }
 }
