@@ -8,21 +8,18 @@
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkarakter.h"
 
-// Fungsi untuk menghapus barang dari toko
 void storeRemove(Store *store) {
     printf("Nama barang yang akan dihapus: ");
     StartWordInput();
 
     boolean found = false;
 
-    // Iterasi untuk mencari barang yang sesuai
     for (int i = 0; i < listLength(store->barang); i++) {
         if (isEqualWords(currentWord, ELMT(store->barang, i))) {
             found = true;
             char item[100];
             copyFirst(store->barang, item); 
             deleteAt(&(store->barang), item);
-
             printf("%s telah berhasil dihapus.\n", currentWord.TabWord);
             break;
         }

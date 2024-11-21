@@ -22,12 +22,10 @@ void displayStoreMenu() {
 
 int main() {
     Store store;
-    createStore(&store);  // Inisialisasi store
+    createStore(&store);
+    boolean store_running = true;
 
-    boolean running = true;
-
-    while (running) {
-        // Tampilkan menu utama
+    while (store_running) {
         displayStoreMenu();
         StartWordInput(); // Membaca input
 
@@ -42,12 +40,12 @@ int main() {
         } else if (IsCommandEqual(currentWord, "STORE REMOVE\0")) {
             StartWordInput();
             if (currentWord.Length > 0 && currentWord.TabWord[currentWord.Length - 1] == '\n') {
-                currentWord.TabWord[currentWord.Length - 1] = '\0';  // Menghapus newline
+                currentWord.TabWord[currentWord.Length - 1] = '\0';
             }
             storeRemove(&store);
 
         } else if (IsCommandEqual(currentWord, "EXIT")) {
-            running = false;  // Keluar dari loop
+            store_running = false;
             printf("Keluar dari STORE.\n");
         } else {
             printf("Perintah tidak dikenali. Silakan coba lagi.\n");

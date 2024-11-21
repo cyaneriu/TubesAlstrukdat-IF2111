@@ -3,7 +3,6 @@
 
 #include "store.h"
 
-// Fungsi untuk menghapus barang dari toko
 void storeRemove(Store *store);
 
 #endif

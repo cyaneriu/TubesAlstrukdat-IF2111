@@ -3,7 +3,6 @@
 #include "store_request.h"
 #include "../ADT/mesinkata.h"
 
-// Fungsi untuk mengecek apakah dua kata sama
 boolean isEqualWords(Word word1, char *str) {
     int i = 0;
     while (i < word1.Length && str[i] != '\0' && word1.TabWord[i] == str[i]) {
