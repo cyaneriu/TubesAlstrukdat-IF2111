@@ -3,7 +3,8 @@
 
 #include "store.h"
 
-// Fungsi untuk menampilkan daftar barang di toko
 void displayStore(Store store);
+
+void displayQueue(Store store);
 
 #endif

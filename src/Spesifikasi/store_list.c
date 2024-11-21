@@ -12,3 +12,14 @@ void displayStore(Store store) {
         }
     }
 }
+
+void displayQueue(Store store) {
+    if (isEmpty(store.antrian)) {
+        printf("ANTRIAN KOSONG\n");
+    } else {
+        printf("List barang yang ada di antrian:\n");
+        for (int i = 0; i < listLength(store.antrian); i++) {
+            printf("- %s\n", ELMT(store.antrian, i));
+        }
+    }
+}

@@ -7,7 +7,6 @@ void CreateQueue(Queue *q){
     q->idxTail = IDX_UNDEF;
 }
 
-/* ********* Prototype ********* */
 boolean isEmpty(Queue q){
     return q.idxHead == IDX_UNDEF && q.idxTail == IDX_UNDEF;
 }

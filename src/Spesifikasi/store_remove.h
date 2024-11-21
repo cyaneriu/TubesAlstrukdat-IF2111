@@ -4,6 +4,6 @@
 #include "store.h"
 
 // Fungsi untuk menghapus barang dari toko
-void removeItemFromStore(Store *store);
+void storeRemove(Store *store);
 
 #endif

@@ -9,20 +9,20 @@
 #include "../ADT/mesinkarakter.h"
 
 // Fungsi untuk menghapus barang dari toko
-void removeItemFromStore(Store *store) {
+void storeRemove(Store *store) {
     printf("Nama barang yang akan dihapus: ");
     StartWordInput();
 
-    int found = 0;
+    boolean found = false;
+
+    // Iterasi untuk mencari barang yang sesuai
     for (int i = 0; i < listLength(store->barang); i++) {
         if (isEqualWords(currentWord, ELMT(store->barang, i))) {
-            found = 1;
+            found = true;
+            char item[100];
+            copyFirst(store->barang, item); 
+            deleteAt(&(store->barang), item);
 
-            // Hapus barang dari toko
-            for (int j = i; j < listLength(store->barang) - 1; j++) {
-                store->barang.items[j] = store->barang.items[j + 1];
-            }
-            store->barang.size--;
             printf("%s telah berhasil dihapus.\n", currentWord.TabWord);
             break;
         }
@@ -32,3 +32,4 @@ void removeItemFromStore(Store *store) {
         printf("Toko tidak menjual %s\n", currentWord.TabWord);
     }
 }
+

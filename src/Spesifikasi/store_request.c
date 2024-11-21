@@ -22,8 +22,8 @@ boolean isItemInStore(Store store, Word item) {
 }
 
 boolean isItemInQueue(Store store, Word item) {
-    for (int i = 0; i < listLength(store.barang); i++) {
-        if (isEqualWords(item, ELMT(store.barang, i))) {
+    for (int i = 0; i < listLength(store.antrian); i++) {
+        if (isEqualWords(item, ELMT(store.antrian, i))) {
             return true;
         }
     }
@@ -43,7 +43,6 @@ void storeRequest(Store *store) {
     } else if (isItemInQueue(*store, item)) {
         printf("Barang dengan nama yang sama sudah ada di antrian!\n");
     } else {
-        insertLast(&(store->barang), item.TabWord);
-        printf("Nama barang yang diminta: %s\n", item.TabWord);
+        insertLast(&(store->antrian), item.TabWord);
     }
 }

@@ -3,54 +3,40 @@
 #include <string.h>
 #include "store_supply.h"
 
-// Fungsi untuk memproses supply barang berdasarkan antrian permintaan
 void storeSupply(Store *store) {
-    if (isEmpty(store->barang)) {
+    if (isEmpty(store->antrian)) {
         printf("Antrian permintaan kosong.\n");
         return;
     }
 
     char item[100];
     int price;
-    char action[10];
 
-    // Misalnya: kita ambil barang pertama dari antrian
-    strcpy(item, ELMT(store->barang, 0));  // Ambil item pertama dari daftar permintaan
+    copyFirst(store->antrian, item);
 
     printf("Apakah kamu ingin menambahkan barang %s: ", item);
-    scanf("%s", action);
+    StartWordInput();
 
-    // Cek apakah tindakan yang diminta adalah "Terima", "Tunda", atau "Tolak"
-    if (strcmp(action, "Terima") == 0) {
+    if (IsCommandEqual(currentWord, "Terima\0")) {
         printf("Harga barang: ");
         while (scanf("%d", &price) != 1 || price <= 0) {
             printf("Harga harus berupa angka yang lebih besar dari 0!\n");
-            while (getchar() != '\n');  // Clear input buffer
+            while (getchar() != '\n');
         }
 
-        // Menambahkan barang ke dalam toko
+        copyFirst(store->antrian, item);  
         insertLast(&(store->barang), item);
-        printf("%s dengan harga %d telah ditambahkan ke toko.\n", item, price);
+        deleteFirst(&(store->antrian));
 
-        // Menghapus barang dari antrian (menggeser elemen dalam daftar)
-        free(store->barang.items[0]);  // Hapus barang yang sudah diproses
-        for (int i = 0; i < listLength(store->barang) - 1; i++) {
-            store->barang.items[i] = store->barang.items[i + 1];
-        }
-        store->barang.size--;  // Kurangi ukuran daftar
+        printf("%s dengan harga %d telah ditambahkan ke toko.\n", item, price);
     } 
-    else if (strcmp(action, "Tunda") == 0) {
+
+    else if (IsCommandEqual(currentWord, "Tunda\0")) {
         printf("%s dikembalikan ke antrian.\n", item);
-        // Tidak ada perubahan pada antrian (barang tetap di antrian)
     }
-    else if (strcmp(action, "Tolak") == 0) {
+    else if (IsCommandEqual(currentWord, "Tolak\0")) {
         printf("%s dihapuskan dari antrian.\n", item);
-        // Menghapus barang dari antrian
-        free(store->barang.items[0]);
-        for (int i = 0; i < listLength(store->barang) - 1; i++) {
-            store->barang.items[i] = store->barang.items[i + 1];
-        }
-        store->barang.size--;  // Kurangi ukuran daftar
+        deleteFirst(&(store->antrian));
     }
     else {
         printf("Tindakan tidak valid.\n");

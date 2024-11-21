@@ -31,4 +31,10 @@ char* ELMT(ListDin list, int index);
 // Fungsi untuk menghapus list
 void dealocateList(ListDin *list);
 
+void copyFirst(ListDin list, char *variable);
+
+void deleteFirst(ListDin *list);
+
+void deleteAt(ListDin *list, const char *item);
+
 #endif
