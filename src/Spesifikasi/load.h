@@ -8,9 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h> 
 
-#define MAX_LEN 100
-#define MAX_BARANG 100
+
 #define MAX_USER 100
+#define MAX_BARANG 100
 
 // Struktur Barang
 typedef struct {

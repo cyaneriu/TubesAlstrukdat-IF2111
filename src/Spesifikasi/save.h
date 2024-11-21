@@ -7,9 +7,6 @@
 #include <stdlib.h> 
 #include"load.h"
 //#include "../Spesifikasi/load.h"
-#define MAX_LEN 100
-#define MAX_BARANG 100
-#define MAX_USER 100
 
 
 //Fungsi Untuk Memulai menulis file txt

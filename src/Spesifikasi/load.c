@@ -22,7 +22,7 @@ void wordToString(Word word, char* str) {
 
 void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser) {
     char fullPath[100];
-    char directory[100] = "../../save";
+    char directory[100] = "../save";
     sprintf(fullPath, "%s/%s", directory, filename);
     StartWordFile(fullPath, 0);
 

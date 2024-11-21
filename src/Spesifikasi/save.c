@@ -10,11 +10,11 @@ void startWriteFile(char *filename) {
 }
 void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int jumlahUser) {
     char fullPath[100];
-    char directory[100] = "../../save";
+    char directory[100] = "../save";
     sprintf(fullPath, "%s/%s", directory, filename);
     startWriteFile(fullPath); 
 
-    char jumlahBarangStr[NMax];
+    char jumlahBarangStr[MAX_LEN];
     sprintf(jumlahBarangStr, "%d", jumlahBarang); 
     for (int i = 0; i < stringLen(jumlahBarangStr); i++) {
         fprintf(pita, "%c", jumlahBarangStr[i]); 
@@ -22,7 +22,7 @@ void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int ju
     fprintf(pita, "\n"); 
 
     for (int i = 0; i < jumlahBarang; i++) {
-        char harga[NMax];
+        char harga[MAX_LEN];
         sprintf(harga, "%d", barang[i].price); 
         for (int j = 0; j < stringLen(harga); j++) {
             fprintf(pita, "%c", harga[j]); 
@@ -34,7 +34,7 @@ void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int ju
         fprintf(pita, "\n"); 
     }
 
-    char jumlahUserStr[NMax];
+    char jumlahUserStr[MAX_LEN];
     sprintf(jumlahUserStr, "%d", jumlahUser); 
     for (int i = 0; i < stringLen(jumlahUserStr); i++) {
         fprintf(pita, "%c", jumlahUserStr[i]); 
@@ -43,7 +43,7 @@ void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int ju
 
 
     for (int i = 0; i < jumlahUser; i++) {
-        char moneyStr[NMax];
+        char moneyStr[MAX_LEN];
         sprintf(moneyStr, "%d", user[i].money); 
         for (int j = 0; j < stringLen(moneyStr); j++) {
             fprintf(pita, "%c", moneyStr[j]); 
