@@ -162,7 +162,7 @@ int stringLen(char *string)
 
 Word stringToWord(char* str) {
     Word word;
-    copyString(word.TabWord, str, NMax);
+    copyString(word.TabWord, str, MAX_LEN);
     word.Length = stringLen(str);
     return word;
 }

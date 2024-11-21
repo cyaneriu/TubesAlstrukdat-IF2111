@@ -3,7 +3,7 @@
 
 #include "mesinkarakter.h"
 
-#define NMax 50
+#define MAX_LEN 50
 #define BLANK ' '
 #define NEWLINE '\n'
 #define STRIP '-'
@@ -11,7 +11,7 @@
 
 typedef struct
 {
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[MAX_LEN]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
 

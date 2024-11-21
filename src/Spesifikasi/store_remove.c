@@ -47,28 +47,28 @@
 void storeRemove(Store *store) {
     printf("Input barang yang akan dihapus: ");
     StartWordInput();
-    printf("After input: '%s' (length: %d)\n", currentWord.TabWord, currentWord.Length);
+    //printf("After input: '%s' (length: %d)\n", currentWord.TabWord, currentWord.Length);
+
     while (getchar() != '\n'); 
-    
-    if (currentWord.Length > 0 && currentWord.TabWord[currentWord.Length - 1] == '\n') {
-        currentWord.TabWord[currentWord.Length - 1] = '\0';
+    Word item = currentWord;
+    item.TabWord[item.Length] = '\0';
+    if (item.Length > 0 && item.TabWord[item.Length - 1] == '\n') {
+                item.TabWord[item.Length - 1] = '\0';
     }
-    printf("Final input: '%s' (length: %d)\n", currentWord.TabWord, currentWord.Length);
 
     boolean found = false;
 
     for (int i = 0; i < listLength(store->barang); i++) {
-        if (isEqualWords(currentWord, ELMT(store->barang, i))) {
+        if (isEqualWords(item, ELMT(store->barang, i))) {
             found = true;
-            // Barang ditemukan, hapus barang berdasarkan indeks
-            deleteAt(&(store->barang), i);  // Hapus item dari list berdasarkan indeks
-            printf("%s telah berhasil dihapus.\n", currentWord.TabWord);  // Menampilkan nama barang yang dihapus
+            deleteAt(&(store->barang), i);
+            printf("%s telah berhasil dihapus.\n", item.TabWord);
             break;
         }
     }
 
     if (!found) {
-        printf("Toko tidak menjual %s\n", currentWord.TabWord);
+        printf("Toko tidak menjual %s\n", item.TabWord);
     }
 }
 

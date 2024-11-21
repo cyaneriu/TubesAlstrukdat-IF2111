@@ -9,20 +9,16 @@ void CreateListDin(ListDin *list, int capacity) {
     list->capacity = capacity;
 }
 
-/*// Fungsi untuk menambah item pada list
 void insertLast(ListDin *list, char *item) {
     if (list->size < list->capacity) {
-        list->items[list->size] = (char*)malloc(strlen(item) + 1);
-        strcpy(list->items[list->size], item);
-        list->size++;
-    }
-}*/
+        int length = 0;
 
-void insertLast(ListDin *list, char *item) {
-    if (list->size < list->capacity) {
-        int length = strlen(item);
+        while (item[length] != '\0') {
+            length++;
+        }
+
         list->items[list->size] = (char *)malloc(length + 1);
-        if (list->items[list->size] != NULL) { 
+        if (list->items[list->size] != NULL) {
             for (int i = 0; i < length; i++) {
                 list->items[list->size][i] = item[i];
             }
@@ -32,17 +28,14 @@ void insertLast(ListDin *list, char *item) {
     }
 }
 
-// Fungsi untuk mengecek apakah list kosong
 int isEmpty(ListDin list) {
     return list.size == 0;
 }
 
-// Fungsi untuk mendapatkan panjang list
 int listLength(ListDin list) {
     return list.size;
 }
 
-// Fungsi untuk mengakses elemen list
 char* ELMT(ListDin list, int index) {
     if (index >= 0 && index < list.size) {
         return list.items[index];
@@ -50,7 +43,6 @@ char* ELMT(ListDin list, int index) {
     return NULL;
 }
 
-// Fungsi untuk menghapus list dan membebaskan memori
 void dealocateList(ListDin *list) {
     for (int i = 0; i < list->size; i++) {
         free(list->items[i]);
@@ -88,11 +80,10 @@ void deleteAt(ListDin *list, int index) {
     if (list->size > 0 && index >= 0 && index < list->size) {
         free(list->items[index]);
 
-        // Geser elemen-elemen setelahnya
         for (int i = index + 1; i < list->size; i++) {
             list->items[i - 1] = list->items[i];
         }
 
-        list->size--;  // Kurangi ukuran list
+        list->size--;
     }
 }
