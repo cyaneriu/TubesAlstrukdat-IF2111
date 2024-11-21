@@ -2,7 +2,13 @@
 #include <stdlib.h>
 #include "quit.h"
 
-void quit(char *filename, Barang barang[], int jumlahBarang, User user[], int jumlahUser){
+void quit(){
+    char *filename;
+    User user[MAX_USER]; 
+    Barang barang[MAX_BARANG];
+    int jumlahBarang;
+    int jumlahUser;
+
     printf(">>>> QUIT\n");
     printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N)? \n");
 
