@@ -7,8 +7,8 @@
 #include <stdio.h>
 
 typedef struct {
-    char username[NMax];
-    char password[NMax];
+    char username[MAX_LEN];
+    char password[MAX_LEN];
     boolean logged;
 } User;
 

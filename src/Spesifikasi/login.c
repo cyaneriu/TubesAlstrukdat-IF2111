@@ -8,8 +8,8 @@
 #include <stdio.h>
 
 typedef struct {
-    char username[NMax];
-    char password[NMax];
+    char username[MAX_LEN];
+    char password[MAX_LEN];
     boolean logged;
 } User;
 
@@ -21,7 +21,7 @@ void login(User *user, const char *filename) {
 
     // input for username sama password using mesinkata.h
     Word usernameWord, passwordWord;
-    char fileUsername[NMax], filePassword[NMax];
+    char fileUsername[MAX_LEN], filePassword[MAX_LEN];
     boolean flag = false;
 
     printf("Username: ");
