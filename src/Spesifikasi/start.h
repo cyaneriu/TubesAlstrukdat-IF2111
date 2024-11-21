@@ -6,6 +6,6 @@
 #include "load.h"
 #include <stdio.h>
 
-void start(char * filename);
+void start();
 
 #endif
