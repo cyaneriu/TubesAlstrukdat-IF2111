@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "logout.h"
-#include "boolean.h"
 
 void logout(User *user, const char *filename) {
     if ((*user).logged) {

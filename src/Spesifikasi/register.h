@@ -2,7 +2,6 @@
 #define REGISTER_H
 
 #include <stdio.h>
-#include "../ADT/mesinkarakter.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/boolean.h"
 #include "load.h"

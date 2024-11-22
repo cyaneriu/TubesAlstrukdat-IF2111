@@ -1,9 +1,8 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include "mesinkarakter.h"
-#include "mesinkata.h"
-#include "boolean.h"
+#include "../ADT/mesinkata.h"
+#include "../ADT/boolean.h"
 #include <stdio.h>
 
 typedef struct {

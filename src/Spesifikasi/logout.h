@@ -1,6 +1,6 @@
 #ifndef LOGOUT_H
 #define LOGOUT_H
-#include "boolean.h" 
+#include "../ADT/boolean.h" 
 
 typedef struct {
     char username[100];

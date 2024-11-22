@@ -1,10 +1,4 @@
-#ifndef LOGIN_H
-#define LOGIN_H
-
 #include "login.h"
-#include "mesinkarakter.h"
-#include "mesinkata.h"
-#include "boolean.h"
 #include <stdio.h>
 
 typedef struct {
@@ -66,5 +60,3 @@ void login(User *user, const char *filename) {
 
     fclose(file);
 }
-
-#endif
