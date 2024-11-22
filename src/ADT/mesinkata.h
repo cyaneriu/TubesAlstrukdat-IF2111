@@ -77,4 +77,6 @@ Word SplitWordLeftBlank(Word word);
 
 Word SplitWordLeftMark(Word word);
 
+boolean isEqualWords(Word word1, char *str);
+
 #endif

@@ -3,7 +3,13 @@
 #include "spesifikasi/store.h"
 
 void displayLandingPage() {
-    printf("PURRMART");
+    printf("PURRMART"); //pake art ascii
+}
+
+//kalo udah login register dll
+void displayMainMenu() {
+    printf("\n=== WELCOME TO PURRMART! ===\n");
+    printf(""); //buat opsi2 menu dll
 }
 
 int main() {

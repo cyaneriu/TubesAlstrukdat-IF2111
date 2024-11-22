@@ -362,3 +362,11 @@ Word SplitWordLeftMark(Word word)
 
     return (temp);
 }
+
+boolean isEqualWords(Word word1, char *str) {
+    int i = 0;
+    while (i < word1.Length && str[i] != '\0' && word1.TabWord[i] == str[i]) {
+        i++;
+    }
+    return (i == word1.Length && str[i] == '\0');
+}

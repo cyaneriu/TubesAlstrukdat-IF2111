@@ -12,12 +12,19 @@ typedef struct {
     ListDin antrian;
 } Store;
 
+typedef struct {
+    char name[MAX_LEN];  // Name of the item
+    int price;           // Price of the item
+} Barang;
 
-// Fungsi untuk membuat store baru
 void createStore(Store *store);
 
 void addItemToStore(Store *store, char *item);
 
 void addItemToQueue(Store *store, char *item);
+
+void displayStoreMenu();
+
+void store_running();
 
 #endif
