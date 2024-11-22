@@ -209,7 +209,7 @@ void PrintInfo (LinierList L)
 	printf("\n");
 }
 
-int NbElmt (LinierList L)
+int NbElmtLin (LinierList L)
 {
 	int count = 0;
 

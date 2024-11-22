@@ -4,7 +4,7 @@
 #include "store_supply.h"
 
 void storeSupply(Store *store) {
-    if (isEmpty(store->antrian)) {
+    if (isEmptyDin(store->antrian)) {
         printf("Antrian permintaan kosong.\n");
         return;
     }
@@ -12,7 +12,7 @@ void storeSupply(Store *store) {
     char item[100];
     int price;
 
-    copyFirst(store->antrian, item);
+    copyFirstDin(store->antrian, item);
 
     printf("Apakah kamu ingin menambahkan barang %s: ", item);
     StartWordInput();
@@ -35,9 +35,9 @@ void storeSupply(Store *store) {
             } while (getchar() != '\n');
         }
 
-        copyFirst(store->antrian, item);  
-        insertLast(&(store->barang), item);
-        deleteFirst(&(store->antrian));
+        copyFirstDin(store->antrian, item);  
+        insertLastDin(&(store->barang), item);
+        deleteFirstDin(&(store->antrian));
 
         printf("%s dengan harga %d telah ditambahkan ke toko.\n", item, price);
     } 
@@ -47,7 +47,7 @@ void storeSupply(Store *store) {
     }
     else if (IsCommandEqual(currentWord, "Tolak\0")) {
         printf("%s dihapuskan dari antrian.\n", item);
-        deleteFirst(&(store->antrian));
+        deleteFirstDin(&(store->antrian));
     }
     else {
         printf("Tindakan tidak valid.\n");

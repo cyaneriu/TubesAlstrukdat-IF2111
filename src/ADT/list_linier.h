@@ -126,11 +126,10 @@ void PrintInfo (LinierList L);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah terkecuali untuk newline di akhir output */
-int NbElmt (LinierList L);
+int NbElmtLin (LinierList L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 /****************** PROSES TERHADAP LIST ******************/
-
 void InversLinierList (LinierList *L);
 /* I.S. sembarang. */
 /* F.S. elemen list dibalik : */
