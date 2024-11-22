@@ -5,21 +5,17 @@
 #include "../ADT/list_dinamis.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkarakter.h"
+#include "load.h"
 
 typedef struct {
     ListDin barang;
     ListDin antrian;
 } Store;
 
-typedef struct {
-    char name[MAX_LEN];
-    int price;
-} Barang;
-
 void createStore(Store *store);
 
-void addItemToStore(Store *store, char *item);
+void addItemToStore(Store *store, Barang *name);
 
-void addItemToQueue(Store *store, char *item);
+void addItemToQueue(Store *store, Barang *name);
 
 #endif

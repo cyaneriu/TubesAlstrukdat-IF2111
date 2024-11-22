@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "spesifikasi/store.h"
-#include "spesifikasi/store_list.h"
-#include "spesifikasi/store_request.h"
-#include "spesifikasi/store_supply.h"
-#include "spesifikasi/store_supply.h"
-#include "spesifikasi/store_remove.h"
 #include "ADT/list_dinamis.h"
 #include "ADT/mesinkata.h"
 #include "ADT/mesinkarakter.h"
@@ -32,7 +27,7 @@ int main() {
         if (IsCommandEqual(currentWord, "STORE LIST\0")) {
             displayStore(store);
             printf("\n");
-            displayQueue(store);
+            displayStoreQueue(store);
             printf("\n");
         } else if (IsCommandEqual(currentWord, "STORE REQUEST\0")) {
             storeRequest(&store);
