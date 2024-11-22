@@ -14,4 +14,6 @@ void tebakAngka(int isiRekening);
 
 void wordl3(int isiRekening);
 
+void sleep(double seconds);
+
 #endif

@@ -379,3 +379,13 @@ Challenge W0RDL3 merupakan permainan tebak kata berjumlah lima karakter. Pemain 
 >Kita pakai bahasa Inggris saja
 
 */
+
+void sleep(double seconds)
+{
+    clock_t start = clock();
+    while ((double)(clock() - start) / CLOCKS_PER_SEC < seconds);
+    
+}
+/*
+Menunggu selama sekian detik
+*/
