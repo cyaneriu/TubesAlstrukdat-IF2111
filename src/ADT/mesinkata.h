@@ -1,5 +1,5 @@
-#ifndef __MESINKATA_H__
-#define __MESINKATA_H__
+#ifndef MESIN_KATA_H
+#define MESIN_KATA_H
 
 #include "mesinkarakter.h"
 

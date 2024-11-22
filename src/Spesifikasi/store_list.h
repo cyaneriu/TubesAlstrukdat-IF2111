@@ -2,6 +2,8 @@
 #define STORE_LIST_H
 
 #include "store.h"
+#include "load.h"
+#include "../ADT/queue.h"
 
 void displayStore(Store store);
 

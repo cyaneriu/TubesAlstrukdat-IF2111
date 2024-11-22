@@ -6,6 +6,8 @@
 #include "store_supply.h"
 #include "store_supply.h"
 #include "store_remove.h"
+#include "load.h"
+#include "../ADT/queue.h"
 #include "../ADT/boolean.h"
 #include "../ADT/list_dinamis.h"
 #include "../ADT/mesinkata.h"

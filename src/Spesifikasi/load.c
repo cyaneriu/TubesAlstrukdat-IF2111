@@ -56,4 +56,3 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
         user[i].logged = false;
     }
 }
-

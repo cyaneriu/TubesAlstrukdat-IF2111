@@ -4,52 +4,43 @@
 #include "store_supply.h"
 
 void storeSupply(Store *store) {
-    if (isEmptyDin(store->antrian)) {
+    if (isEmptyQueue(store->antrian)) {
         printf("Antrian permintaan kosong.\n");
         return;
     }
 
-    char item[100];
-    int price;
+    char itemName[MAX_LEN_QUEUE];
+    copyFirstQueue(store->antrian, itemName);
 
-    copyFirstDin(store->antrian, item);
-
-    printf("Apakah kamu ingin menambahkan barang %s: ", item);
+    printf("Apakah kamu ingin menambahkan barang %s? (Terima/Tunda/Tolak): ", itemName);
     StartWordInput();
 
-    if (IsCommandEqual(currentWord, "Terima")) {
+    if (IsCommandEqual(currentWord, "Terima\0")) {
+        int price = -1;
         while (price <= 0) {
             printf("Harga barang: ");
             StartWordInput();
+            price = wordToInt(currentWord);
 
-            price = 0;
-            for (int i = 0; i < currentWord.Length; i++) {
-                if (currentWord.TabWord[i] < '0' || currentWord.TabWord[i] > '9') {
-                    price = -1;
-                    break;
-                }
-                price = price * 10 + (currentWord.TabWord[i] - '0');
-            }
             if (price <= 0) {
                 printf("Harga harus berupa angka yang lebih besar dari 0!\n");
-            } while (getchar() != '\n');
+            }
         }
 
-        copyFirstDin(store->antrian, item);  
-        insertLastDin(&(store->barang), item);
-        deleteFirstDin(&(store->antrian));
+        Barang newBarang;
+        wordToString(stringToWord(itemName), newBarang.name);
+        newBarang.price = price;
 
-        printf("%s dengan harga %d telah ditambahkan ke toko.\n", item, price);
-    } 
+        addItemToStore(store, newBarang);
+        dequeue(&(store->antrian), itemName);
 
-    else if (IsCommandEqual(currentWord, "Tunda\0")) {
-        printf("%s dikembalikan ke antrian.\n", item);
-    }
-    else if (IsCommandEqual(currentWord, "Tolak\0")) {
-        printf("%s dihapuskan dari antrian.\n", item);
-        deleteFirstDin(&(store->antrian));
-    }
-    else {
-        printf("Tindakan tidak valid.\n");
+        printf("%s dengan harga %d telah ditambahkan ke toko.\n", itemName, price);
+    } else if (IsCommandEqual(currentWord, "Tunda\0")) {
+        printf("%s dikembalikan ke antrian.\n", itemName);
+    } else if (IsCommandEqual(currentWord, "Tolak\0")) {
+        printf("%s dihapus dari antrian.\n", itemName);
+        dequeue(&(store->antrian), itemName);
+    } else {
+        printf("Perintah gagal. Silakan coba lagi.\n");
     }
 }

@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "spesifikasi/store.h"
+#include "spesifikasi/store_list.h"
+#include "spesifikasi/store_request.h"
+#include "spesifikasi/store_supply.h"
+#include "spesifikasi/store_supply.h"
+#include "spesifikasi/store_remove.h"
+#include "spesifikasi/load.h"
+#include "ADT/queue.h"
+#include "ADT/boolean.h"
 #include "ADT/list_dinamis.h"
 #include "ADT/mesinkata.h"
 #include "ADT/mesinkarakter.h"
@@ -17,6 +25,8 @@ void displayStoreMenu() {
 int main() {
     Store store;
     createStore(&store);
+    loadToStore(&store);
+
     boolean store_running = true;
     displayStoreMenu();
 
@@ -37,9 +47,9 @@ int main() {
             storeRemove(&store);
         } else if (IsCommandEqual(currentWord, "EXIT")) {
             store_running = false;
-            printf("Keluar dari STORE.\n");
+            printf("Keluar dari toko.\n");
         } else {
-            printf("Perintah tidak dikenali. Silakan coba lagi.\n");
+            printf("Perintah gagal. Silakan coba lagi.\n");
         }
     }
 

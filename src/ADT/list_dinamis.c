@@ -1,5 +1,6 @@
 #include "list_dinamis.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 void CreateListDin(ListDin *list, int capacity) {

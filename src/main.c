@@ -3,10 +3,7 @@
 #include "ADT/boolean.h"
 #include "ADT/mesinkarakter.h"
 #include "ADT/mesinkata.h"
-
-void displayLandingPage() {
-    printf("PURRMART"); //pake art ascii
-}
+#include "welcome_perry.h"
 
 void displayMainMenu() { //kalo udah login register dll
     printf("\n=== WELCOME TO PURRMART! ===\n");
@@ -16,7 +13,7 @@ void displayMainMenu() { //kalo udah login register dll
 int main() {
     boolean program = true;
     while (program) {
-        displayLandingPage();
+        welcome_perry();
         //load
         //login/register
 

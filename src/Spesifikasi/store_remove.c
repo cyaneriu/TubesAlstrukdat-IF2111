@@ -10,25 +10,22 @@ void storeRemove(Store *store) {
     printf("Input barang yang akan dihapus: ");
     StartWordInput();
 
-    Word item = currentWord;
-    item.TabWord[item.Length] = '\0';
-    if (item.Length > 0 && item.TabWord[item.Length - 1] == '\n') {
-                item.TabWord[item.Length - 1] = '\0';
-    }
+    Word itemWord = currentWord;
+    itemWord.TabWord[itemWord.Length] = '\0';
 
     boolean found = false;
-
     for (int i = 0; i < listLengthDin(store->barang); i++) {
-        if (isEqualWords(item, ELMTDin(store->barang, i))) {
+        char *itemName = ELMTDin(store->barang, i);
+        if (isEqualWords(itemWord, itemName)) {
             found = true;
             deleteAtDin(&(store->barang), i);
-            printf("%s telah berhasil dihapus.\n", item.TabWord);
+            printf("%s telah berhasil dihapus dari toko.\n", itemWord.TabWord);
             break;
         }
     }
 
     if (!found) {
-        printf("Toko tidak menjual %s\n", item.TabWord);
+        printf("Toko tidak menjual %s\n", itemWord.TabWord);
     }
 }
 

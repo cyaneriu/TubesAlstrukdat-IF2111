@@ -2,6 +2,8 @@
 #define STORE_REQUEST_H
 
 #include "store.h"
+#include "load.h"
+#include "../ADT/queue.h"
 
 // Fungsi untuk menambah permintaan barang baru ke dalam antrian
 boolean isEqualWords(Word word1, char *str);

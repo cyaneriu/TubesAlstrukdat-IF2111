@@ -61,7 +61,3 @@ void welcome_perry () {
     
     welcome();
 }
-
-int main() {
-    welcome_perry();
-}

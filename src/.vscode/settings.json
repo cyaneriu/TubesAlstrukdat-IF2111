@@ -10,6 +10,8 @@
         "list_dinamis.h": "c",
         "store_run.h": "c",
         "mesinkata.h": "c",
-        "store_request.h": "c"
+        "store_request.h": "c",
+        "queue.h": "c",
+        "boolean.h": "c"
     }
 }

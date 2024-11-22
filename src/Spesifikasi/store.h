@@ -1,24 +1,22 @@
 #ifndef STORE_H
 #define STORE_H
-#include "store.h"
+#include "load.h"
 #include "../ADT/boolean.h"
 #include "../ADT/list_dinamis.h"
+#include "../ADT/queue.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkarakter.h"
 
 typedef struct {
     ListDin barang;
-    ListDin antrian;
+    Queue antrian;
 } Store;
-
-typedef struct {
-    char name[MAX_LEN];
-    int price;
-} Barang;
 
 void createStore(Store *store);
 
-void addItemToStore(Store *store, char *item);
+void loadToStore(Store *store);
+
+void addItemToStore(Store *store, Barang item);
 
 void addItemToQueue(Store *store, char *item);
 

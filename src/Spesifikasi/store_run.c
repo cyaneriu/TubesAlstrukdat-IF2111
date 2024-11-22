@@ -7,6 +7,7 @@
 #include "store_remove.h"
 #include "../ADT/boolean.h"
 #include "../ADT/list_dinamis.h"
+#include "../ADT/queue.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkarakter.h"
 
@@ -22,6 +23,7 @@ void displayStoreMenu() {
 void store_running() {
     Store store;
     createStore(&store);
+    loadToStore(&store);
     boolean store_running = true;
     displayStoreMenu();
 
@@ -32,7 +34,7 @@ void store_running() {
         if (IsCommandEqual(currentWord, "STORE LIST\0")) {
             displayStore(store);
             printf("\n");
-            displayQueue(store);
+            displayStoreQueue(store);
             printf("\n");
         } else if (IsCommandEqual(currentWord, "STORE REQUEST\0")) {
             storeRequest(&store);
@@ -44,7 +46,7 @@ void store_running() {
             store_running = false;
             printf("Keluar dari STORE.\n");
         } else {
-            printf("Perintah tidak dikenali. Silakan coba lagi.\n");
+            printf("Perintah gagal. Silakan coba lagi.\n");
         }
     }
 }

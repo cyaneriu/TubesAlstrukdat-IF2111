@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "store_request.h"
+#include "../ADT/queue.h"
 #include "../ADT/mesinkata.h"
 
 boolean isItemInStore(Store store, Word item) {
@@ -13,13 +14,22 @@ boolean isItemInStore(Store store, Word item) {
 }
 
 boolean isItemInQueue(Store store, Word item) {
-    for (int i = 0; i < listLengthDin(store.antrian); i++) {
-        if (isEqualWords(item, ELMTDin(store.antrian, i))) {
+    if (isEmptyQueue(store.antrian)) {
+        return false;
+    }
+    int idx = store.antrian.idxHead;
+    while (true) {
+        if (isEqualWords(item, store.antrian.buffer[idx])) {
             return true;
         }
+        if (idx == store.antrian.idxTail) {
+            break;
+        }
+        idx = (idx + 1) % CAPACITY_QUEUE;
     }
     return false;
 }
+
 
 void storeRequest(Store *store) {
     printf("Masukkan nama barang yang diminta: ");
@@ -35,7 +45,9 @@ void storeRequest(Store *store) {
         printf("Barang dengan nama yang sama sudah ada di toko!\n");
     } else if (isItemInQueue(*store, item)) {
         printf("Barang dengan nama yang sama sudah ada di antrian!\n");
+    } else if (isFullQueue(store->antrian)) {
+            printf("Antrian penuh, tidak dapat menambahkan barang baru.\n");
     } else {
-        insertLastDin(&(store->antrian), item.TabWord);
+        enqueue(&store->antrian, item.TabWord);
     }
 }
