@@ -3,7 +3,7 @@
 #include "spesifikasi/store.h"
 
 void displayLandingPage() {
-    
+    printf("PURRMART");
 }
 
 int main() {

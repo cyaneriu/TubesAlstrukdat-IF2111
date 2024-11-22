@@ -12,6 +12,7 @@ typedef struct {
     ListDin antrian;
 } Store;
 
+
 // Fungsi untuk membuat store baru
 void createStore(Store *store);
 
