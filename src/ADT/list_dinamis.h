@@ -6,7 +6,6 @@
 
 #define CAPACITY 999
 
-// Definisi struktur ListDin
 typedef struct {
     char **items;
     int size;
