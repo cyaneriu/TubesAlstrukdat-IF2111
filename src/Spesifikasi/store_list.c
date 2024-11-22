@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "store.h"
 #include "store_list.h"
 
 // Menampilkan daftar barang di toko

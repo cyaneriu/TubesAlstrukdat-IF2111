@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "store_remove.h"
-#include "../ADT/mesinkata.h"
 #include "store_request.h"
-#include "store.h"
 #include "../ADT/list_dinamis.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkarakter.h"

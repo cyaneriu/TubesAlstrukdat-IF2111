@@ -3,14 +3,6 @@
 #include "store_request.h"
 #include "../ADT/mesinkata.h"
 
-boolean isEqualWords(Word word1, char *str) {
-    int i = 0;
-    while (i < word1.Length && str[i] != '\0' && word1.TabWord[i] == str[i]) {
-        i++;
-    }
-    return (i == word1.Length && str[i] == '\0');
-}
-
 boolean isItemInStore(Store store, Word item) {
     for (int i = 0; i < listLength(store.barang); i++) {
         if (isEqualWords(item, ELMT(store.barang, i))) {

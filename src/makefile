@@ -2,34 +2,30 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Ispesifikasi -IADT
 
-# Source files
-SRCS = cobamain.c \
-       spesifikasi/store.c \
-       spesifikasi/store_list.c \
-       spesifikasi/store_remove.c \
-       spesifikasi/store_request.c \
-       spesifikasi/store_supply.c \
-       ADT/list_dinamis.c \
-       ADT/mesinkata.c \
-       ADT/mesinkarakter.c
+# Source directories
+SRC_DIRS = spesifikasi ADT
 
-# Object files
+# Source files: find all .c files in the specified directories
+SRCS = main.c $(wildcard $(addsuffix /*.c, $(SRC_DIRS)))
+
+# Object files: replace .c with .o for all source files
 OBJS = $(SRCS:.c=.o)
 
 # Executable name
-TARGET = cobamain
+TARGET = main
 
-# Rules
+# Default target
 all: $(TARGET)
 
+# Link the program
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Rule to compile source files into object files
+# Compile each source file into an object file
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up
+# Clean up build artifacts
 clean:
 	rm -f $(OBJS) $(TARGET)
 

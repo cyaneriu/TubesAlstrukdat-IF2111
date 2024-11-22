@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "spesifikasi/store.h"
+#include "ADT/boolean.h"
+#include "ADT/mesinkarakter.h"
+#include "ADT/mesinkata.h"
 
 void displayLandingPage() {
     printf("PURRMART"); //pake art ascii
@@ -9,7 +11,7 @@ void displayLandingPage() {
 //kalo udah login register dll
 void displayMainMenu() {
     printf("\n=== WELCOME TO PURRMART! ===\n");
-    printf(""); //buat opsi2 menu dll
+    printf("menu"); //buat opsi2 menu dll
 }
 
 int main() {
@@ -19,6 +21,8 @@ int main() {
         StartWordInput();
 
         if (IsCommandEqual(currentWord, "STORE\0")) {
+            #include "store_run.h"
+            store_running();
         }
     }
 }
