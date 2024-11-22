@@ -1,5 +1,5 @@
-#ifndef __MESIN_KAR_H_
-#define __MESIN_KAR_H_
+#ifndef MESIN_KARAKTER_H
+#define MESIN_KARAKTER_H
 
 #include "boolean.h"
 #include <stdio.h>

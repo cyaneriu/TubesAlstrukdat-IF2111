@@ -9,26 +9,27 @@ Word hasil;
 
 void IgnoreBlank()
 {
-    while (currentChar == BLANK)
+    while (currentChar == BLANK || currentChar == MARK)
     {
         ADV();
     }
 }
 
 void IgnoreNewline()
-{ 
-    while (currentChar == NEWLINE)
+{
+    while (currentChar == '\n')
     {
-        AdvFile();
+        ADV();
     }
 }
+
 
 void StartWordInput()
 {
     START();
     currentWord.Length = 0;
     IgnoreBlank();
-    //IgnoreNewline();
+    IgnoreNewline();
     if (IsEOP())
     {
         EndWord = true;
@@ -210,16 +211,16 @@ Word CopyWordFile()
     currentWord.Length = i;
 }
 
-void CopyWordinput(){
+void CopyWordinput() {
     int i = 0;
-    while ((!IsEOP()))
-    {
+    while (!IsEOP() && currentChar != NEWLINE) {
         currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
-    } 
+    }
     currentWord.Length = i;
 }
+
 
 void ADVSemicolon(){
     hasil.Length = 0;

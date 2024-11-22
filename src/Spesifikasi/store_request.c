@@ -24,8 +24,7 @@ boolean isItemInQueue(Store store, Word item) {
 void storeRequest(Store *store) {
     printf("Masukkan nama barang yang diminta: ");
     StartWordInput();
-
-    while (getchar() != '\n'); 
+    
     Word item = currentWord;
     item.TabWord[item.Length] = '\0';
     if (currentWord.Length > 0 && currentWord.TabWord[currentWord.Length - 1] == '\n') {

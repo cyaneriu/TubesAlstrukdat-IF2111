@@ -32,14 +32,14 @@ void ADV()
     else
     {
         retval = fscanf(pita, "%c", &currentChar);
-        EOP = feof(pita);
-
-        if (EOP)
+        EOP = (currentChar == MARK) || feof(pita); // MARK di sini adalah '\n'
+        if (feof(pita))
         {
             fclose(pita);
         }
     }
 }
+
 
 void AdvFile()
 {
@@ -50,14 +50,14 @@ void AdvFile()
     else
     {
         retval = fscanf(pita, "%c", &currentChar);
-        EOP = feof(pita);
-
-        if (EOP)
+        EOP = (currentChar == MARK) || feof(pita);
+        if (feof(pita))
         {
             fclose(pita);
         }
     }
 }
+
 
 char GetCC()
 {
