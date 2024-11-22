@@ -1,9 +1,10 @@
 #ifndef LOGOUT_H
 #define LOGOUT_H
+#include "login.h"
 #include "../ADT/boolean.h" 
 
 typedef struct {
-    char username[100];
+    char username[MAX_LEN];
     boolean logged; 
 } User;
 
