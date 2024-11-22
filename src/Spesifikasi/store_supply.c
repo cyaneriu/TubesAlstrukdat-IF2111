@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "store_supply.h"
 
 void storeSupply(Store *store) {
@@ -17,11 +16,22 @@ void storeSupply(Store *store) {
     printf("Apakah kamu ingin menambahkan barang %s: ", item);
     StartWordInput();
 
-    if (IsCommandEqual(currentWord, "Terima\0")) {
-        printf("Harga barang: ");
-        while (scanf("%d", &price) != 1 || price <= 0) {
-            printf("Harga harus berupa angka yang lebih besar dari 0!\n");
-            while (getchar() != '\n');
+    if (IsCommandEqual(currentWord, "Terima")) {
+        while (price <= 0) {
+            printf("Harga barang: ");
+            StartWordInput();
+
+            price = 0;
+            for (int i = 0; i < currentWord.Length; i++) {
+                if (currentWord.TabWord[i] < '0' || currentWord.TabWord[i] > '9') {
+                    price = -1;
+                    break;
+                }
+                price = price * 10 + (currentWord.TabWord[i] - '0');
+            }
+            if (price <= 0) {
+                printf("Harga harus berupa angka yang lebih besar dari 0!\n");
+            } while (getchar() != '\n');
         }
 
         copyFirst(store->antrian, item);  

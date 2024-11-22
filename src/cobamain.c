@@ -17,22 +17,23 @@ void displayStoreMenu() {
     printf("3. STORE SUPPLY\n");
     printf("4. STORE REMOVE\n");
     printf("5. EXIT\n");
-    printf("Pilih menu: ");
 }
 
 int main() {
     Store store;
     createStore(&store);
     boolean store_running = true;
+    displayStoreMenu();
 
     while (store_running) {
-        displayStoreMenu();
+        printf(">> ");
         StartWordInput();
 
         if (IsCommandEqual(currentWord, "STORE LIST\0")) {
             displayStore(store);
             printf("\n");
             displayQueue(store);
+            printf("\n");
         } else if (IsCommandEqual(currentWord, "STORE REQUEST\0")) {
             storeRequest(&store);
         } else if (IsCommandEqual(currentWord, "STORE SUPPLY\0")) {
