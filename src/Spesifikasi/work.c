@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "boolean.h"
+#include "../ADT/boolean.h"
 
 #include "work.h"
 
