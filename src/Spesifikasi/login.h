@@ -3,6 +3,7 @@
 
 #include "../ADT/mesinkata.h"
 #include "../ADT/boolean.h"
+#include "load.h"
 #include <stdio.h>
 
 typedef struct {

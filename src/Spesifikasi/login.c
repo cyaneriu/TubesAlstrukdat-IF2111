@@ -1,11 +1,6 @@
 #include "login.h"
 #include <stdio.h>
 
-typedef struct {
-    char username[MAX_LEN];
-    char password[MAX_LEN];
-    boolean logged;
-} User;
 
 void login(User *user, const char *filename) {
     if ((*user).logged) {
@@ -37,8 +32,8 @@ void login(User *user, const char *filename) {
         Word fileUsernameWord = stringToWord(fileUsername);
         Word filePasswordWord = stringToWord(filePassword);
         // cek username sama password sama kek yg ada di file ga
-        if (IsWordEqual(usernameWord, fileUsernameWord)) { 
-            if (IsWordEqual(passwordWord, filePasswordWord)) { 
+        if (isEqualWords(usernameWord, &fileUsernameWord)) { 
+            if (isEqualWords(passwordWord, &filePasswordWord)) { 
                 wordToString(usernameWord, (*user).username); // Store username
                 wordToString(passwordWord, (*user).password); // Store password
                 (*user).logged = true;
