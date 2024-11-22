@@ -3,6 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include "../ADT/boolean.h"
+#include "../ADT/mesinkata.h"
 
 #include "work.h"
 
@@ -11,11 +12,20 @@
 // 2. Validasi input agar sesuai dengan format yang diperbolehkan
 // (misalnya tidak boleh langsung enter, tidak boleh mengisi kata > 5 huruf di wordl3, dll)
 
-int driverWok()
+// int main()
+// {
+//     driverWork();
+// }
+
+int driverWork()
 {
     work(100);
+    work(1000);
+    workChallenge(100);
     workChallenge(1000);
     tebakAngka(100);
+    tebakAngka(1000);
+    wordl3(100);
     wordl3(1000);
 
     return 0;
@@ -39,13 +49,13 @@ void work(int isiRekening)
 
     // 2. Input pekerjaan yang dipilih
     char pilihanKerja[100];
+    // Word pilihanKerja;
     printf("Masukkan pekerjaan yang dipilih: ");
     scanf("%[^\n]%*c", pilihanKerja);
 
-    int durasiKerja, pendapatan;
+    int durasiKerja = 0, pendapatan = 0;
 
-    // diperlukan fungsi strcmp alias string compare
-    
+    // gunakan fungsi perbandingan kata
     if (strcmp(pilihanKerja, "Evil Lab Assistant") == 0)
     {
         pendapatan = 100;
@@ -380,12 +390,12 @@ Challenge W0RDL3 merupakan permainan tebak kata berjumlah lima karakter. Pemain 
 
 */
 
-void sleep(double seconds)
-{
-    clock_t start = clock();
-    while ((double)(clock() - start) / CLOCKS_PER_SEC < seconds);
+// void sleep(double seconds)
+// {
+//     clock_t start = clock();
+//     while ((double)(clock() - start) / CLOCKS_PER_SEC < seconds);
     
-}
+// }
 /*
 Menunggu selama sekian detik
 */
