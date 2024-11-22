@@ -6,7 +6,6 @@
 #include "welcome_perry.h"
 
 void displayMainMenu() { //kalo udah login register dll
-    printf("\n=== WELCOME TO PURRMART! ===\n");
     printf("menu"); //buat opsi2 menu dll
 }
 

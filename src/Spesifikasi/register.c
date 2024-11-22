@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "register.h"
+#include "load.h"
 
 #define MAX_USER 100
 #define FILENAME "user_data.txt"
@@ -8,8 +9,10 @@
 boolean usernamevalid(char usernames[][MAX_LEN], int userCount, Word usernameWord) {
     for (int i = 0; i < userCount; i++) {
         Word fileWord = stringToWord(usernames[i]);
+        char usernamedest;
+        wordToString(usernameWord, usernamedest);
         // skenario kalau username udah ada di file txt
-        if (IsWordEqual(fileWord, usernameWord)) {
+        if (isEqualWords(fileWord, usernamedest)) {
             return false; 
         }
     }
