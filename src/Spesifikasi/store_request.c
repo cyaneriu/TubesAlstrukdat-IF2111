@@ -4,8 +4,8 @@
 #include "../ADT/mesinkata.h"
 
 boolean isItemInStore(Store store, Word item) {
-    for (int i = 0; i < listLength(store.barang); i++) {
-        if (isEqualWords(item, ELMT(store.barang, i))) {
+    for (int i = 0; i < listLengthDin(store.barang); i++) {
+        if (isEqualWords(item, ELMTDin(store.barang, i))) {
             return true;
         }
     }
@@ -13,8 +13,8 @@ boolean isItemInStore(Store store, Word item) {
 }
 
 boolean isItemInQueue(Store store, Word item) {
-    for (int i = 0; i < listLength(store.antrian); i++) {
-        if (isEqualWords(item, ELMT(store.antrian, i))) {
+    for (int i = 0; i < listLengthDin(store.antrian); i++) {
+        if (isEqualWords(item, ELMTDin(store.antrian, i))) {
             return true;
         }
     }
@@ -37,6 +37,6 @@ void storeRequest(Store *store) {
     } else if (isItemInQueue(*store, item)) {
         printf("Barang dengan nama yang sama sudah ada di antrian!\n");
     } else {
-        insertLast(&(store->antrian), item.TabWord);
+        insertLastDin(&(store->antrian), item.TabWord);
     }
 }

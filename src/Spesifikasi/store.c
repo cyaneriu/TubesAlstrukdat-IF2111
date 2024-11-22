@@ -17,9 +17,9 @@ void createStore(Store *store) {
 }
 
 void addItemToStore(Store *store, char *item) {
-    insertLast(&(store->barang), item);
+    insertLastDin(&(store->barang), item);
 }
 
 void addItemToQueue(Store *store, char *item) {
-    insertLast(&(store->antrian), item);
+    insertLastDin(&(store->antrian), item);
 }

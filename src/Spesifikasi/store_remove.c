@@ -20,10 +20,10 @@ void storeRemove(Store *store) {
 
     boolean found = false;
 
-    for (int i = 0; i < listLength(store->barang); i++) {
-        if (isEqualWords(item, ELMT(store->barang, i))) {
+    for (int i = 0; i < listLengthDin(store->barang); i++) {
+        if (isEqualWords(item, ELMTDin(store->barang, i))) {
             found = true;
-            deleteAt(&(store->barang), i);
+            deleteAtDin(&(store->barang), i);
             printf("%s telah berhasil dihapus.\n", item.TabWord);
             break;
         }
