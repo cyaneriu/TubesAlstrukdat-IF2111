@@ -46,13 +46,14 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
     for (int i = 0; i < *jumlahUser; i++) {
         ADVLine();  
         user[i].money = wordToInt(currentWord);
-        
+
         Word temp = SplitWordBlank(currentWord);
         Word nama = SplitWordLeftBlank(temp);
         wordToString(nama, user[i].name);
 
         temp = SplitWordBlank(temp);
         wordToString(temp, user[i].password);
+        user[i].logged = false;
     }
 }
 

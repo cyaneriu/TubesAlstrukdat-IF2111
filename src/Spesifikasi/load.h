@@ -23,6 +23,7 @@ typedef struct {
     char name[MAX_LEN];
     char password[MAX_LEN];
     int money;
+    boolean logged;
 } User;
 
 // Fungsi untuk mengkonversi Word ke integer
