@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "store.h"
 #include "store_supply.h"
 
 void storeSupply(Store *store) {

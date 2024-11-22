@@ -4,7 +4,6 @@
 #include "store_list.h"
 #include "store_request.h"
 #include "store_supply.h"
-#include "store_supply.h"
 #include "store_remove.h"
 #include "../ADT/boolean.h"
 #include "../ADT/list_dinamis.h"

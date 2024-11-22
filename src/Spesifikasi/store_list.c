@@ -14,7 +14,7 @@ void displayStore(Store store) {
     }
 }
 
-void displayQueue(Store store) {
+void displayStoreQueue(Store store) {
     if (isEmpty(store.antrian)) {
         printf("ANTRIAN KOSONG\n");
     } else {

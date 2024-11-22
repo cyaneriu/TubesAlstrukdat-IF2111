@@ -21,6 +21,7 @@ int main() {
         StartWordInput();
 
         if (IsCommandEqual(currentWord, "STORE\0")) {
+            #include "store.h"
             #include "store_run.h"
             store_running();
         }

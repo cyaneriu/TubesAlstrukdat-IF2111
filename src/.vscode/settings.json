@@ -7,6 +7,7 @@
         "mesinkarakter.h": "c",
         "stdio.h": "c",
         "store_remove.h": "c",
-        "list_dinamis.h": "c"
+        "list_dinamis.h": "c",
+        "store_run.h": "c"
     }
 }
