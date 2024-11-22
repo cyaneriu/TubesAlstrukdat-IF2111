@@ -16,10 +16,10 @@ void createStore(Store *store) {
     CreateListDin(&(store->antrian), 100);
 }
 
-void addItemToStore(Store *store, Barang *name) {
-    insertLastDin(&(store->barang), name);
+void addItemToStore(Store *store, char *item) {
+    insertLastDin(&(store->barang), item);
 }
 
-void addItemToQueue(Store *store, Barang *name) {
-    insertLastDin(&(store->antrian), name);
+void addItemToQueue(Store *store, char *item) {
+    insertLastDin(&(store->antrian), item);
 }

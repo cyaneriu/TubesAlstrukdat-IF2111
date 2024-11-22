@@ -3,7 +3,7 @@
 
 #include "boolean.h"
 #include <stdio.h>
-#define MARK '.'
+#define MARK '\n'
 
 /* State Mesin */
 extern char currentChar;

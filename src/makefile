@@ -1,33 +1,28 @@
-# Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Ispesifikasi -IADT
-
-# Source directories
-SRC_DIRS = spesifikasi ADT
-
-# Source files: find all .c files in the specified directories
-SRCS = main.c $(wildcard $(addsuffix /*.c, $(SRC_DIRS)))
-
-# Object files: replace .c with .o for all source files
+# Source files
+SRCS = cobamain.c \
+       spesifikasi/store.c \
+       spesifikasi/store_list.c \
+       spesifikasi/store_remove.c \
+       spesifikasi/store_request.c \
+       spesifikasi/store_supply.c \
+       ADT/list_dinamis.c \
+       ADT/mesinkata.c \
+       ADT/mesinkarakter.c
+# Object files
 OBJS = $(SRCS:.c=.o)
-
 # Executable name
-TARGET = main
-
-# Default target
+TARGET = cobamain
+# Rules
 all: $(TARGET)
-
-# Link the program
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
-
-# Compile each source file into an object file
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+# Rule to compile source files into object files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
-# Clean up build artifacts
+# Clean up
 clean:
 	rm -f $(OBJS) $(TARGET)
-
 # Phony targets
 .PHONY: all clean

@@ -9,7 +9,6 @@
 void storeRemove(Store *store) {
     printf("Input barang yang akan dihapus: ");
     StartWordInput();
-    //printf("After input: '%s' (length: %d)\n", currentWord.TabWord, currentWord.Length);
 
     while (getchar() != '\n'); 
     Word item = currentWord;
