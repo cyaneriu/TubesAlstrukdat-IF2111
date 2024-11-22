@@ -13,50 +13,20 @@ void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int ju
     char directory[100] = "../save";
     sprintf(fullPath, "%s/%s", directory, filename);
     startWriteFile(fullPath); 
-
-    char jumlahBarangStr[MAX_LEN];
-    sprintf(jumlahBarangStr, "%d", jumlahBarang); 
-    for (int i = 0; i < stringLen(jumlahBarangStr); i++) {
-        fprintf(pita, "%c", jumlahBarangStr[i]); 
-        }
-    fprintf(pita, "\n"); 
+    fprintf(pita, "%d\n", jumlahBarang);
 
     for (int i = 0; i < jumlahBarang; i++) {
-        char harga[MAX_LEN];
-        sprintf(harga, "%d", barang[i].price); 
-        for (int j = 0; j < stringLen(harga); j++) {
-            fprintf(pita, "%c", harga[j]); 
-        }
-        fprintf(pita, " "); 
-        for (int k = 0; k < stringLen(barang[i].name); k++) {
-            fprintf(pita, "%c", barang[i].name[k]); 
-        }
-        fprintf(pita, "\n"); 
+        fprintf(pita, "%d %s\n", barang[i].price, barang[i].name);
     }
 
-    char jumlahUserStr[MAX_LEN];
-    sprintf(jumlahUserStr, "%d", jumlahUser); 
-    for (int i = 0; i < stringLen(jumlahUserStr); i++) {
-        fprintf(pita, "%c", jumlahUserStr[i]); 
-    }
-    fprintf(pita, "\n"); 
-
-
+    fprintf(pita, "%d\n", jumlahUser);
+    int x = jumlahUser - 1;
     for (int i = 0; i < jumlahUser; i++) {
-        char moneyStr[MAX_LEN];
-        sprintf(moneyStr, "%d", user[i].money); 
-        for (int j = 0; j < stringLen(moneyStr); j++) {
-            fprintf(pita, "%c", moneyStr[j]); 
+        if (i != x) {
+            fprintf(pita, "%d %s %s\n", user[i].money, user[i].name, user[i].password);
+        } else {
+            fprintf(pita, "%d %s %s", user[i].money, user[i].name, user[i].password);
         }
-        fprintf(pita, " "); 
-        for (int k = 0; k < stringLen(user[i].name); k++) {
-            fprintf(pita, "%c", user[i].name[k]); 
-        }
-        fprintf(pita, " "); 
-        for (int l = 0; l < stringLen(user[i].password); l++) {
-            fprintf(pita, "%c", user[i].password[l]); 
-        }
-        fprintf(pita, "\n"); 
     }
 
     fclose(pita); 
