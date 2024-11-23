@@ -40,7 +40,7 @@ int main() {
             printf("Perintah tidak dikenali, silahkan coba lagi.\n");
         }
         
-        if (session){
+        while (session){
             state = "Login Menu";
             help(state);
             
@@ -54,6 +54,7 @@ int main() {
                 login();
             } else if (IsCommandEqual(currentWord, "QUIT\0")) {
                 quit(filename, barang, jumlahBarang, user, jumlahUser);
+                session = false;
                 program = false;
                 printf("Keluar dari PURRMART.\n");
             } else {
@@ -87,6 +88,8 @@ int main() {
                     printf("Perintah tidak dikenali, silahkan coba lagi.\n");
                 }
             }
+        
         }
+    
     }
 }
