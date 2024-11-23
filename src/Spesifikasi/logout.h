@@ -3,11 +3,13 @@
 #include "login.h"
 #include "../ADT/boolean.h" 
 
-typedef struct {
-    char username[MAX_LEN];
-    boolean logged; 
-} User;
-
-void logout(User *user, const char *filename);
+// Struktur User dari load
+// typedef struct {
+//     char name[MAX_LEN];
+//     char password[MAX_LEN];
+//     int money;
+//     boolean logged;
+// } User;
+void logout(User *user, char *filename);
 
 #endif
