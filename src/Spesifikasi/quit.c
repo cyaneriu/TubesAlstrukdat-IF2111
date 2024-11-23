@@ -13,7 +13,7 @@ void quit(char * filename, Barang barang[MAX_BARANG], int *jumlahBarang, User us
     if (input == 'Y' || input == 'y') {
         Save(filename, barang, jumlahBarang, user, jumlahUser);
     } else if (input == 'N' || input == 'n'){
-        printf("Kamu keluar dari PURRMART.\n\n");
+        printf("Data tidak disimpan.\n");
     }
     printf("Dadah ^_^/\n");
     exit(0);
