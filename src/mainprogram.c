@@ -1,49 +1,92 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ADT/boolean.h"
-#include "ADT/mesinkarakter.h"
-#include "ADT/mesinkata.h"
-#include "welcome_perry.h"
-
-void displayMainMenu() { //kalo udah login register dll
-    printf("menu"); //buat opsi2 menu dll
-}
+#include "mainprogram.h"
 
 int main() {
     boolean program = true;
+    boolean session = false;
+    char * state[100];
+    Store store;
+    Barang barang[MAX_BARANG];
+    User user[MAX_USER];
+    int input;
+    int *jumlahBarang; 
+    int *jumlahUser;
+    char * filename;
+    char * item;
+
     while (program) {
         welcome_perry();
-        //load
-        //login/register
 
-        if (IsCommandEqual(currentWord, "REGISTER\0")) {
-        } else if (IsCommandEqual(currentWord, "LOGIN\0")) {
-        } else if (IsCommandEqual(currentWord, "HELP\0")) {
-        } else if (IsCommandEqual(currentWord, "LOGOUT\0")) {
-        } else if (IsCommandEqual(currentWord, "EXIT\0")) {
-            program = false;
-            printf("Keluar dari PURRMART.\n");
-        } else if (IsCommandEqual(currentWord, "STORE REQUEST\0")) {
-        } else {
-            printf("Perintah tidak dikenali. Silakan coba lagi.\n");
-        }
+        state = "Welcome Menu";
+        help(state);
 
-        //kalau udah login
-        displayMainMenu();
         printf(">> ");
-
         StartWordInput();
 
-        if (IsCommandEqual(currentWord, "STORE\0")) {
-            #include "store.h"
-            #include "store_run.h"
-            store_running();
-        } else if (IsCommandEqual(currentWord, "WORK\0")) {
-        } else if (IsCommandEqual(currentWord, "SAVE\0")) {
-        } else if (IsCommandEqual(currentWord, "STORE REMOVE\0")) {
-        } else if (IsCommandEqual(currentWord, "EXIT")) {
+        if (IsCommandEqual(currentWord, "START\0")) {
+            start();
+            session = true;
+        } else if (IsCommandEqual(currentWord, "LOAD\0")) {
+            Load(filename, barang, jumlahBarang, user, jumlahUser);
+            session = true;
+        } else if (IsCommandEqual(currentWord, "HELP\0")) {
+            help(state);
+        } else if (IsCommandEqual(currentWord, "QUIT\0")) {
+            quit(filename, barang, jumlahBarang, user, jumlahUser);
+            program = false;
+            printf("Keluar dari PURRMART.\n");
         } else {
-            printf("Perintah tidak dikenali. Silakan coba lagi.\n");
+            printf("Perintah tidak dikenali, silahkan coba lagi.\n");
+        }
+        
+        if (session){
+            state = "Login Menu";
+            help(state);
+            
+            printf(">> ");
+            StartWordInput();
+
+            if (IsCommandEqual(currentWord, "REGISTER\0")) {
+                registeruser();
+                help("Login Menu");
+            } else if (IsCommandEqual(currentWord, "LOGIN\0")) {
+                login();
+            } else if (IsCommandEqual(currentWord, "QUIT\0")) {
+                quit(filename, barang, jumlahBarang, user, jumlahUser);
+                program = false;
+                printf("Keluar dari PURRMART.\n");
+            } else {
+                printf("Perintah tidak dikenali, silahkan coba lagi.\n");
+            }
+
+            while (user->logged){
+                state = "Main Menu";
+                help(state);
+
+                printf(">> ");
+                StartWordInput();
+
+                if (IsCommandEqual(currentWord, "STORE\0")) {
+                    store();
+                } else if (IsCommandEqual(currentWord, "WORK\0")) {
+                    work();
+                } else if (IsCommandEqual(currentWord, "WORK CHALLENGE\0")) {
+                    work_challenge();
+                } else if (IsCommandEqual(currentWord, "SAVE\0")) {
+                    save();
+                } else if (IsCommandEqual(currentWord, "LOGOUT\0")) {
+                    logout();
+                    user->logged = false;
+                    help("Welcome Menu")}
+                else if (IsCommandEqual(currentWord, "QUIT\0")) {
+                    quit(filename, barang, jumlahBarang, user, jumlahUser);
+                    program = false;
+                    printf("Keluar dari PURRMART.\n");
+                } else {
+                    printf("Perintah tidak dikenali, silahkan coba lagi.\n");
+                }
+            }
         }
     }
 }
