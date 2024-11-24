@@ -27,7 +27,7 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
     StartWordFile(fullPath, 0);
 
     if (EndWord) {
-        printf("File tidak dapat dibuka.\n");
+        printf("Save file tidak ditemukan. PURRMART gagal dijalankan.\n");
         return;
     }
     *jumlahBarang = wordToInt(currentWord);
@@ -55,4 +55,5 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
         wordToString(temp, user[i].password);
         user[i].logged = false;
     }
+    printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.\n");
 }

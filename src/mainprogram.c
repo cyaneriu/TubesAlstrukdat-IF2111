@@ -23,17 +23,19 @@ int main() {
         help(state);
 
         printf(">> ");
-        StartWordInput();
+        StartCommand();
 
-        if (IsCommandEqual(currentWord, "START\0")) {
+        if (IsCommandEqual(currentCommand, "START\0")) {
             session = true;
             start();
-        } else if (IsCommandEqual(currentWord, "LOAD\0")) {
-            session = true;
+        } else if (IsCommandEqual(currentCommand, "LOAD\0")) {
+            ADVInput();
+            wordToString(currentCommand, filename);
             Load(filename, barang, jumlahBarang, user, jumlahUser);
-        } else if (IsCommandEqual(currentWord, "HELP\0")) {
+            session = true;
+        } else if (IsCommandEqual(currentCommand, "HELP\0")) {
             help(state);
-        } else if (IsCommandEqual(currentWord, "QUIT\0")) {
+        } else if (IsCommandEqual(currentCommand, "QUIT\0")) {
             quit(filename, barang, jumlahBarang, user, jumlahUser);
             program = false;
             printf("Keluar dari PURRMART.\n");
@@ -46,14 +48,14 @@ int main() {
             help(state);
             
             printf(">> ");
-            StartWordInput();
+            StartCommand();
 
-            if (IsCommandEqual(currentWord, "REGISTER\0")) {
+            if (IsCommandEqual(currentCommand, "REGISTER\0")) {
                 registeruser();
                 help("Login Menu");
-            } else if (IsCommandEqual(currentWord, "LOGIN\0")) {
+            } else if (IsCommandEqual(currentCommand, "LOGIN\0")) {
                 login(user, filename);
-            } else if (IsCommandEqual(currentWord, "QUIT\0")) {
+            } else if (IsCommandEqual(currentCommand, "QUIT\0")) {
                 quit(filename, barang, jumlahBarang, user, jumlahUser);
                 session = false;
                 program = false;
@@ -67,21 +69,23 @@ int main() {
                 help(state);
 
                 printf(">> ");
-                StartWordInput();
+                StartCommand();
 
-                if (IsCommandEqual(currentWord, "STORE\0")) {
+                if (IsCommandEqual(currentCommand, "STORE\0")) {
                     store_running();
-                } else if (IsCommandEqual(currentWord, "WORK\0")) {
+                } else if (IsCommandEqual(currentCommand, "WORK\0")) {
                     work(isiRekening);
-                } else if (IsCommandEqual(currentWord, "WORK CHALLENGE\0")) {
+                } else if (IsCommandEqual(currentCommand, "WORK CHALLENGE\0")) {
                     workChallenge(isiRekening);
-                } else if (IsCommandEqual(currentWord, "SAVE\0")) {
+                } else if (IsCommandEqual(currentCommand, "SAVE\0")) {
+                    ADVInput();
+                    wordToString(currentCommand, filename);
                     Save(*filename, barang, jumlahBarang, user, jumlahUser);
-                } else if (IsCommandEqual(currentWord, "LOGOUT\0")) {
+                } else if (IsCommandEqual(currentCommand, "LOGOUT\0")) {
                     logout(user, filename);
                     user->logged = false;
                     help("Welcome Menu");}
-                else if (IsCommandEqual(currentWord, "QUIT\0")) {
+                else if (IsCommandEqual(currentCommand, "QUIT\0")) {
                     quit(filename, barang, jumlahBarang, user, jumlahUser);
                     program = false;
                     printf("Keluar dari PURRMART.\n");
