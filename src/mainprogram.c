@@ -30,7 +30,7 @@ int main() {
             start();
         } else if (IsCommandEqual(currentCommand, "LOAD\0")) {
             ADVInput();
-            wordToString(currentCommand, filename);
+            wordToStringWork(&currentCommand, filename);
             Load(filename, barang, jumlahBarang, user, jumlahUser);
             session = true;
         } else if (IsCommandEqual(currentCommand, "HELP\0")) {
@@ -79,7 +79,7 @@ int main() {
                     workChallenge(isiRekening);
                 } else if (IsCommandEqual(currentCommand, "SAVE\0")) {
                     ADVInput();
-                    wordToString(currentCommand, filename);
+                    wordToStringWork(&currentCommand, filename);
                     Save(*filename, barang, jumlahBarang, user, jumlahUser);
                 } else if (IsCommandEqual(currentCommand, "LOGOUT\0")) {
                     logout(user, filename);

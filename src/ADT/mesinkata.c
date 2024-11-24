@@ -51,7 +51,6 @@ void StartWordInput()
     }
 }
 
-
 void StartWordFile(char *filename, int type)
 {
     StartFile(filename);

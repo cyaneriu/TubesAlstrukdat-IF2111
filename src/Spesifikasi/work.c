@@ -13,10 +13,6 @@
 // (misalnya tidak boleh langsung enter, tidak boleh mengisi kata > 5 huruf di wordl3, dll)
 // untuk wordle: jika panjang masukan != 5, minta masukan lagi (sampe mampus)
 
-int main(){
-    driverWork();
-}
-
 int driverWork(){
     int isiRekening1 = 100;
     int isiRekening2 = 1000;
@@ -93,7 +89,7 @@ void work(int *isiRekening){
     printf("Masukkan pekerjaan yang dipilih: ");
     StartWordInput();
     kerja = currentWord;
-    wordToString(&kerja, pilihanKerja);
+    wordToStringWork(&kerja, pilihanKerja);
 
     int durasiKerja = 0, pendapatan = 0;
 
@@ -449,7 +445,7 @@ int stringCompare(char *string1, char *string2){
     return equal;
 }
 
-char wordToString(Word *kata, char *string){
+char wordToStringWork(Word *kata, char *string){
     for (int i = 0; i < kata->Length; i++)
     {
         string[i] = kata->TabWord[i];

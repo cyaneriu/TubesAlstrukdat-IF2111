@@ -20,6 +20,6 @@ void sleep(double seconds);
 
 int stringCompare(char *string1, char *string2);
 
-char wordToString(Word *kata, char *string);
+char wordToStringWork(Word *kata, char *string);
 
 #endif
