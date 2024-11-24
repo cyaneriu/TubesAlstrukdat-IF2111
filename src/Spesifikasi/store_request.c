@@ -49,5 +49,6 @@ void storeRequest(Store *store) {
             printf("Antrian penuh, tidak dapat menambahkan barang baru.\n");
     } else {
         enqueue(&store->antrian, item.TabWord);
+        printf("%s berhasil ditambahkan ke antrian.\n", item.TabWord);
     }
 }

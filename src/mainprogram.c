@@ -5,7 +5,7 @@
 int main() {
     boolean program = true;
     boolean session = false;
-    char * state[100];
+    char * state;
     Store store;
     Barang barang[MAX_BARANG];
     User user[MAX_USER];
@@ -14,6 +14,7 @@ int main() {
     int *jumlahUser;
     char * filename;
     char * item;
+    int * isiRekening;
 
     while (program) {
         welcome_perry();
@@ -51,7 +52,7 @@ int main() {
                 registeruser();
                 help("Login Menu");
             } else if (IsCommandEqual(currentWord, "LOGIN\0")) {
-                login();
+                login(user, filename);
             } else if (IsCommandEqual(currentWord, "QUIT\0")) {
                 quit(filename, barang, jumlahBarang, user, jumlahUser);
                 session = false;
@@ -69,17 +70,17 @@ int main() {
                 StartWordInput();
 
                 if (IsCommandEqual(currentWord, "STORE\0")) {
-                    store();
+                    store_running();
                 } else if (IsCommandEqual(currentWord, "WORK\0")) {
-                    work();
+                    work(isiRekening);
                 } else if (IsCommandEqual(currentWord, "WORK CHALLENGE\0")) {
-                    work_challenge();
+                    workChallenge(isiRekening);
                 } else if (IsCommandEqual(currentWord, "SAVE\0")) {
-                    save();
+                    Save(*filename, barang, jumlahBarang, user, jumlahUser);
                 } else if (IsCommandEqual(currentWord, "LOGOUT\0")) {
-                    logout();
+                    logout(user, filename);
                     user->logged = false;
-                    help("Welcome Menu")}
+                    help("Welcome Menu");}
                 else if (IsCommandEqual(currentWord, "QUIT\0")) {
                     quit(filename, barang, jumlahBarang, user, jumlahUser);
                     program = false;
@@ -92,4 +93,5 @@ int main() {
         }
     
     }
+    return 0;
 }

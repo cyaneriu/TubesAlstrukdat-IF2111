@@ -1,9 +1,20 @@
 #include <stdio.h>
 #include "help.h"
 
-void help(char * state[100]){
+boolean isEqualStrings(const char *str1, const char *str2) {
+    while (*str1 && *str2) {
+        if (*str1 != *str2) {
+            return false;
+        }
+        str1++;
+        str2++;
+    }
+    return *str1 == '\0' && *str2 == '\0';
+}
+
+void help(char *state){
     
-    if (state == "Welcome Menu"){
+    if (isEqualStrings(state, "Welcome Menu")){
         printf(">> HELP\n");
         printf("=====[ Welcome Menu Help PURRMART]=====");
         printf("   1. START --> Untuk masuk sesi baru\n");
@@ -11,14 +22,14 @@ void help(char * state[100]){
         printf("   3. HELP --> Untuk menampilkan bantuan\n");
         printf("   4. QUIT --> Untuk keluar dari program\n");
     }
-    else if (state == "Login Menu"){
+    else if (isEqualStrings(state, "Login Menu")) {
         printf(">>>> HELP\n");
         printf("=====[ Welcome Menu Help PURRMART]=====");
         printf("   1. REGISTER --> Untuk melakukan pendaftaran akun baru\n");
         printf("   2. LOGIN --> Untuk masuk ke dalam akun dan memulai sesi\n");
         printf("   3. QUIT --> Untuk keluar dari program\n");
     }
-    else if (state == "Main Menu"){
+    else if (isEqualStrings(state, "Main Menu")){
         printf(">>>> HELP\n");
         printf("=====[ Welcome Menu Help PURRMART]=====");
         printf("   1. WORK --> Untuk bekerja dan mendapatkan uang\n");
