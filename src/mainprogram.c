@@ -15,6 +15,7 @@ int main() {
     char * filename;
     char * item;
     int * isiRekening;
+    char temporary[100];
 
     while (program) {
         welcome_perry();
@@ -30,7 +31,8 @@ int main() {
             start();
         } else if (IsCommandEqual(currentCommand, "LOAD\0")) {
             ADVInput();
-            wordToStringWork(&currentCommand, filename);
+            wordToStringWork(&currentCommand, temporary);
+            filename = temporary;
             Load(filename, barang, jumlahBarang, user, jumlahUser);
             session = true;
         } else if (IsCommandEqual(currentCommand, "HELP\0")) {
@@ -79,7 +81,8 @@ int main() {
                     workChallenge(isiRekening);
                 } else if (IsCommandEqual(currentCommand, "SAVE\0")) {
                     ADVInput();
-                    wordToStringWork(&currentCommand, filename);
+                    wordToStringWork(&currentCommand, temporary);
+                    filename = temporary;
                     Save(*filename, barang, jumlahBarang, user, jumlahUser);
                 } else if (IsCommandEqual(currentCommand, "LOGOUT\0")) {
                     logout(user, filename);
