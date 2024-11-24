@@ -14,4 +14,5 @@ void startWriteFile(char *filename);
 //Fungsi Untuk Menyimpan data ke file txt
 void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int jumlahUser);
 
+void startSave(char *filename);
 #endif

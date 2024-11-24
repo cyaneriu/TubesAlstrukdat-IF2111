@@ -33,3 +33,10 @@ void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int ju
     printf("Data berhasil disimpan ke  %s\n", filename);
 
 }
+
+void startSave(char *filename) {
+    Barang barang[MAX_BARANG];
+    User user[MAX_USER];
+    int jumlahBarang, jumlahUser;
+    Save(filename, barang, jumlahBarang, user, jumlahUser);
+}

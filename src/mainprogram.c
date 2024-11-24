@@ -33,7 +33,7 @@ int main() {
             ADVInput();
             wordToStringWork(&currentCommand, temporary);
             filename = temporary;
-            Load(filename, barang, jumlahBarang, user, jumlahUser);
+            startLoad(filename);
             session = true;
         } else if (IsCommandEqual(currentCommand, "HELP\0")) {
             help(state);
@@ -83,7 +83,7 @@ int main() {
                     ADVInput();
                     wordToStringWork(&currentCommand, temporary);
                     filename = temporary;
-                    Save(*filename, barang, jumlahBarang, user, jumlahUser);
+                    startSave(filename);
                 } else if (IsCommandEqual(currentCommand, "LOGOUT\0")) {
                     logout(user, filename);
                     user->logged = false;

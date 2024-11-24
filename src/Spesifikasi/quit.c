@@ -16,7 +16,7 @@ void quit(char * filename, Barang barang[MAX_BARANG], int *jumlahBarang, User us
         StartCommand();
         wordToString(currentCommand, temporary);
         filename = temporary;
-        Save(filename, barang, jumlahBarang, user, jumlahUser);
+        startSave(filename);
     } else if (input == 'N' || input == 'n'){
         printf("Data tidak disimpan.\n");
     }

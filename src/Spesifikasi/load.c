@@ -59,3 +59,13 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
     }
     printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.\n");
 }
+
+void startLoad(char *filename) {
+    Barang barang[MAX_BARANG];
+    User user[MAX_USER];
+    int jumlahBarang, jumlahUser;
+    Load(filename, barang, &jumlahBarang, user, &jumlahUser);
+    printf("%d\n", jumlahBarang);
+    printf("%d\n", jumlahUser);
+    printf("File berhasil dimuat.\n");
+}
