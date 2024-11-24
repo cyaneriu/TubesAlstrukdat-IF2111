@@ -26,11 +26,11 @@ int main() {
         StartWordInput();
 
         if (IsCommandEqual(currentWord, "START\0")) {
+            session = true;
             start();
-            session = true;
         } else if (IsCommandEqual(currentWord, "LOAD\0")) {
-            Load(filename, barang, jumlahBarang, user, jumlahUser);
             session = true;
+            Load(filename, barang, jumlahBarang, user, jumlahUser);
         } else if (IsCommandEqual(currentWord, "HELP\0")) {
             help(state);
         } else if (IsCommandEqual(currentWord, "QUIT\0")) {
