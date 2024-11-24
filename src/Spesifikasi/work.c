@@ -11,28 +11,31 @@
 // 1. User tak boleh main jika biaya main > isiRekening
 // 2. Validasi input agar sesuai dengan format yang diperbolehkan
 // (misalnya tidak boleh langsung enter, tidak boleh mengisi kata > 5 huruf di wordl3, dll)
+// untuk wordle: jika panjang masukan != 5, minta masukan lagi (sampe mampus)
 
-// int main()
-// {
-//     driverWork();
-// }
+int main(){
+    driverWork();
+}
 
-int driverWork()
-{
-    work(100);
-    work(1000);
-    workChallenge(100);
+int driverWork(){
+    // work(100);
+    // work(1000);
+    // workChallenge(100);
     workChallenge(1000);
-    tebakAngka(100);
-    tebakAngka(1000);
-    wordl3(100);
-    wordl3(1000);
+    // tebakAngka(100);
+    // tebakAngka(1000);
+    // wordl3(100);
+    // wordl3(1000);
 
+    // int hakim = stringLen("hakim");
+    // printf("%d\n", hakim);
+
+    // int sama = stringCompare("aa", "aa");
+    // printf("%d\n", sama);
     return 0;
 }
 
-void work(int isiRekening)
-{
+void work(int *isiRekening){
 
     // TODO: (kalau mau lebih dinamis)
     // 1 - bikin tipe data bentukan "pekerjaan"
@@ -56,26 +59,24 @@ void work(int isiRekening)
     int durasiKerja = 0, pendapatan = 0;
 
     // gunakan fungsi perbandingan kata
-    if (strcmp(pilihanKerja, "Evil Lab Assistant") == 0)
-    {
+    if (stringCompare(pilihanKerja, "Evil Lab Assistant") == 1){
         pendapatan = 100;
         durasiKerja = 14;
-    } else if (strcmp(pilihanKerja, "OWCA Hiring Manager") == 0)
-    {
+    } else if (stringCompare(pilihanKerja, "OWCA Hiring Manager") == 1){
         pendapatan = 4200;
         durasiKerja = 21;
-    } else if (strcmp(pilihanKerja, "Cikapundunginator") == 0)
-    {
+    } else if (stringCompare(pilihanKerja, "Cikapundunginator Caretaker") == 1){
         pendapatan = 7000;
         durasiKerja = 30;
-    } else if (strcmp(pilihanKerja, "Mewing Specialist") == 0)
-    {
+    } else if (stringCompare(pilihanKerja, "Mewing Specialist") == 1){
         pendapatan = 10000;
         durasiKerja = 22;
-    } else if (strcmp(pilihanKerja, "Inator Connoisseur") == 0)
-    {
+    } else if (stringCompare(pilihanKerja, "Inator Connoisseur") == 1){
         pendapatan = 997;
         durasiKerja = 15;
+    } else {
+        printf("Pekerjaan tersebut tidak ada!\n");
+        printf("Silahkan menggunakan perintah work lagi dan pilih pekerjaan yang ada.\n");
     }
 
     // TES : Cek pendapatan dan durasiKerja
@@ -96,8 +97,7 @@ void work(int isiRekening)
     printf("Isi Rekening : %d\n", isiRekening);
 }
 
-void workChallenge(int isiRekening)
-{
+void workChallenge(int *isiRekening){
     int pilihanPermainan;
 
     printf("Daftar challenge yang tersedia:\n");
@@ -111,8 +111,7 @@ void workChallenge(int isiRekening)
     
     // Kurangi uang sesuai pilihan permainan, berikan pesan permainan, dan jalankan permainan
     int biayaMain = 0;
-    switch (pilihanPermainan)
-    {
+    switch (pilihanPermainan){
     case 1:
         tebakAngka(isiRekening);
         break;
@@ -124,7 +123,7 @@ void workChallenge(int isiRekening)
     }
 }
 
-void tebakAngka(int isiRekening)
+void tebakAngka(int *isiRekening)
 {
 
     int biayaMain = 200;
@@ -139,34 +138,27 @@ void tebakAngka(int isiRekening)
 
     // 2. Mulai permainan
     int percobaan = 0, jawaban, hadiah = 500;
-    while (percobaan < 11)
-    {
+    while (percobaan < 11){
         printf("Tebak angka: ");
         scanf(" %d", &jawaban);
         printf("\n");
-        if (jawaban == kunciJawaban)
-        {
+        if (jawaban == kunciJawaban){
             hadiah -= 50 * percobaan;
             isiRekening += hadiah;
             printf("Tebakanmu benar! +%d rupiah telah ditambahkan ke akun anda.\n", hadiah);
             break;
-        }
-        else {
+        } else {
             // printf("Salah!\n");
-            if (jawaban > kunciJawaban)
-            {
+            if (jawaban > kunciJawaban){
                 printf("Tebakanmu lebih besar!\n");
-            }
-            else
-            {
+            } else {
                 printf("Tebakanmu lebih kecil!\n");
             }
         }
         percobaan++;
     }
     // Pesan apabila pemain gagal setelah 10 percobaan
-    if (percobaan > 10)
-    {
+    if (percobaan > 10){
         printf("Sayang sekali... Anda gagal, silahkan mencoba lain kali\n");
     }
     
@@ -192,8 +184,7 @@ Lebih dari itu maka gagal
 setiap salah sekali hadiah dikurangi 50
 */
 
-void wordl3(int isiRekening)
-{
+void wordl3(int *isiRekening){
     // Cetak pesan permainan
     printf("\n");
     printf("WELCOME TO W0RDL3, YOU HAVE 5 CHANCES TO ANSWER BEFORE YOU LOSE!\n");
@@ -250,8 +241,7 @@ void wordl3(int isiRekening)
         {' ', ' ', ' ', ' ', ' '}
     };
 
-    char arrayJawaban[5][5] = 
-    {
+    char arrayJawaban[5][5] = {
         {'_', '_', '_', '_', '_'},
         {'_', '_', '_', '_', '_'},
         {'_', '_', '_', '_', '_'},
@@ -262,11 +252,9 @@ void wordl3(int isiRekening)
 
     // Buat while loop & gunakan counter kesempatan
     int kesempatan = 0;
-    while (kesempatan < 5)
-    {
+    while (kesempatan < 5){
         printf("Masukan kata tebakan Anda: ");
-        for (int i = 0; i < 5; i++)
-        {
+        for (int i = 0; i < 5; i++){
             scanf(" %c", &jawaban[i]);
             arrayJawaban[kesempatan][i] = jawaban[i];
 
@@ -291,8 +279,7 @@ void wordl3(int isiRekening)
         
         
         // if (strcmp(jawaban, kunciJawaban) == 0)
-        for (int i = 0; i < 5; i++)
-        {
+        for (int i = 0; i < 5; i++){
             if (jawaban[i] == kunciJawaban[i])
             {
                 benar = true;
@@ -303,24 +290,19 @@ void wordl3(int isiRekening)
             }
         }
         
-        if (benar)
-        {
+        if (benar){
             break; // langsung break, jawaban sudah benar dan akan ditampilkan
         }
 
         // TES : mencetak nilai benar
         // printf("%d\n", benar);
         
-        for (int i = 0; i < 5; i++)
-        {
+        for (int i = 0; i < 5; i++){
             // masukkan nilai kebenaran ke dalam arrayKebenaran
             // % = salah, * = benar
-            if (jawaban[i] == kunciJawaban[0] || jawaban[i] == kunciJawaban[1] || jawaban[i] == kunciJawaban[2] || jawaban[i] == kunciJawaban[3] || jawaban[i] == kunciJawaban[4])
-            {
+            if (jawaban[i] == kunciJawaban[0] || jawaban[i] == kunciJawaban[1] || jawaban[i] == kunciJawaban[2] || jawaban[i] == kunciJawaban[3] || jawaban[i] == kunciJawaban[4]){
                 arrayKebenaran[kesempatan][i] = '*';
-            } 
-            else
-            {
+            } else{
                 arrayKebenaran[kesempatan][i] = '%';
             }
         }
@@ -330,13 +312,10 @@ void wordl3(int isiRekening)
         // berarti dalam loop 5 kali kita tuliskan jawaban, kebenaran, lalu spasi
         // kebenaran hanya ditulis jika ada nilainya (tidak berupa spasi)
     
-        for (int i = 0; i < 5; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 5; j++){
                 printf("%c", arrayJawaban[i][j]);
-                if (arrayKebenaran[i][j] != ' ')
-                {
+                if (arrayKebenaran[i][j] != ' '){
                     printf("%c", arrayKebenaran[i][j]);
                 }
                 printf(" ");
@@ -350,15 +329,11 @@ void wordl3(int isiRekening)
     // Jika ternyata jawaban benar didapat sebelum percobaan habis, kita tetap ingin menulis
     // jawaban-kebenaran-spasi
 
-    if (kesempatan < 5)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
+    if (kesempatan < 5){
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 5; j++){
                 printf("%c", arrayJawaban[i][j]);
-                if (arrayKebenaran[i][j] != ' ')
-                {
+                if (arrayKebenaran[i][j] != ' '){
                     printf("%c", arrayKebenaran[i][j]);
                 }
                 printf(" ");
@@ -369,15 +344,12 @@ void wordl3(int isiRekening)
     }
     
     // Pesan hasil permainan
-    if (benar)
-    {
+    if (benar){
         printf("Selamat, Anda menang!\n\n");
         printf("+1500 rupiah telah ditambahkan ke akun Anda.\n");
         isiRekening += hadiah;
         printf("Isi Rekening : %d\n", isiRekening);
-    }
-    else
-    {
+    } else{
         printf("Boo! Anda kalah.");
     }
 
@@ -390,12 +362,41 @@ Challenge W0RDL3 merupakan permainan tebak kata berjumlah lima karakter. Pemain 
 
 */
 
-// void sleep(double seconds)
-// {
-//     clock_t start = clock();
-//     while ((double)(clock() - start) / CLOCKS_PER_SEC < seconds);
-    
-// }
+void sleep(double seconds) {
+    clock_t start = clock();
+    while ((double)(clock() - start) / CLOCKS_PER_SEC < seconds);
+}
 /*
 Menunggu selama sekian detik
 */
+
+int stringCompare(char *string1, char *string2){
+    boolean equal = true;
+
+    int len1 = stringLen(string1);
+    int len2 = stringLen(string2);
+
+    // TES : cek panjang masing-masing string
+    // printf("Len1, Len2\n");
+    // printf("%d\n", len1);
+    // printf("%d\n", len2);
+
+    if (len1 == len2){
+        for (int i = 0; i < len1; i++){
+            // TES : cek setiap karakter string
+            // printf("%c", string1[i]);
+            // printf("%c", string2[i]);
+            // printf("\n");
+            if (string1[i] != string2[i]){
+                equal = false;
+                break;
+            }
+        }   
+    } else {
+        equal = false;
+    }
+
+    // TES : cek equal berapa
+    // printf("%d\n", equal);
+    return equal;
+}
