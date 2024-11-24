@@ -1,34 +1,30 @@
-# Compiler and flags
+# compiler & flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Ispesifikasi -IADT
 
-# Source directories
+# source: directory spesifikasi & ADT, buat nambah source directories di source di bawah
 SRC_DIRS = spesifikasi ADT
 
-# Source files: find all .c files in the specified directories
+# source: semua program di spesifikasi & ADT, tambah welcome page program
 SRCS = mainprogram.c $(wildcard $(addsuffix /*.c, $(SRC_DIRS))) \
 welcome_perry.c
 
-# Object files: replace .c with .o for all source files
+# object file dari.c ke -o -> otomatisasi
 OBJS = $(SRCS:.c=.o)
 
-# Executable name
+# nama file .exe (executable)
 TARGET = mainprogram
 
-# Default target
+# buat target
 all: $(TARGET)
 
-# Link the program
+# linking program
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-# Compile each source file into an object file
+# cleaning program
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
-# Clean up build artifacts
 clean:
 	rm -f $(OBJS) $(TARGET)
-
-# Phony targets
 .PHONY: all clean
