@@ -24,6 +24,8 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
     char fullPath[100];
     char directory[100] = "../save";
     sprintf(fullPath, "%s/%s", directory, filename);
+    printf(filename);
+    printf(fullPath);
     StartWordFile(fullPath, 0);
 
     if (EndWord) {

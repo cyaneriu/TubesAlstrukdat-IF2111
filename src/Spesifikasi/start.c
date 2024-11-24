@@ -10,5 +10,6 @@ void start(){
     filename = "default.txt";
     Load(filename, barang, &jumlahBarang, user, &jumlahUser);
     printf("File berhasil dimuat.\n");
+
 }
  
