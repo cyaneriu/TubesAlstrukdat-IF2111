@@ -13,23 +13,64 @@
 // (misalnya tidak boleh langsung enter, tidak boleh mengisi kata > 5 huruf di wordl3, dll)
 // untuk wordle: jika panjang masukan != 5, minta masukan lagi (sampe mampus)
 
-/*int driverWork(){
-    // work(100);
-    // work(1000);
-    // workChallenge(100);
-    workChallenge(1000);
-    // tebakAngka(100);
-    // tebakAngka(1000);
-    // wordl3(100);
-    // wordl3(1000);
+int main(){
+    driverWork();
+}
+
+int driverWork(){
+    int isiRekening1 = 100;
+    int isiRekening2 = 1000;
+    // isiRekening1 += 100;
+    // printf("Isi Rekening: %d\n", isiRekening1);
+    // work(&isiRekening1);
+    // work(&isiRekening2);
+    // workChallenge(&isiRekening1);
+    workChallenge(&isiRekening2);
+    // tebakAngka(&isiRekening1);
+    // tebakAngka(&isiRekening2);
+    // wordl3(&isiRekening1);
+    // wordl3(&isiRekening2);
 
     // int hakim = stringLen("hakim");
     // printf("%d\n", hakim);
 
     // int sama = stringCompare("aa", "aa");
     // printf("%d\n", sama);
+
+    // TES : mengetes fungsi wordToString
+    // berhasil
+    // Word kata;
+    // kata.Length = 3;
+    // kata.TabWord[0] = 'a';
+    // kata.TabWord[1] = 'b';
+    // kata.TabWord[2] = 'c';
+
+    // char stringTes[50];
+    // wordToString(&kata, stringTes);
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     printf("%c", stringTes[i]);
+    // }
+    // printf("\n");
+
+    // TES : mengetes input pekerjaan
+    /*
+    char pilihanKerja[100];
+    Word kerja;
+    printf("Masukkan pekerjaan: ");
+    StartWordInput();
+    kerja = currentWord;
+    wordToString(&kerja, pilihanKerja);
+    for (int i = 0; i < kerja.Length; i++)
+    {
+        printf("%c", pilihanKerja[i]);
+    }
+    printf("\n");
+    printf("%d\n", kerja.Length);
+    */
+
     return 0;
-}*/
+}
 
 void work(int *isiRekening){
 
@@ -48,9 +89,11 @@ void work(int *isiRekening){
 
     // 2. Input pekerjaan yang dipilih
     char pilihanKerja[100];
-    // Word pilihanKerja;
+    Word kerja;
     printf("Masukkan pekerjaan yang dipilih: ");
-    scanf("%[^\n]%*c", pilihanKerja);
+    StartWordInput();
+    kerja = currentWord;
+    wordToString(&kerja, pilihanKerja);
 
     int durasiKerja = 0, pendapatan = 0;
 
@@ -73,6 +116,7 @@ void work(int *isiRekening){
     } else {
         printf("Pekerjaan tersebut tidak ada!\n");
         printf("Silahkan menggunakan perintah work lagi dan pilih pekerjaan yang ada.\n");
+        return;
     }
 
     // TES : Cek pendapatan dan durasiKerja
@@ -88,9 +132,9 @@ void work(int *isiRekening){
 
 
     // 4. Tambahkan uang ke rekening dan beri notifikasi
-    * isiRekening += pendapatan;
+    *isiRekening += pendapatan;
     printf("Pekerjaan selesai, +%d rupiah telah ditambahkan ke akun Anda.\n", pendapatan);
-    printf("Isi Rekening : %d\n", * isiRekening);
+    printf("Isi Rekening : %d\n", *isiRekening);
 }
 
 void workChallenge(int *isiRekening){
@@ -109,10 +153,10 @@ void workChallenge(int *isiRekening){
     int biayaMain = 0;
     switch (pilihanPermainan){
     case 1:
-        tebakAngka(* isiRekening);
+        tebakAngka(isiRekening);
         break;
     case 2:
-        wordl3(* isiRekening);
+        wordl3(isiRekening);
         break;
     default:
         break;
@@ -123,7 +167,13 @@ void tebakAngka(int *isiRekening)
 {
 
     int biayaMain = 200;
-    * isiRekening -= biayaMain;
+    if (*isiRekening < biayaMain)
+    {
+        printf("Uang Anda tidak cukup! Silahkan bermain saat Anda memiliki %d rupiah atau lebih.\n", biayaMain);
+        return;
+    }
+    
+    *isiRekening -= biayaMain;
 
     // 1. Buat angka acak [0..99]
     srand(time(NULL));
@@ -159,7 +209,7 @@ void tebakAngka(int *isiRekening)
     }
     
     // TES : PRINT ISI REKENING
-    // printf("%d\n", isiRekening);
+    printf("Isi Rekening: %d\n", *isiRekening);
 }
 /*
 Challenge Tebak Angka merupakan permainan yang meminta pemain menebak sebuah angka yang ditentukan oleh program. Pemain memiliki 10 (sepuluh) kesempatan untuk menebak angka yang benar. Program akan memberikan feedback apakah angka tebakan lebih besar, lebih kecil, atau sama dengan angka target. Jumlah kesempatan yang dipakai oleh pengguna akan mempengaruhi uang yang didapatkan.
@@ -181,13 +231,18 @@ setiap salah sekali hadiah dikurangi 50
 */
 
 void wordl3(int *isiRekening){
+    int biayaMain = 500;
+    if (*isiRekening < biayaMain)
+    {
+        printf("Uang Anda tidak cukup! Silahkan bermain saat Anda memiliki %d rupiah atau lebih.\n", biayaMain);
+        return;
+    }
+    *isiRekening -= biayaMain;
+
     // Cetak pesan permainan
     printf("\n");
     printf("WELCOME TO W0RDL3, YOU HAVE 5 CHANCES TO ANSWER BEFORE YOU LOSE!\n");
     printf("\n");
-
-    int biayaMain = 500;
-    * isiRekening -= biayaMain;
 
     // 1. Buat kunci jawaban berisi kata-kata yang bisa dipilih
     // Supaya mudah setiap huruf alfabet akan muncul sebagai inisial persis 2 kali
@@ -276,12 +331,9 @@ void wordl3(int *isiRekening){
         
         // if (strcmp(jawaban, kunciJawaban) == 0)
         for (int i = 0; i < 5; i++){
-            if (jawaban[i] == kunciJawaban[i])
-            {
+            if (jawaban[i] == kunciJawaban[i]){
                 benar = true;
-            }
-            else
-            {
+            } else{
                 benar = false;
             }
         }
@@ -343,8 +395,8 @@ void wordl3(int *isiRekening){
     if (benar){
         printf("Selamat, Anda menang!\n\n");
         printf("+1500 rupiah telah ditambahkan ke akun Anda.\n");
-        * isiRekening += hadiah;
-        printf("Isi Rekening : %d\n", * isiRekening);
+        *isiRekening += hadiah;
+        printf("Isi Rekening : %d\n", *isiRekening);
     } else{
         printf("Boo! Anda kalah.");
     }
@@ -395,4 +447,13 @@ int stringCompare(char *string1, char *string2){
     // TES : cek equal berapa
     // printf("%d\n", equal);
     return equal;
+}
+
+char wordToString(Word *kata, char *string){
+    for (int i = 0; i < kata->Length; i++)
+    {
+        string[i] = kata->TabWord[i];
+    }
+    string[kata->Length] = '\0';
+    // return string;
 }
