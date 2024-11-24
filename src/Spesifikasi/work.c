@@ -13,11 +13,7 @@
 // (misalnya tidak boleh langsung enter, tidak boleh mengisi kata > 5 huruf di wordl3, dll)
 // untuk wordle: jika panjang masukan != 5, minta masukan lagi (sampe mampus)
 
-int main(){
-    driverWork();
-}
-
-int driverWork(){
+/*int driverWork(){
     // work(100);
     // work(1000);
     // workChallenge(100);
@@ -33,7 +29,7 @@ int driverWork(){
     // int sama = stringCompare("aa", "aa");
     // printf("%d\n", sama);
     return 0;
-}
+}*/
 
 void work(int *isiRekening){
 
@@ -92,9 +88,9 @@ void work(int *isiRekening){
 
 
     // 4. Tambahkan uang ke rekening dan beri notifikasi
-    isiRekening += pendapatan;
+    * isiRekening += pendapatan;
     printf("Pekerjaan selesai, +%d rupiah telah ditambahkan ke akun Anda.\n", pendapatan);
-    printf("Isi Rekening : %d\n", isiRekening);
+    printf("Isi Rekening : %d\n", * isiRekening);
 }
 
 void workChallenge(int *isiRekening){
@@ -113,10 +109,10 @@ void workChallenge(int *isiRekening){
     int biayaMain = 0;
     switch (pilihanPermainan){
     case 1:
-        tebakAngka(isiRekening);
+        tebakAngka(* isiRekening);
         break;
     case 2:
-        wordl3(isiRekening);
+        wordl3(* isiRekening);
         break;
     default:
         break;
@@ -127,7 +123,7 @@ void tebakAngka(int *isiRekening)
 {
 
     int biayaMain = 200;
-    isiRekening -= biayaMain;
+    * isiRekening -= biayaMain;
 
     // 1. Buat angka acak [0..99]
     srand(time(NULL));
@@ -144,7 +140,7 @@ void tebakAngka(int *isiRekening)
         printf("\n");
         if (jawaban == kunciJawaban){
             hadiah -= 50 * percobaan;
-            isiRekening += hadiah;
+            *isiRekening += hadiah;
             printf("Tebakanmu benar! +%d rupiah telah ditambahkan ke akun anda.\n", hadiah);
             break;
         } else {
@@ -191,7 +187,7 @@ void wordl3(int *isiRekening){
     printf("\n");
 
     int biayaMain = 500;
-    isiRekening -= biayaMain;
+    * isiRekening -= biayaMain;
 
     // 1. Buat kunci jawaban berisi kata-kata yang bisa dipilih
     // Supaya mudah setiap huruf alfabet akan muncul sebagai inisial persis 2 kali
@@ -347,8 +343,8 @@ void wordl3(int *isiRekening){
     if (benar){
         printf("Selamat, Anda menang!\n\n");
         printf("+1500 rupiah telah ditambahkan ke akun Anda.\n");
-        isiRekening += hadiah;
-        printf("Isi Rekening : %d\n", isiRekening);
+        * isiRekening += hadiah;
+        printf("Isi Rekening : %d\n", * isiRekening);
     } else{
         printf("Boo! Anda kalah.");
     }

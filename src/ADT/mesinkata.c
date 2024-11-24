@@ -17,7 +17,7 @@ void IgnoreBlank()
 
 void IgnoreNewline()
 {
-    while (currentChar == '\n')
+    while (currentChar == NEWLINE)
     {
         ADV();
     }
@@ -26,20 +26,31 @@ void IgnoreNewline()
 
 void StartWordInput()
 {
-    START();
-    currentWord.Length = 0;
-    IgnoreBlank();
-    IgnoreNewline();
+    START(); // Mulai membaca input
+    currentWord.Length = 0; // Reset panjang kata
+    
+    IgnoreBlank(); // Abaikan spasi di awal
+
+    // Jika input diawali dengan newline
+    if (currentChar == NEWLINE)
+    {
+        EndWord = true; // Tandai akhir kata
+        printf("Input tidak boleh diawali newline.\n");
+        return;
+    }
+    
+    // Jika input kosong setelah newline
     if (IsEOP())
     {
-        EndWord = true;
+        EndWord = true; // Tandai akhir kata
     }
     else
     {
         EndWord = false;
-        CopyWordinput();
+        CopyWordinput(); // Salin kata dari input
     }
 }
+
 
 void StartWordFile(char *filename, int type)
 {
