@@ -2,6 +2,8 @@
 #define WorkFunction
 void work(int isiRekening);
 
+int driverWork();
+
 void workChallenge(int isiRekening);
 /*
 Challenge Tebak Angka merupakan permainan yang meminta pemain menebak sebuah angka yang ditentukan oleh program. 
@@ -14,6 +16,8 @@ void tebakAngka(int isiRekening);
 
 void wordl3(int isiRekening);
 
-// void sleep(double seconds);
+void sleep(double seconds);
+
+int stringCompare(char *string1, char *string2);
 
 #endif
