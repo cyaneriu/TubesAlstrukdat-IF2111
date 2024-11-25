@@ -24,9 +24,7 @@
 #include "../ADT/boolean.h"
 #include "../ADT/queue.h"
 #include "../ADT/list_dinamis.h"
-#include "../ADT/array.h"
 #include "../ADT/list.h"
-#include "../ADT/list_linier.h"
 #include "../ADT/list_statik.h"
 
 #include <stdio.h>
