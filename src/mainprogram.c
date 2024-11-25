@@ -28,7 +28,10 @@ int main() {
 
         if (IsCommandEqual(currentCommand, "START\0")) {
             session = true;
-            start();
+            filename = "default.txt";
+            startLoad(filename, barang, &jumlahBarang, user, &jumlahUser);
+            printf("%d\n", jumlahBarang);
+            printf("%d\n", jumlahUser);
         } else if (IsCommandEqual(currentCommand, "LOAD\0")) {
             ADVInput();
             wordToStringWork(&currentCommand, temporary);
