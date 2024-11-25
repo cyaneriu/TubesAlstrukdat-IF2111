@@ -60,22 +60,7 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
     printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.\n");
 }
 
-int startLoad(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser) {
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        file = fopen(filename, "w");
-        if (!file) {
-            printf("Error: Failed to create file %s.\n", filename);
-            return 0;
-        }
-        file = fopen(filename, "r");
-        if (!file) {
-            printf("Error: Failed to reopen file %s.\n", filename);
-            return 0;
-        }
-    }
-
-    fclose(file);
+int startLoad(char * filename, Barang barang[], int * jumlahBarang, User user[], int * jumlahUser) {
     Load(filename, barang, jumlahBarang, user, jumlahUser);
     printf("File berhasil dimuat.\n");
     return *jumlahBarang;
