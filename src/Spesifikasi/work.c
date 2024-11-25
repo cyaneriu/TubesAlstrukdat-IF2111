@@ -134,7 +134,8 @@ void work(int *isiRekening){
 }
 
 void workChallenge(int *isiRekening){
-    int pilihanPermainan;
+    char pilihanPermainan;
+    Word pilihanMain;
 
     printf("Daftar challenge yang tersedia:\n");
     printf("1. Tebak Angka (biaya main=200)\n");
@@ -142,16 +143,26 @@ void workChallenge(int *isiRekening){
     printf("\n");
     
     printf("Masukan challenge yang hendak dimainkan: ");
-    scanf("%d", &pilihanPermainan);
+    StartWordInput();
+    pilihanMain = currentWord;
+    wordToStringWork(&pilihanMain, pilihanPermainan);
     printf("\n");
+
+    if (pilihanMain.Length != 1 || !(pilihanMain.TabWord[0] == '1' || pilihanMain.TabWord[1] == '2'))
+    {
+        printf("Mohon beri input yang valid! (1 atau 2)\n");
+        printf("Jangan memberikan input lebih dari 1 karakter!\n");
+        printf("Silahkan gunakan kembali perintah ini dengan input yang valid\n");
+        return;
+    }
+    
     
     // Kurangi uang sesuai pilihan permainan, berikan pesan permainan, dan jalankan permainan
-    int biayaMain = 0;
     switch (pilihanPermainan){
-    case 1:
+    case '1':
         tebakAngka(isiRekening);
         break;
-    case 2:
+    case '2':
         wordl3(isiRekening);
         break;
     default:
@@ -173,16 +184,31 @@ void tebakAngka(int *isiRekening)
 
     // 1. Buat angka acak [0..99]
     srand(time(NULL));
-    int kunciJawaban = rand() % 100;
+    int angkaRandom = rand() % 100;
+    char kunciJawaban[2];
+    if (angkaRandom > 9)
+    {
+        kunciJawaban[0] = (angkaRandom) + 48;
+        kunciJawaban[1] = (angkaRandom / 10) + 48;
+    } else {
+        kunciJawaban[0] = angkaRandom + 48;
+        kunciJawaban[1] = '\0';
+    }
+    
 
     // TES : cetak kunci jawaban
     // printf("%d\n", kunciJawaban);
 
     // 2. Mulai permainan
-    int percobaan = 0, jawaban, hadiah = 500;
+    int percobaan = 0, hadiah = 500;
+    char jawaban[MAX_LEN];
     while (percobaan < 11){
         printf("Tebak angka: ");
-        scanf(" %d", &jawaban);
+        Word jawab;
+        StartWordInput();
+        jawab = currentWord;
+
+        wordToStringWork(&jawab, jawaban);
         printf("\n");
         if (jawaban == kunciJawaban){
             hadiah -= 50 * percobaan;
@@ -300,9 +326,23 @@ void wordl3(int *isiRekening){
     // Buat while loop & gunakan counter kesempatan
     int kesempatan = 0;
     while (kesempatan < 5){
-        printf("Masukan kata tebakan Anda: ");
+        Word jawab;
+        jawab.Length = 0;
+            
+        while (jawab.Length == 0)
+        {
+            printf("Masukan kata tebakan Anda: ");
+            StartWordInput();
+            jawab = currentWord;
+
+            if (jawab.Length != 5){
+                printf("Mohon beri input yang valid! (terdiri atas 5 karakter)\n");
+                printf("Silahkan menginput ulang\n");
+                jawab.Length = 0;
+            }
+        }
+        wordToStringWork(&jawab, jawaban);
         for (int i = 0; i < 5; i++){
-            scanf(" %c", &jawaban[i]);
             arrayJawaban[kesempatan][i] = jawaban[i];
 
             // TES : cetak arrayJawaban setelah diberi jawaban
@@ -452,4 +492,12 @@ char wordToStringWork(Word *kata, char *string){
     }
     string[kata->Length] = '\0';
     // return string;
+}
+
+int stringToInteger(char *string, int *integer){
+
+}
+
+boolean stringInArray100(char *string){
+
 }
