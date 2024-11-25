@@ -9,7 +9,8 @@ void quit(char * filename, Barang barang[MAX_BARANG], int *jumlahBarang, User us
     char input;
     char temporary[100];    
     printf(">> ");
-    scanf(" %c", &input);
+    StartCommand();
+    wordToString(currentCommand, input);
 
     if (input == 'Y' || input == 'y') {
         printf("Masukkan nama file penyimpanan: ");
