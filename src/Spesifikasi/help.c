@@ -23,14 +23,14 @@ void help(char *state){
         printf("   4. QUIT --> Untuk keluar dari program\n");
     }
     else if (isEqualStrings(state, "Login Menu")) {
-        printf(">>>> HELP\n");
+        printf(">> HELP\n");
         printf("=====[ Welcome Menu Help PURRMART]=====\n");
         printf("   1. REGISTER --> Untuk melakukan pendaftaran akun baru\n");
         printf("   2. LOGIN --> Untuk masuk ke dalam akun dan memulai sesi\n");
         printf("   3. QUIT --> Untuk keluar dari program\n");
     }
     else if (isEqualStrings(state, "Main Menu")){
-        printf(">>>> HELP\n");
+        printf(">> HELP\n");
         printf("=====[ Welcome Menu Help PURRMART]=====\n");
         printf("   1. WORK --> Untuk bekerja dan mendapatkan uang\n");
         printf("   2. WORK CHALLENGE --> Untuk mengerjakan challenge\n");
