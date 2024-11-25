@@ -14,7 +14,7 @@ Muhammad Rafi Ramadhan (18223094)
 
 # Setup Environment
 - Operating system: Windows, Linux
-- Bahasa pemrograman: C
+- Bahasa pemrograman: C, Makefile
 - IDE: Terminal/Command Prompt
 
 # How to Run
