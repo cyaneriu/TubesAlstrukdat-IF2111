@@ -6,6 +6,6 @@
 #include "load.h"
 #include <stdio.h>
 
-void login(User *user, const char *filename);
+void login(User *currentUser, User users[], int userCount);
 
 #endif

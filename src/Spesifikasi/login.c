@@ -1,14 +1,13 @@
 #include "login.h"
 #include <stdio.h>
 
-void login(User *user, const char *filename) {
-    if (user->logged) { 
-        printf("Anda masih tercatat sebagai %s. Silakan LOGOUT terlebih dahulu.\n", user->name);
+void login(User *currentUser, User users[], int userCount) {
+    if ((*currentUser).logged) {
+        printf("Anda masih tercatat sebagai %s. Silakan LOGOUT terlebih dahulu.\n", currentUser->name);
         return;
     }
     // input for username sama password using mesinkata.h
     Word usernameWord, passwordWord;
-    char fileUsername[MAX_LEN], filePassword[MAX_LEN];
     boolean flag = false;
 
     printf("Username: ");
@@ -19,33 +18,25 @@ void login(User *user, const char *filename) {
     StartWordInput(); // user menginput password
     passwordWord = currentWord; // proses make mesin kata
 
-    FILE *file = fopen(filename, "r"); // membuka file txt
-    if (!file) {
-        printf("Error: Unable to open file %s\n", filename);
-        return;
-    }
+    for (int i = 0; i < userCount; i++) {
+        char * storedusn = users[i].name;
+        char * storedpass = users[i].password;
 
-    // nge sync data username dan password yang di input user sama yang ada di file
-    while (fscanf(file, "%s %s", fileUsername, filePassword) != EOF) {
-        if (isEqualWords(usernameWord, fileUsername)) { 
-            if (isEqualWords(passwordWord, filePassword)) { 
-                wordToString(usernameWord, user->name); // Store username
-                wordToString(passwordWord, user->password); // Store password
-                user->logged = true; // karena udh terdeteksi login jd boolean berubah jd true
-                printf("Anda telah login ke PURRMART sebagai %s.\n", user->name);
+        if (isEqualWords(usernameWord, storedusn)) {
+            if (isEqualWords(passwordWord, storedpass)){
+                wordToString(usernameWord, (*currentUser).name); // Store username
+                wordToString(passwordWord, (*currentUser).password); // Store password
+                (*currentUser).logged = true;
+                printf("Anda telah login ke PURRMART sebagai %s.\n", (*currentUser).name);
                 flag = true;
                 break;
-            } else {
+            } 
+            // condition kalo password ato username yg dimasukin salah
+            else{
                 printf("Username atau password salah.\n");
                 flag = true;
                 break;
             }
         }
     }
-
-    if (!flag) {
-        printf("Username atau password salah.\n");
-    }
-
-    fclose(file);
 }
