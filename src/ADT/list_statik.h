@@ -13,7 +13,6 @@ typedef struct {
     ElType contents[STAT_CAPACITY];
 } ListStatik;
 
-// Makro akses elemen
 #define ELMTStat(l, i) (l).contents[(i)]
 
 // Fungsi-fungsi untuk list statik
@@ -27,6 +26,6 @@ void readListStatik(ListStatik *l);
 void printListStatik(ListStatik l);
 void insertAtStatik(ListStatik *l, ElType val, IdxType idx);
 void deleteAtStatik(ListStatik *l, ElType *val, IdxType idx);
-void sortListSTatik(ListStatik *l, boolean asc);
+void sortListStatik(ListStatik *l, boolean asc);
 
 #endif
