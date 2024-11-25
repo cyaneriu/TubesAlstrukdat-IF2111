@@ -35,6 +35,6 @@ void wordToString(Word word, char* str);
 // Fungsi untuk memuat data dari file
 void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser);
 
-void startLoad(char *filename);
+int startLoad(char * filename, Barang barang[], int * jumlahBarang, User user[], int * jumlahUser);
 
-#endif // LOAD_H
+#endif
