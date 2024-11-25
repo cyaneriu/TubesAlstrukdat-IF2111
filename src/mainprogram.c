@@ -38,8 +38,6 @@ int main() {
             filename = temporary;
             //Load(&filename, barang, &jumlahBarang, user, &jumlahUser);
             startLoad(filename, barang, &jumlahBarang, user, &jumlahUser);
-            printf("%d\n", jumlahBarang);
-            printf("%d\n", jumlahUser);
             session = true;
         } else if (IsCommandEqual(currentCommand, "HELP\0")) {
             help(state);
