@@ -2,8 +2,7 @@
 #include <string.h>
 #include "queue.h"
 #include "mesinkata.h"
-
-/* *** Kreator *** */
+//kreator
 void CreateQueue(Queue *q){
     q->idxHead = IDX_UNDEF;
     q->idxTail = IDX_UNDEF;
@@ -26,7 +25,7 @@ int lengthQueue(Queue q){
     }
 }
 
-/* *** Primitif Add/Delete *** */
+//primitif add/delete
 void enqueue(Queue *q, QueueElType val){
     if(isEmptyQueue(*q)){
         q->idxHead = 0;
@@ -52,7 +51,7 @@ void dequeue(Queue *q, QueueElType *val){
     }
 }
 
-/* *** Display Queue *** */
+//display queue
 void displayQueue(Queue q){
     if (isEmptyQueue(q)){
         printf("[]\n");
@@ -77,24 +76,3 @@ void copyFirstQueue(Queue q, char *destChar) {
         destChar[0] = '\0';
     }
 }
-
-/*void expandQueue(Queue *q) {
-    QueueElType *newBuffer = (QueueElType *)malloc(2 * CAPACITY_QUEUE * sizeof(QueueElType));
-    int newCapacity = 2 * CAPACITY_QUEUE;
-    int i = 0;
-
-    if (!isEmptyQueue(*q)) {
-        int idx = q->idxHead;
-        do {
-            copyString(newBuffer[i], q->buffer[idx], MAX_LEN_QUEUE);
-            idx = (idx + 1) % CAPACITY_QUEUE;
-            i++;
-        } while (idx != (q->idxTail + 1) % CAPACITY_QUEUE);
-    }
-
-    free(q->buffer);
-    q->buffer = newBuffer;
-    q->idxHead = 0;
-    q->idxTail = i - 1;
-    CAPACITY_QUEUE = newCapacity;
-}*/
