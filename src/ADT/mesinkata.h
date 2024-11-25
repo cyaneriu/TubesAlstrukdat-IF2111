@@ -27,10 +27,6 @@ void IgnoreNewline();
 
 void StartWordInput();
 
-// void StartWordMark();
-
-// void StartWordBlank();
-
 Word ConcatWord(Word word_1, Word word_2);
 
 void StartWordFile(char *filename, int type);
