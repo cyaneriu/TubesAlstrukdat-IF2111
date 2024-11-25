@@ -8,7 +8,7 @@ void start(){
     char * filename;
     int jumlahBarang, jumlahUser;
     filename = "default.txt";
-    Load(filename, barang, &jumlahBarang, user, &jumlahUser);
+    startLoad(filename, barang, &jumlahBarang, user, &jumlahUser);
     printf("File berhasil dimuat.\n");
 }
  
