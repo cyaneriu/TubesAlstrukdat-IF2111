@@ -1,5 +1,7 @@
 #ifndef WorkFunction
 #define WorkFunction
+#include "../ADT/boolean.h"
+#include "../ADT/mesinkata.h"
 void work(int *isiRekening);
 
 int driverWork();
@@ -21,9 +23,5 @@ void sleep(double seconds);
 int stringCompare(char *string1, char *string2);
 
 char wordToStringWork(Word *kata, char *string);
-
-int stringToInteger(char *string, int *integer);
-
-boolean stringInArray100(char *string);
 
 #endif

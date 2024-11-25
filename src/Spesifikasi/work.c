@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "../ADT/boolean.h"
-#include "../ADT/mesinkata.h"
+
 
 #include "work.h"
 
@@ -12,6 +11,10 @@
 // 2. Validasi input agar sesuai dengan format yang diperbolehkan
 // (misalnya tidak boleh langsung enter, tidak boleh mengisi kata > 5 huruf di wordl3, dll)
 // untuk wordle: jika panjang masukan != 5, minta masukan lagi (sampe mampus)
+
+// int main(){
+//     driverWork();
+// }
 
 int driverWork(){
     int isiRekening1 = 100;
@@ -145,10 +148,10 @@ void workChallenge(int *isiRekening){
     printf("Masukan challenge yang hendak dimainkan: ");
     StartWordInput();
     pilihanMain = currentWord;
-    wordToStringWork(&pilihanMain, pilihanPermainan);
+    wordToStringWork(&pilihanMain, &pilihanPermainan);
     printf("\n");
 
-    if (pilihanMain.Length != 1 || !(pilihanMain.TabWord[0] == '1' || pilihanMain.TabWord[1] == '2'))
+    if (pilihanMain.Length != 1 || !(pilihanMain.TabWord[0] == '1' || pilihanMain.TabWord[0] == '2'))
     {
         printf("Mohon beri input yang valid! (1 atau 2)\n");
         printf("Jangan memberikan input lebih dari 1 karakter!\n");
@@ -184,20 +187,10 @@ void tebakAngka(int *isiRekening)
 
     // 1. Buat angka acak [0..99]
     srand(time(NULL));
-    int angkaRandom = rand() % 100;
-    char kunciJawaban[2];
-    if (angkaRandom > 9)
-    {
-        kunciJawaban[0] = (angkaRandom) + 48;
-        kunciJawaban[1] = (angkaRandom / 10) + 48;
-    } else {
-        kunciJawaban[0] = angkaRandom + 48;
-        kunciJawaban[1] = '\0';
-    }
-    
+    int kunciJawaban = rand() % 100;
 
     // TES : cetak kunci jawaban
-    // printf("%d\n", kunciJawaban);
+    // printf("%s\n", kunciJawaban);
 
     // 2. Mulai permainan
     int percobaan = 0, hadiah = 500;
@@ -210,14 +203,21 @@ void tebakAngka(int *isiRekening)
 
         wordToStringWork(&jawab, jawaban);
         printf("\n");
-        if (jawaban == kunciJawaban){
+
+        int angkaJawaban = 0;
+        for (int i = 0; jawaban[i] != '\0'; i++) {
+        angkaJawaban = angkaJawaban * 10 + (jawaban[i] - '0');
+        }
+        // printf("%d\n", angkaJawaban);
+
+        if (angkaJawaban == kunciJawaban){
             hadiah -= 50 * percobaan;
             *isiRekening += hadiah;
             printf("Tebakanmu benar! +%d rupiah telah ditambahkan ke akun anda.\n", hadiah);
             break;
         } else {
             // printf("Salah!\n");
-            if (jawaban > kunciJawaban){
+            if (angkaJawaban > kunciJawaban){
                 printf("Tebakanmu lebih besar!\n");
             } else {
                 printf("Tebakanmu lebih kecil!\n");
@@ -492,12 +492,4 @@ char wordToStringWork(Word *kata, char *string){
     }
     string[kata->Length] = '\0';
     // return string;
-}
-
-int stringToInteger(char *string, int *integer){
-
-}
-
-boolean stringInArray100(char *string){
-
 }
