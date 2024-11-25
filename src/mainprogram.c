@@ -62,7 +62,7 @@ int main() {
                 registeruser();
                 help("Login Menu");
             } else if (IsCommandEqual(currentCommand, "LOGIN\0")) {
-                login(user, filename);
+                login(&user[jumlahUser], user, jumlahUser);
             } else if (IsCommandEqual(currentCommand, "QUIT\0")) {
                 quit(filename, barang, &jumlahBarang, user, &jumlahUser);
                 session = false;
