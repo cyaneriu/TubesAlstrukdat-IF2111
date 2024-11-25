@@ -12,7 +12,7 @@
 //Fungsi Untuk Memulai menulis file txt
 void startWriteFile(char *filename);
 //Fungsi Untuk Menyimpan data ke file txt
-void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int jumlahUser);
+void Save(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser);
 
-void startSave(char *filename);
+int startSave(char * filename, Barang barang[], int * jumlahBarang, User user[], int * jumlahUser);
 #endif

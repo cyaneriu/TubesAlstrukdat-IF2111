@@ -8,20 +8,20 @@ void startWriteFile(char *filename) {
         printf("File tidak dapat dibuka.\n");
     }
 }
-void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int jumlahUser) {
+void Save(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser) {
     char fullPath[100];
     char directory[100] = "../save";
     sprintf(fullPath, "%s/%s", directory, filename);
     startWriteFile(fullPath); 
-    fprintf(pita, "%d\n", jumlahBarang);
+    fprintf(pita, "%d\n", *jumlahBarang);
 
-    for (int i = 0; i < jumlahBarang; i++) {
+    for (int i = 0; i < *jumlahBarang; i++) {
         fprintf(pita, "%d %s\n", barang[i].price, barang[i].name);
     }
 
-    fprintf(pita, "%d\n", jumlahUser);
-    int x = jumlahUser - 1;
-    for (int i = 0; i < jumlahUser; i++) {
+    fprintf(pita, "%d\n", *jumlahUser);
+    int x = *jumlahUser - 1;
+    for (int i = 0; i < *jumlahUser; i++) {
         if (i != x) {
             fprintf(pita, "%d %s %s\n", user[i].money, user[i].name, user[i].password);
         } else {
@@ -34,9 +34,8 @@ void Save(char *filename, Barang barang[], int jumlahBarang, User user[], int ju
 
 }
 
-void startSave(char *filename) {
-    Barang barang[MAX_BARANG];
-    User user[MAX_USER];
-    int jumlahBarang, jumlahUser;
+int startSave(char * filename, Barang barang[], int * jumlahBarang, User user[], int * jumlahUser) {
     Save(filename, barang, jumlahBarang, user, jumlahUser);
+    printf("File berhasil dimuat.\n");
+    return *jumlahBarang;
 }

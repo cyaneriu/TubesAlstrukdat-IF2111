@@ -89,7 +89,7 @@ int main() {
                     ADVInput();
                     wordToStringWork(&currentCommand, temporary);
                     filename = temporary;
-                    startSave(filename);
+                    startSave(filename, barang, &jumlahBarang, user, &jumlahUser);
                 } else if (IsCommandEqual(currentCommand, "LOGOUT\0")) {
                     logout(user, filename);
                     user->logged = false;
