@@ -10,11 +10,11 @@ int main() {
     Barang barang[MAX_BARANG];
     User user[MAX_USER];
     int input;
-    int *jumlahBarang; 
-    int *jumlahUser;
+    int jumlahBarang = 0; 
+    int jumlahUser = 0;
     char * filename;
     char * item;
-    int * isiRekening;
+    int isiRekening = 0;
     char temporary[100];
 
     while (program) {
@@ -33,12 +33,15 @@ int main() {
             ADVInput();
             wordToStringWork(&currentCommand, temporary);
             filename = temporary;
-            startLoad(filename);
+            //Load(&filename, barang, &jumlahBarang, user, &jumlahUser);
+            startLoad(filename, barang, &jumlahBarang, user, &jumlahUser);
+            printf("%d\n", jumlahBarang);
+            printf("%d\n", jumlahUser);
             session = true;
         } else if (IsCommandEqual(currentCommand, "HELP\0")) {
             help(state);
         } else if (IsCommandEqual(currentCommand, "QUIT\0")) {
-            quit(filename, barang, jumlahBarang, user, jumlahUser);
+            quit(filename, barang, &jumlahBarang, user, &jumlahUser);
             program = false;
             printf("Keluar dari PURRMART.\n");
         } else {
@@ -58,7 +61,7 @@ int main() {
             } else if (IsCommandEqual(currentCommand, "LOGIN\0")) {
                 login(user, filename);
             } else if (IsCommandEqual(currentCommand, "QUIT\0")) {
-                quit(filename, barang, jumlahBarang, user, jumlahUser);
+                quit(filename, barang, &jumlahBarang, user, &jumlahUser);
                 session = false;
                 program = false;
                 printf("Keluar dari PURRMART.\n");
@@ -89,7 +92,7 @@ int main() {
                     user->logged = false;
                     help("Welcome Menu");}
                 else if (IsCommandEqual(currentCommand, "QUIT\0")) {
-                    quit(filename, barang, jumlahBarang, user, jumlahUser);
+                    quit(filename, barang, &jumlahBarang, user, &jumlahUser);
                     program = false;
                     printf("Keluar dari PURRMART.\n");
                 } else {
