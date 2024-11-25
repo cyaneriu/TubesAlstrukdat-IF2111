@@ -3,7 +3,7 @@
 #include "load.h"
 
 #define MAX_USER 100
-#define FILENAME "user_data.txt"
+#define FILENAME "default.txt"
 
 // fungsi buat ngecek username yg diinput sesuai ato ngga
 boolean usernamevalid(char usernames[][MAX_LEN], int userCount, Word usernameWord) {
