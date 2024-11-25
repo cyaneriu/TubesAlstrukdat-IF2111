@@ -60,9 +60,9 @@ int main() {
 
             if (IsCommandEqual(currentCommand, "REGISTER\0")) {
                 registeruser();
-                help("Login Menu");
             } else if (IsCommandEqual(currentCommand, "LOGIN\0")) {
                 login(&user[jumlahUser], user, jumlahUser);
+                user->logged = true;
             } else if (IsCommandEqual(currentCommand, "QUIT\0")) {
                 quit(filename, barang, &jumlahBarang, user, &jumlahUser);
                 session = false;
@@ -93,8 +93,7 @@ int main() {
                 } else if (IsCommandEqual(currentCommand, "LOGOUT\0")) {
                     logout(user, filename);
                     user->logged = false;
-                    help("Welcome Menu");}
-                else if (IsCommandEqual(currentCommand, "QUIT\0")) {
+                } else if (IsCommandEqual(currentCommand, "QUIT\0")) {
                     quit(filename, barang, &jumlahBarang, user, &jumlahUser);
                     program = false;
                     printf("Keluar dari PURRMART.\n");
