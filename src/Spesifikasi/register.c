@@ -9,7 +9,7 @@
 boolean usernamevalid(char usernames[][MAX_LEN], int userCount, Word usernameWord) {
     for (int i = 0; i < userCount; i++) {
         Word fileWord = stringToWord(usernames[i]);
-        char usernamedest;
+        char usernamedest[MAX_LEN];
         wordToString(usernameWord, usernamedest);
         // skenario kalau username udah ada di file txt
         if (isEqualWords(fileWord, usernamedest)) {
@@ -43,6 +43,9 @@ void registeruser() {
             userCount++; // ngitung jumlah user yg udh ada di file
         }
         fclose(file);
+    } else {
+        printf("File tidak bisa dibuka\n");
+        return;
     }
 
     printf("Enter username: "); 
@@ -80,7 +83,7 @@ void registeruser() {
     // ngebuka file buat masukin username yg baru
     file = fopen(FILENAME, "a");
     if (!file) {
-        printf("File tidak bisa dibuka!.\n");
+        printf("File tidak bisa dibuka untuk menulis!.\n");
         return;
     }
 
