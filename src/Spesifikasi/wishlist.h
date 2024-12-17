@@ -4,23 +4,32 @@
 #include "../ADT/mesinkata.h"
 #include "../ADT/list_dinamis.h"
 
+void driverWL();
+// driver untuk mengetes wishlist
 
-void wlAdd();
+void wishlistTest(ListDin *wishlist, ListDin *daftarBarang);
+
+// void quitTest(int *test);
+
+int segmentCounter(Word kata);
+// menghilangkan spasi sebelum dan sesudah suatu Word
+
+void wlAdd(ListDin *wishlist, ListDin *daftarBarang);
 // menambahkan barang ke ujung wishlist
 
-void wlClear();
+void wlClear(ListDin *wishlist);
 // menghapus semua barang di wishlist
 
 void wlSwap();
 // menukar barang urutan ke-i dan ke-j
 
-void wlRemoveI();
-// menghapus barang urutan ke-i
-
-void wlRemove();
+void wlRemove(ListDin *wishlist, ListDin *daftarBarang);
 // menghapus barang sesuai dengan nama yang diinput
 
-void wlShow();
+void wlRemoveI(ListDin *wishlist, Word commandWL);
+// menghapus barang urutan ke-i
+
+void wlShow(ListDin *wishlist);
 // menampilkan wishlist
 
 #endif
