@@ -53,7 +53,7 @@ void Push(Stack * S, infotypeStack X)
 }
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop(Stack * S, infotype* X)
+void Pop(Stack * S, infotypeStack* X)
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah Undefai elemen TOP yang lama, TOP berkurang 1 */
