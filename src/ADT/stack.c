@@ -36,13 +36,20 @@ int NbElmtStack(Stack S)
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push(Stack * S, infotype X)
+void Push(Stack * S, infotypeStack X)
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 {
-    Top(*S)++;
-    InfoTop(*S) = X;
+    if (!IsFullStack(*S)) {
+        if (IsEmptyStack(*S)) {
+            S->TOP = 0;
+        } else {
+            S->TOP++;
+        }
+        copyString(S->T[S->TOP].name, X.name, MAX_LEN);
+        S->T[S->TOP].harga = X.harga;
+    }
 }
 
 /* ************ Menghapus sebuah elemen Stack ************ */

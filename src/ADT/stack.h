@@ -10,6 +10,7 @@
 
 #define Undef -1
 #define MaxEl 100
+#define MAX_LEN 50
 /* Undef adalah stack dengan elemen kosong . */
 
 typedef Word infotype;
@@ -18,9 +19,16 @@ typedef int addr;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
-  infotype T[MaxEl]; /* tabel penyimpan elemen */
+  infotypeStack T[MaxEl]; /* tabel penyimpan elemen */
   addr TOP;  /* alamat TOP: elemen puncak */
+  int totalharga;
 } Stack;
+
+typedef struct {
+    char name[MAX_LEN];
+    int harga;
+} infotypeStack;
+
 /* Definisi stack S kosong : S.TOP = Undef */
 /* Elemen yang dipakai menyimpan Undefai Stack T[0]..T[MaxEl-1] */
 /* Jika S adalah Stack maka akses elemen : */
