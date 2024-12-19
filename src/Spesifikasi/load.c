@@ -21,19 +21,20 @@ void wordToString(Word word, char* str) {
 }
 
 void LoadRiwayat(Stack *riwayat_pembelian, int jumlahRiwayat) {
-    for (int i = 0; i < jumlahRiwayat; i++) {
+    int j = 0;
+    while (j < jumlahRiwayat) {
         ADVLine();
         Word nama = SplitWordBlank(currentWord);
-        char jumlahBarang;
-        wordToString(nama, &jumlahBarang);
-        Word namaBarang = SplitWordLeftBlank(currentWord);
-        int harga = wordToInt(namaBarang);
-
+        char namaBarang [100];
+        wordToString(nama, namaBarang);
+        Word hargaBarang = SplitWordLeftBlank(currentWord);
+        int harga = wordToInt(hargaBarang);
         // Memasukkan data ke stack
         infotypeStack item;
         wordToString(nama, item.name);
         item.harga = harga;
         Push(riwayat_pembelian, item);
+        j++;
     }
 }
 void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser) {
@@ -74,6 +75,7 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
 
         ADVLine();
         int jumlahRiwayat = wordToInt(currentWord);
+        printf("  Jumlah Riwayat: %d\n", jumlahRiwayat);
         LoadRiwayat(&(user[i].riwayat_pembelian), jumlahRiwayat);
     
         CreateEmptyListLinier(&user[i].wishlist); 
