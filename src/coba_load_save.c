@@ -67,6 +67,8 @@
 //                 DisplayRiwayat(user[i].riwayat_pembelian);
 
 //                 printf("\n");
+//                 printf("  Wishlist:\n");
+//                 PrintInfoListLinier(user[i].wishlist);
 //         }
 //         } else if (IsCommandEqual(currentCommand, "LOAD\0")) {
 //             ADVInput();
@@ -96,10 +98,16 @@
 //                 printf("\n");
 //                 printf("  Wishlist:\n");
 //                 PrintInfoListLinier(user[i].wishlist);
+//             }
 //         }
-            
+//         else if (IsCommandEqual(currentCommand, "SAVE\0")) {
+//             ADVInput();
+//             wordToStringWork(&currentCommand, temporary);
+//             filename = temporary;
+//             //Load(&filename, barang, &jumlahBarang, user, &jumlahUser);
+//             startSave(filename, barang, &jumlahBarang, user, &jumlahUser);
 //         } 
 //     }
 //     return 0;
 // }
-// //  gcc -o p coba_load.c ./ADT/stack.c ./ADT/mesinkata.c ./ADT/mesinkarakter.c ./Spesifikasi/load.c ./Spesifikasi/work.c ./ADT/listlinier.c ./ADT/map.c
+// //  gcc -o p coba_load_save.c ./ADT/stack.c ./ADT/mesinkata.c ./ADT/mesinkarakter.c ./Spesifikasi/load.c ./Spesifikasi/work.c ./ADT/listlinier.c ./ADT/map.c ./Spesifikasi/save.c

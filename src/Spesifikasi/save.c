@@ -22,16 +22,35 @@ void Save(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
     fprintf(pita, "%d\n", *jumlahUser);
     int x = *jumlahUser - 1;
     for (int i = 0; i < *jumlahUser; i++) {
-        if (i != x) {
-            fprintf(pita, "%d %s %s\n", user[i].money, user[i].name, user[i].password);
-        } else {
-            fprintf(pita, "%d %s %s", user[i].money, user[i].name, user[i].password);
+        fprintf(pita, "%d %s %s\n", user[i].money, user[i].name, user[i].password);
+        int jumlahRiwayat = NbElmtStack(user[i].riwayat_pembelian);
+        fprintf(pita, "%d\n", jumlahRiwayat);
+        Stack temp = user[i].riwayat_pembelian;
+        while (!IsEmptyStack(temp)) {
+            infotypeStack item;
+            Pop(&temp, &item);
+            fprintf(pita, "%s %d\n", item.name, item.harga);
         }
+        int jumlahWishlist = NbElmtListLinier(user[i].wishlist);
+        fprintf(pita, "%d\n", jumlahWishlist);
+        address P = First(user[i].wishlist);
+        int j = 0;
+        while (P != Nil) {
+            if (j == jumlahWishlist - 1 && i == x) {
+                fprintf(pita, "%s", Info(P));
+            } else {
+                fprintf(pita, "%s\n", Info(P));              
+        }
+        printf("%d %d\n", j, i);
+        j++;
+        printf("%d %d\n", j, i);
+        P = Next(P);
     }
-
+    }
     fclose(pita); 
     printf("Data berhasil disimpan ke  %s\n", filename);
 
+    
 }
 
 int startSave(char * filename, Barang barang[], int * jumlahBarang, User user[], int * jumlahUser) {
