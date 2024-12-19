@@ -1,127 +1,218 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "listlinier.h"
 
-boolean IsEmptyLL(LinkedList L){
-    return First(L) == NilLL;
+boolean IsEmptyListLinier(List L){
+    return First(L) == Nil;
 }
 
-void CreateEmptyLL(LinkedList *L){
-    First(*L) = NilLL;
+void CreateEmptyListLinier(List *L){
+    L->First = Nil;
 }
 
-addressLL AlokasiLL(infotypeLL* X){
-    addressLL P;
-    P = (addressLL) malloc(504*MAX_LEN);
-    if (P != NilLL){
-        stringCopy(P->info, X);
-        P->next = NilLL;
-    }
-    return P;
+address AlokasiListLinier(nama_barang X){
+     address P = (address) malloc (sizeof(ElmtList));
+     if (P!=NULL){
+        copyStringMap(P->info, X);
+        P->next = Nil;
+        return P;
+     }
+     else{
+        return Nil;
+     }
 }
 
-void Dealokasi(addressLL *P){
+void DealokasiListLinier(address *P){
     free(*P);
 }
 
-boolean isMemberLL(LinkedList L, char* songName){
-    addressLL p = L.First;
-    boolean isFound = false;
-    while (p != NilLL && !isFound){
-        if (CompareString(p->info, songName)) isFound = true;
-        p = p->next;
+address SearchListLinier(List L, nama_barang X){
+    address P = First(L);
+    while(P->next!=Nil){
+        if(P->info!=X){
+            P = P->next;
+        }
+        else{
+            return P;
+        }
     }
-    return isFound;
+    if(P->info==X){
+        return P;
+    }
+    return Nil;
 }
 
-void InsertLastLL(LinkedList* L, infotypeLL* X){
-    addressLL p = L->First;
-    addressLL np = AlokasiLL(X);
-    if (IsEmptyLL(*L))
-    {
-        L->First = np;
-        return;
+void InsVFirst(List *L, nama_barang X){
+    address P = AlokasiListLinier(X);
+    if(P!=Nil){
+        if(IsEmptyListLinier(*L)){
+            L->First = P;
+        }
+        else{
+            P->next = L->First;
+            L->First = P;
+        }
     }
-    while (p->next != NilLL) p = p->next;
-    p->next = np;
 }
 
-void InsertFirst(LinkedList *L, addressLL P){
-    Next(P) = First(*L);
+void InsVLast (List *L, nama_barang X){
+    address P = AlokasiListLinier(X);
+    if(P!=Nil){
+        InsertLast(L, P);
+    }
+}
+
+void DelVFirst (List *L, nama_barang *X){
+    address P;
+    DelFirst(L, &P);
+    copyStringMap(*X, P->info);
+    DealokasiListLinier (&P);
+}
+
+void DelVLast (List *L, nama_barang *X){
+    address P;
+    DelLast(L, &P);
+    copyStringMap(*X, P->info);
+    DealokasiListLinier (&P);
+}
+
+void InsertFirst (List *L, address P){
+    P->next = First(*L);
     First(*L) = P;
 }
 
-int NbElmt(LinkedList L){
-    if (IsEmptyLL(L)) return 0;
-    int count = 1;
-    addressLL P = First(L);
-    while (P->next != NilLL)
-    {
-        P = Next(P);
-        count++;
-    }
-    return count;
+void InsertAfter (List *L, address P, address Prec){
+    P->next = Prec->next;
+    Prec->next = P;
 }
 
-void displayLinkedList(LinkedList L){
-    int idx = 1;
-    addressLL P = First(L);
-    while (P != NilLL)
-    {
-        printf("  %d. %s\n", idx, P->info);
-        idx++;
-        P = P->next;
+void InsertLast (List *L, address P){
+    if(IsEmptyListLinier(*L)){
+        InsertFirst(L, P);
     }
-}
-
-void swapLinkedList(LinkedList* L, int x, int y){
-    if (x > y){
-        int temp = x;
-        x = y;
-        y = temp;
-    }
-    x--; y--;
-    char temp[100][MAX_LEN];
-    int n = 0;
-    addressLL p = L->First;
-    while (p != NULL){
-        stringCopy(temp[n], p->info);
-        n++;
-        p = p->next;
-    }
-    CreateEmptyLL(L);
-    for (int i = 0; i < n; ++i){
-        if (i == x){
-            InsertLastLL(L, temp[y]);
+    else{
+        address Prec = L->First;
+        while(Prec->next!=Nil){
+            Prec = Prec->next;
         }
-        else if (i == y){
-            InsertLastLL(L, temp[x]);
+        InsertAfter(L, P, Prec);
+    }
+}
+
+void DelFirst (List *L, address *P){
+    *P = First(*L);
+    First(*L) = First(*L)->next;
+    (*P)->next = Nil;
+}
+
+void DelP (List *L, nama_barang X){
+    address P = SearchListLinier(*L, X);
+    if(P!=Nil){
+        address P = First(*L);
+        if(P == P){
+            DelFirst(L, &P);
         }
         else{
-            InsertLastLL(L, temp[i]);
+            while(P->next!=P){
+                P = P->next;
+            }
+            DelAfter(L, &P, P);
         }
     }
 }
 
-char* GetLL(LinkedList L, int idx){
-    int i = 1;
-    addressLL P = First(L);
-    while (i<=idx){
-        i++;
-        P = P->next;
+void DelAddr (List *L, address P){
+    if(P!=Nil){
+        address P = First(*L);
+        if(P == P){
+            DelFirst(L, &P);
+        }
+        else{
+            while(P->next!=P){
+                P = P->next;
+            }
+            DelAfter(L, &P, P);
+        }
     }
-    return P->info;
 }
 
-void delLLidx(LinkedList* L, int idx){
-    addressLL p = L->First;
-    if (idx == 0){
-        L->First = p->next;
-        Dealokasi(&p);  
-        return;
+void DelLast (List *L, address *P){
+	address last = First(*L);
+	address prec = Nil;
+	while (Next(last) != Nil){
+		prec = last;
+		last = Next(last);
+	}
+	*P = last;
+	if (prec == Nil){
+		First(*L) = Nil; 
+	} else {
+		Next(prec) = Nil;
+	}
+}
+
+void DelAfter (List *L, address *Pdel, address Prec){
+    *Pdel = Prec->next;
+    if(Prec->next!=Nil){
+        Prec->next = Prec->next->next;
+        (*Pdel)->next = Nil;
     }
-    for (int i = 0; i < idx-1; ++i){
-        p = p->next;
+}
+
+void PrintInfoListLinier(List L){
+    printf("[");
+    if(!IsEmptyListLinier(L)){
+        address Q = First(L);
+        while(Q->next!=Nil){
+            printf("%d,", Q->info);
+            Q = Q->next;
+        }
+        printf("%d", Q->info);
     }
-    addressLL q = p->next;
-    p->next = q->next;
-    Dealokasi(&q);
+    printf("]\n");
+}
+
+int NbElmtListLinier(List L){
+    if(IsEmptyListLinier(L)){
+        return 0;
+    }
+    else{
+        int total = 1;
+        address P = First(L);
+        while(P->next!=Nil){
+            total++;
+            P = P->next;
+        }
+        return total;
+    }
+}
+
+void InversListLinier(List *L){
+   if(!IsEmptyListLinier(*L)){
+        address P = First(*L);
+        address After = P->next;
+        while(After!=Nil){
+            address temp = After;
+            After = After->next;
+            InsertFirst(L, temp);
+            P->next = After;
+        }
+   }
+}
+
+void KonkatListLinier(List *L1, List *L2, List *L3){
+    CreateEmptyListLinier(L3);
+    if(IsEmptyListLinier(*L1)){
+        First(*L3) = First(*L2);
+    }
+    else{
+        First(*L3) = First(*L1);
+        address P = First(*L1);
+        while(P->next!=Nil){
+            P = P->next;
+        }
+        P->next = First(*L2);
+    }
+    CreateEmptyListLinier(L2);
+    CreateEmptyListLinier(L1);
 }

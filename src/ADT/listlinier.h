@@ -1,65 +1,147 @@
-#ifndef listlinier_H
-#define listlinier_H
-
-#include <stdlib.h>
-#include "mesinkata.h"
+#include "map.h"
 #include "boolean.h"
 
-#define NilLL NULL
+#ifndef LISTLINIER_H
+#define LISTLINIER_H
 
-typedef char infotypeLL;
-typedef struct tElmtlist *addressLL;
-typedef struct tElmtlist { 
-	infotypeLL info[MAX_LEN];
-	addressLL next;
+#define Nil NULL
+#define Maxi 100
+
+typedef char nama_barang[Maxi];
+typedef struct tElmtlist *address;
+
+typedef struct{
+	address First;
+} List;
+
+typedef struct tElmtlist{ 
+	nama_barang info;
+	address next;
 } ElmtList;
 
-typedef struct {
-	addressLL First;
-	char Name[MAX_LEN];
-} LinkedList;
 
-/* Definisi list : */
 /* List kosong : First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
-/* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
+/* Buat elemen terakhir kalo addressnya Last, maka Next(Last)=Nil */
 #define Info(P) (P)->info
 #define Next(P) (P)->next
 #define First(L) ((L).First)
 
 /* PROTOTYPE */
-boolean IsEmptyLL (LinkedList L);
+
+/*LIST KOSONG*/
+boolean IsEmptyListLinier(List L);
 /* Mengirim true jika list kosong */
 
-void CreateEmptyLL (LinkedList *L);
+/*BUAT LIST KOSONG*/
+void CreateEmptyListLinier(List *L);
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 
-addressLL AlokasiLL (infotypeLL* X);
+/*ALOKASI DAN DEALOKASI MEMORI*/
+address AlokasiListLinier(nama_barang X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P)=X, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-void Dealokasi (addressLL *P);
+
+void DealokasiListLinier(address *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
 
-/****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-boolean isMemberLL(LinkedList L, char* songName);
+// SEARCHING SEBUAH ELEMENT LIST
+address SearchListLinier(List L, nama_barang X);
+/* Mencari apakah ada elemen list dengan info(P)= X */
+/* Jika ada, mengirimkan address elemen tersebut. */
+/* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 
-void InsertLastLL(LinkedList* L, infotypeLL* X);
+/*** PENAMBAHAN ELEMEN ***/
+void InsVFirst (List *L, nama_barang X);
+/* I.S. L mungkin kosong */
+/* F.S. Melakukan alokasi sebuah elemen dan */
+/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+void InsVLast (List *L, nama_barang X);
+/* I.S. L mungkin kosong */
+/* F.S. Melakukan alokasi sebuah elemen dan */
+/* menambahkan elemen list di akhir: elemen terakhir yang baru */
+/* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
-int NbElmt (LinkedList L);
+/*** PENGHAPUSAN ELEMEN ***/
+void DelVFirst (List *L, nama_barang *X);
+/* I.S. List L tidak kosong  */
+/* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
+/*      dan alamat elemen pertama di-dealokasi */
+void DelVLast (List *L, nama_barang *X);
+/* I.S. list tidak kosong */
+/* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
+/*      dan alamat elemen terakhir di-dealokasi */
 
-void displayLinkedList(LinkedList L);
+/****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 
-void swapLinkedList(LinkedList* L, int x, int y);
+/*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
+void InsertFirst (List *L, address P);
+/* I.S. Sembarang, P sudah dialokasi  */
+/* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
+void InsertAfter (List *L, address P, address Prec);
+/* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
+/*      P sudah dialokasi  */
+/* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
+void InsertLast (List *L, address P);
+/* I.S. Sembarang, P sudah dialokasi  */
+/* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
-char* GetLL(LinkedList L, int idx);
+/*** PENGHAPUSAN ELEMEN ***/
+void DelFirst (List *L, address *P);
+/* I.S. List tidak kosong */
+/* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
+/*      Elemen list berkurang satu (mungkin menjadi kosong) */
+/* First element yg baru adalah suksesor elemen pertama yang lama */
+void DelP (List *L, nama_barang X);
+/* I.S. Sembarang */
+/* F.S. Jika ada elemen list beraddress P, dengan info(P)=X  */
+/* Maka P dihapus dari list dan di-dealokasi */
+/* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
+/* List mungkin menjadi kosong karena penghapusan */
 
-void delLLidx(LinkedList* L, int idx);
+void DelAddr (List *L, address P);
+
+void DelLast (List *L, address *P);
+/* I.S. List tidak kosong */
+/* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
+/*      Elemen list berkurang satu (mungkin menjadi kosong) */
+/* Last element baru adalah predesesor elemen terakhir yg lama, */
+/* jika ada */
+
+void DelAfter (List *L, address *Pdel, address Prec);
+/* I.S. List tidak kosong. Prec adalah anggota list  */
+/* F.S. Menghapus Next(Prec): */
+/*      Pdel adalah alamat elemen list yang dihapus  */
+
+/****************** PROSES SEMUA ELEMEN LIST ******************/
+void PrintInfoListLinier(List L);
+/* I.S. List mungkin kosong */
+/* F.S. Jika list tidak kosong, isi list dicetak ke kanan: [e1,e2,...,en] */
+/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+/* Jika list kosong : menulis [] */
+/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah terkecuali untuk newline di akhir output */
+
+int NbElmtListLinier(List L);
+/* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+
+
+void InversListLinier(List *L);
+/* I.S. sembarang. */
+/* F.S. elemen list dibalik : */
+/* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
+/* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
+
+void KonkatListLinier(List *L1, List *L2, List *L3);
+/* I.S. L1 dan L2 sembarang */
+/* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
+/* Konkatenasi dua buah list : L1 dan L2 dan menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
+/* L1 serta L2 menjadi list kosong.*/
 
 #endif
