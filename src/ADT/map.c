@@ -63,14 +63,14 @@ void InsertMap(Map *M, keytype k, valuetype v){
         }
     }
     else{
-        int idx = IdxMemberMap(*M, k);
+        int idx = GetIdxMap(*M, k);
         M->Elements[idx].Value+=v;
     }
 }
 
 void DeleteMap(Map *M, keytype k, valuetype v){
     if(IsMemberMap(*M, k)){
-        int idx = IdxMemberMap(*M, k);
+        int idx = GetIdxMap(*M, k);
         if(M->Elements[idx].Value-v<=0){
             M->Elements[idx].Value = 0;
             if(M->Count==1){
