@@ -8,7 +8,7 @@ void history(Stack *S) {
         return;
     }
     printf("\nRiwayat pembelian barang:\n");
-    for (int i = 0; i < S->TOP; i++) {
+    for (int i = 0; i <= S->TOP; i++) {
         printf("%d. %s %d\n", 
                i+1, 
                S->T[i].name, 
