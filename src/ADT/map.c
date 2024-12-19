@@ -44,7 +44,7 @@ valuetype ValueMap(Map M, keytype k){
     }
     }
     else{
-        return Undef;
+        return UndefMap;
     }
 }
 

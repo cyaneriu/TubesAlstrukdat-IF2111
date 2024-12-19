@@ -20,6 +20,22 @@ void wordToString(Word word, char* str) {
     str[i] = '\0';
 }
 
+void LoadRiwayat(Stack *riwayat_pembelian, int jumlahRiwayat) {
+    for (int i = 0; i < jumlahRiwayat; i++) {
+        ADVLine();
+        Word nama = SplitWordBlank(currentWord);
+        char jumlahBarang;
+        wordToString(nama, &jumlahBarang);
+        Word namaBarang = SplitWordLeftBlank(currentWord);
+        int harga = wordToInt(namaBarang);
+
+        // Memasukkan data ke stack
+        infotypeStack item;
+        wordToString(nama, item.name);
+        item.harga = harga;
+        Push(riwayat_pembelian, item);
+    }
+}
 void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *jumlahUser) {
     char fullPath[100];
     char directory[100] = "../save";
@@ -54,6 +70,21 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
         temp = SplitWordBlank(temp);
         wordToString(temp, user[i].password);
         user[i].logged = false;
+        CreateEmptyStack(&user[i].riwayat_pembelian);
+
+        ADVLine();
+        int jumlahRiwayat = wordToInt(currentWord);
+        LoadRiwayat(&(user[i].riwayat_pembelian), jumlahRiwayat);
+    
+        CreateEmptyListLinier(&user[i].wishlist); 
+        ADVLine();
+        int wishlistCount = wordToInt(currentWord);
+        for (int j = 0; j < wishlistCount; j++) {
+            ADVLine();
+            char wishlistItem[50];
+            wordToString(currentWord, wishlistItem);               
+            InsVFirst(&user[i].wishlist, wishlistItem);
+        }
     }
     printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.\n");
 }

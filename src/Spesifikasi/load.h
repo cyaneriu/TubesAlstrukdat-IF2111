@@ -5,6 +5,8 @@
 
 #include "../ADT/mesinkarakter.h"
 #include "../ADT/mesinkata.h"
+#include "../ADT/stack.h"
+#include "../ADT/listlinier.h"
 #include <stdio.h>
 #include <stdlib.h> 
 
@@ -18,11 +20,12 @@ typedef struct {
     int price;
 } Barang;
 
-// Struktur User
 typedef struct {
     char name[MAX_LEN];
     char password[MAX_LEN];
     int money;
+    Stack riwayat_pembelian;
+    List wishlist;
     boolean logged;
 } User;
 

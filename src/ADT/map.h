@@ -5,7 +5,7 @@
 
 #define Nil 0
 #define MaxElm 100
-#define Undef -9999
+#define UndefMap -9999
 
 // typedef int bool;
 typedef char keytype[MaxElm];

@@ -1,12 +1,16 @@
-5
-110 AK47
+3
+10 AK47
 20 Lalabu
 20 Ayam Goreng Crisbar
-54 pokebol
-67 fiesta nugget
-5
+2
 100 admin alstrukdatkeren
+0
+2
+Ayam Goreng Crisbar
+Lalabu
 25 praktikan kerenbangetkak
-24 hakim 1234
-34 pepe tobat
-1000 rafi keren
+1
+20 Lalabu
+2
+Ayam Goreng Crisbar
+AK47

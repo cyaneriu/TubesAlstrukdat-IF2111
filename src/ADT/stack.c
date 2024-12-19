@@ -27,7 +27,7 @@ int NbElmtStack(Stack S)
 /* Mengirimkan banyaknya elemen Stack; mengirimkan 0 jika Stack kosong */
 {
     int count = 0;
-    infotype dump;
+    infotypeStack dump;
     while (!IsEmptyStack(S)) {
         Pop(&S, &dump);
         count++;
