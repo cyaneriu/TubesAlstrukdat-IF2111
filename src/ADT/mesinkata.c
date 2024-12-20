@@ -100,7 +100,7 @@ void StartCommand() {
 
 void StartCommand2(){
     START(); 
-    IgnoreBlanks();  
+    IgnoreBlank();  
     
     currentWord.Length = 0;
     
@@ -169,7 +169,7 @@ boolean IsCommandEqual(Word Input, char * kata)
 
 boolean isEqual(char x[100], char y[100]){
     boolean cek = true;
-    if(len(x) != len(y)){
+    if(stringLen(x) != stringLen(y)){
         cek = false;
         return cek;
     } else {
