@@ -3,39 +3,33 @@
 
 int main() {
     Stack S;
-    Word word1, word2, poppedWord;
-
-    // Inisialisasi stack kosong
+    infotypeStack item1, item2, poppedItem;
+    // membuat stack kosong
     CreateEmptyStack(&S);
-
     printf("Stack berhasil dibuat.\n");
-
-    // Cek apakah stack kosong
+    // boolean cek stack kosong
     if (IsEmptyStack(S)) {
         printf("Stack dalam keadaan kosong.\n");
     }
+    // insert elemen ke stack
+    snprintf(item1.name, MAX_LEN, "Item1");
+    item1.harga = 100;
+    Push(&S, item1);
+    printf("Elemen '%s' dengan harga %d ditambahkan ke stack.\n", item1.name, item1.harga);
 
-    // Memasukkan elemen ke stack
-    word1 = stringToWord("Hello");
-    word2 = stringToWord("World");
+    snprintf(item2.name, MAX_LEN, "Item2");
+    item2.harga = 200;
+    Push(&S, item2);
+    printf("Elemen '%s' dengan harga %d ditambahkan ke stack.\n", item2.name, item2.harga);
 
-    Push(&S, word1);
-    printf("Elemen '%s' ditambahkan ke stack.\n", word1.TabWord);
-
-    Push(&S, word2);
-    printf("Elemen '%s' ditambahkan ke stack.\n", word2.TabWord);
-
-    // Menampilkan jumlah elemen dalam stack
+    // print jumlah elemen di stack
     printf("Jumlah elemen dalam stack: %d\n", NbElmtStack(S));
-
-    // Menghapus elemen dari stack
-    Pop(&S, &poppedWord);
-    printf("Elemen '%s' dihapus dari stack.\n", poppedWord.TabWord);
-
-    // Menampilkan elemen teratas
+    // hapus elemen dari stack
+    Pop(&S, &poppedItem);
+    printf("Elemen '%s' dengan harga %d dihapus dari stack.\n", poppedItem.name, poppedItem.harga);
+    // print elemen teratas jika stack tidak kosong
     if (!IsEmptyStack(S)) {
-        printf("Elemen teratas: %s\n", InfoTop(S).TabWord);
+        printf("Elemen teratas: %s dengan harga %d\n", InfoTop(S).name, InfoTop(S).harga);
     }
-
     return 0;
 }
