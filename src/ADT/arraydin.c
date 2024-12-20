@@ -178,11 +178,15 @@ ArrayDin CopyArrayDin(ArrayDin Ad) {
  * Jika tidak ditemukan, akan mengembalikan -1.
  * Prekondisi: array terdefinisi
  */
-IdxType SearchArrayDin(ArrayDin Ad, char * el) {
+IdxType SearchArrayDin(ArrayDin Ad, char *el) {
+    Word word = stringToWord(el); 
     for (int i = 0; i < Ad.Neff; i++) {
-        if (Ad.A[i].name == &el) {
-            return i;
+        Word currentItem;
+        copyString(currentItem.TabWord, Ad.A[i].name, MAX_LEN);
+        currentItem.Length = stringLen(Ad.A[i].name);
+        if (isEqualWords(currentItem, word.TabWord)) {
+            return i; 
         }
     }
-    return -1;
+    return -1; 
 }

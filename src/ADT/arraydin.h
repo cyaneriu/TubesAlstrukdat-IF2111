@@ -2,6 +2,7 @@
 #define __ARRAY_DINAMIK__
 
 #include "boolean.h"
+#include "mesinkata.h"
 #include "../Spesifikasi/load.h"
 
 #define InitialSize 10
