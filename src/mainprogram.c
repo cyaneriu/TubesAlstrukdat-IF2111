@@ -3,7 +3,6 @@
 #include "mainprogram.h"
 
 int main() {
-    printf("mulai plis stop segmentation fault");
     boolean program = true;
     boolean session = false;
     char * state;
