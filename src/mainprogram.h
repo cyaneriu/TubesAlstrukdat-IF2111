@@ -17,7 +17,14 @@
 #include "help.h"
 #include "welcome_perry.h"
 #include "work.h"
-#include "work.h" 
+
+#include "profile.h" 
+#include "history.h" 
+#include "wishlist.h" 
+#include "cart_add.h" 
+#include "cart_pay.h" 
+#include "cart_remove.h" 
+#include "cart_show.h" 
 
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkarakter.h"
@@ -26,6 +33,11 @@
 #include "../ADT/list_dinamis.h"
 #include "../ADT/list.h"
 #include "../ADT/list_statik.h"
+
+#include "../ADT/map.h"
+#include "../ADT/arraydin.h"
+#include "../ADT/listlinier.h"
+#include "../ADT/stack.h"
 
 #include <stdio.h>
 

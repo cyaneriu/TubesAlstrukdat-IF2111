@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "../ADT/boolean.h"
 #include "../ADT/map.h"
-#include "../ADT/arrayDin.h"
+#include "../ADT/arraydin.h"
 #include "load.h"
 
 void cartShow(User *currentUser);

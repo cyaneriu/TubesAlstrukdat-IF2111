@@ -3,11 +3,7 @@
 #include "../ADT/list_dinamis.h"
 #include "work.h"
 
-/int main(){
-    driverWL();
-    
-    return 0;
-}
+
 
 void driverWL(){
     // Word testSC;

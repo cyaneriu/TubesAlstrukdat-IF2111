@@ -10,7 +10,7 @@
 
 #define Undef -1
 #define MaxEl 100
-#define MAX_LEN 50
+#define MAX_LEN 100
 /* Undef adalah stack dengan elemen kosong . */
 
 //typedef Word infotype;

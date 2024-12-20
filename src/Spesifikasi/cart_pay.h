@@ -5,7 +5,7 @@
 #include "../ADT/boolean.h"
 #include "../ADT/map.h"
 #include "../ADT/stack.h"
-#include "../ADT/arrayDin.h"
+#include "../ADT/arraydin.h"
 #include "load.h"
 
 void cartPay(User *currentUser);
