@@ -3,7 +3,7 @@
 
 void cartPay(User *currentUser){
     int cost = 0;
-
+    ArrayDin Ad;
     if (IsMapEmpty(currentUser->keranjang)){
         printf("Keranjang kosong!\n");
         return;

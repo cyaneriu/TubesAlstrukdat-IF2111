@@ -7,6 +7,8 @@ void cartShow(User *currentUser){
         return;
     }
 
+    ArrayDin Ad;
+
     int cost = 0;
     printf("Isi keranjang belanja:\n");
     printf("Qty       Nama    Harga\n");
