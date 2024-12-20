@@ -41,9 +41,7 @@ void Save(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
             } else {
                 fprintf(pita, "%s\n", Info(P));              
         }
-        printf("%d %d\n", j, i);
         j++;
-        printf("%d %d\n", j, i);
         P = Next(P);
     }
     }

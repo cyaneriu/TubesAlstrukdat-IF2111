@@ -75,7 +75,6 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
 
         ADVLine();
         int jumlahRiwayat = wordToInt(currentWord);
-        printf("  Jumlah Riwayat: %d\n", jumlahRiwayat);
         LoadRiwayat(&(user[i].riwayat_pembelian), jumlahRiwayat);
     
         CreateEmptyListLinier(&user[i].wishlist); 
@@ -85,7 +84,7 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
             ADVLine();
             char wishlistItem[50];
             wordToString(currentWord, wishlistItem);               
-            InsVFirst(&user[i].wishlist, wishlistItem);
+            InsVFirstListLinier(&user[i].wishlist, wishlistItem);
         }
     }
     printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.\n");
