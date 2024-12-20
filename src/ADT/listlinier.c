@@ -194,7 +194,7 @@ void InversListLinier(List *L){
         while(After!=Nil){
             address temp = After;
             After = After->next;
-            InsertFirst(L, temp);
+            InsertFirstListLinier(L, temp);
             P->next = After;
         }
    }
