@@ -3,7 +3,7 @@
 #include "../ADT/list_dinamis.h"
 #include "work.h"
 
-int main(){
+/int main(){
     driverWL();
     
     return 0;

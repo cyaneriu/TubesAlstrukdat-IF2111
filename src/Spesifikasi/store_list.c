@@ -8,11 +8,12 @@ void displayStore(Store store) {
     } else {
         printf("List barang yang ada di toko:\n");
         for (int i = 0; i < listLengthDin(store.barang); i++) {
-            char *itemName = ELMTDin(store.barang, i);
-            printf("- %s\n", itemName);
+            Barang * item = ELMTDin(store.barang, i);
+            printf("- %s\n", item->name, item->price);
         }
     }
 }
+
 
 void displayStoreQueue(Store store) {
     if (isEmptyQueue(store.antrian)) {

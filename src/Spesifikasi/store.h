@@ -14,9 +14,9 @@ typedef struct {
 
 void createStore(Store *store);
 
-void loadToStore(Store *store);
-
 void addItemToStore(Store *store, Barang item);
+
+void loadToStore(Store *store);
 
 void addItemToQueue(Store *store, char *item);
 

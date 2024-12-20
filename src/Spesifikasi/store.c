@@ -18,6 +18,10 @@ void createStore(Store *store) {
     CreateQueue(&(store->antrian));
 }
 
+void addItemToStore(Store *store, Barang item) {
+    insertLastDin(&(store->barang), item.name); 
+}
+
 void loadToStore(Store *store) {
     int jumlahBarang = wordToInt(currentWord);
     for (int i = 0; i < jumlahBarang; i++) {
@@ -28,14 +32,9 @@ void loadToStore(Store *store) {
 
         Word namaBarang = SplitWordBlank(currentWord);
         wordToString(namaBarang, item.name);
-        insertLastDin(&(store->barang), item.name);
+        addItemToStore(store, item);
     }
 }
-
-void addItemToStore(Store *store, Barang item) {
-    insertLastDin(&(store->barang), item.name); 
-}
-
 
 void addItemToQueue(Store *store, char *item) {
     /*if (isFull(store->antrian)) {
