@@ -19,6 +19,8 @@ typedef struct {
     int Neff;
 } ArrayDin;
 
+extern ArrayDin Ad;
+
 /**
  * Konstruktor
  * I.S. sembarang
@@ -119,6 +121,6 @@ ArrayDin CopyArrayDin(ArrayDin array);
  * Jika tidak ditemukan, akan mengembalikan -1.
  * Prekondisi: array terdefinisi
  */
-IdxType SearchArrayDin(ArrayDin array, Barang el);
+IdxType SearchArrayDin(ArrayDin array, char * el);
 
 #endif
