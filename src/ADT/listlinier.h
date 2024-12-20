@@ -59,22 +59,22 @@ address SearchListLinier(List L, nama_barang X);
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (List *L, nama_barang X);
+void InsVFirstListLinier (List *L, nama_barang X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLast (List *L, nama_barang X);
+void InsVLastListLinier (List *L, nama_barang X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (List *L, nama_barang *X);
+void DelVFirstListLinier (List *L, nama_barang *X);
 /* I.S. List L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
-void DelVLast (List *L, nama_barang *X);
+void DelVLastListLinier (List *L, nama_barang *X);
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
@@ -82,40 +82,40 @@ void DelVLast (List *L, nama_barang *X);
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst (List *L, address P);
+void InsertFirstListLinier (List *L, address P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
-void InsertAfter (List *L, address P, address Prec);
+void InsertAfterListLinier (List *L, address P, address Prec);
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast (List *L, address P);
+void InsertLastListLinier (List *L, address P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelFirst (List *L, address *P);
+void DelFirstListLinier (List *L, address *P);
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (List *L, nama_barang X);
+void DelPListLinier (List *L, nama_barang X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
 /* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 
-void DelAddr (List *L, address P);
+void DelAddrListLinier (List *L, address P);
 
-void DelLast (List *L, address *P);
+void DelLastListLinier (List *L, address *P);
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
 /* jika ada */
 
-void DelAfter (List *L, address *Pdel, address Prec);
+void DelAfterListLinier (List *L, address *Pdel, address Prec);
 /* I.S. List tidak kosong. Prec adalah anggota list  */
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */

@@ -42,7 +42,7 @@ address SearchListLinier(List L, nama_barang X){
     return Nil;
 }
 
-void InsVFirst(List *L, nama_barang X){
+void InsVFirstListLinier(List *L, nama_barang X){
     address P = AlokasiListLinier(X);
     if(P!=Nil){
         if(IsEmptyListLinier(*L)){
@@ -55,88 +55,88 @@ void InsVFirst(List *L, nama_barang X){
     }
 }
 
-void InsVLast (List *L, nama_barang X){
+void InsVLastListLinier (List *L, nama_barang X){
     address P = AlokasiListLinier(X);
     if(P!=Nil){
-        InsertLast(L, P);
+        InsertLastListLinier(L, P);
     }
 }
 
-void DelVFirst (List *L, nama_barang *X){
+void DelVFirstListLinier (List *L, nama_barang *X){
     address P;
-    DelFirst(L, &P);
+    DelFirstListLinier(L, &P);
     CopyStringMap(*X, P->info);
     DealokasiListLinier (&P);
 }
 
-void DelVLast (List *L, nama_barang *X){
+void DelVLastListLinier (List *L, nama_barang *X){
     address P;
-    DelLast(L, &P);
+    DelLastListLinier(L, &P);
     CopyStringMap(*X, P->info);
     DealokasiListLinier (&P);
 }
 
-void InsertFirst (List *L, address P){
+void InsertFirstListLinier (List *L, address P){
     P->next = First(*L);
     First(*L) = P;
 }
 
-void InsertAfter (List *L, address P, address Prec){
+void InsertAfterListLinier (List *L, address P, address Prec){
     P->next = Prec->next;
     Prec->next = P;
 }
 
-void InsertLast (List *L, address P){
+void InsertLastListLinier (List *L, address P){
     if(IsEmptyListLinier(*L)){
-        InsertFirst(L, P);
+        InsertFirstListLinier(L, P);
     }
     else{
         address Prec = L->First;
         while(Prec->next!=Nil){
             Prec = Prec->next;
         }
-        InsertAfter(L, P, Prec);
+        InsertAfterListLinier(L, P, Prec);
     }
 }
 
-void DelFirst (List *L, address *P){
+void DelFirstListLinier (List *L, address *P){
     *P = First(*L);
     First(*L) = First(*L)->next;
     (*P)->next = Nil;
 }
 
-void DelP (List *L, nama_barang X){
+void DelPListLinier (List *L, nama_barang X){
     address P = SearchListLinier(*L, X);
     if(P!=Nil){
         address P = First(*L);
         if(P == P){
-            DelFirst(L, &P);
+            DelFirstListLinier(L, &P);
         }
         else{
             while(P->next!=P){
                 P = P->next;
             }
-            DelAfter(L, &P, P);
+            DelAfterListLinier(L, &P, P);
         }
     }
 }
 
-void DelAddr (List *L, address P){
+void DelAddrListLinier (List *L, address P){
     if(P!=Nil){
         address P = First(*L);
         if(P == P){
-            DelFirst(L, &P);
+            DelFirstListLinier(L, &P);
         }
         else{
             while(P->next!=P){
                 P = P->next;
             }
-            DelAfter(L, &P, P);
+            DelAfterListLinier(L, &P, P);
         }
     }
 }
 
-void DelLast (List *L, address *P){
+void DelLastListLinier (List *L, address *P){
 	address last = First(*L);
 	address prec = Nil;
 	while (Next(last) != Nil){
@@ -151,7 +151,7 @@ void DelLast (List *L, address *P){
 	}
 }
 
-void DelAfter (List *L, address *Pdel, address Prec){
+void DelAfterListLinier (List *L, address *Pdel, address Prec){
     *Pdel = Prec->next;
     if(Prec->next!=Nil){
         Prec->next = Prec->next->next;
