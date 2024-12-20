@@ -6,7 +6,6 @@ int main() {
     boolean program = true;
     boolean session = false;
     char * state;
-    Store store;
     Barang barang[MAX_BARANG];
     ArrayDin item;
     User user[MAX_USER];
@@ -14,68 +13,21 @@ int main() {
     int jumlahBarang = 0; 
     int jumlahUser = 0;
     char * filename;
-    char * item;
     int isiRekening = 0;
-    char temporary[100];
 
     while (program) {
         while (!state && !session) {
-        welcome_perry();
+            welcome_perry();
 
-        state = "Welcome Menu";
-        help(state);
-
-        printf(">> ");
-        StartCommand2();
-        printf("\n");
-
-        char Command[NMax]; wordToString(currentCommand, Command);
-        char text[NMax];
-        int i = 0;
-
-        while(currentWord.TabWord[i] != ' ' && currentWord.TabWord[i] != '\0'){
-                Command[i] = currentWord.TabWord[i];
-                (&currentWord)->TabWord[i] = '\0';
-                i++;
-            }
-            Command[i] = '\0';
-            (&currentWord)->TabWord[i] = '\0';
-
-        if (isEqual(Command, "START")) {
-            session = true;
-            filename = "default.txt";
-            startLoad(filename, barang, &jumlahBarang, user, &jumlahUser);
-        } else if (isEqual(Command, "LOAD")) {
-            i++;
-            int j = i;
-            while(currentWord.TabWord[i] != '\0'){
-                text[i - j] = currentWord.TabWord[i];
-                (&currentWord)->TabWord[i] = '\0';
-                i++;
-            }
-            text[i-j] = '\0';
-            startLoad(text, barang, &jumlahBarang, user, &jumlahUser);
-            session = true;
-        } else if (isEqual(Command, "HELP\0")) {
+            state = "Welcome Menu";
             help(state);
-        } else if (isEqual(Command, "QUIT\0")) {
-            quit(filename, barang, &jumlahBarang, user, &jumlahUser);
-            program = false;
-            printf("Keluar dari PURRMART.\n");
-        } else {
-            printf("Perintah tidak dikenali, silahkan coba lagi.\n");
-        }
-    }
-        
-        while (!user->logged && session){
-            state = "Login Menu";
-            help(state);
-            
+
             printf(">> ");
             StartCommand2();
             printf("\n");
 
-            char Command[NMax]; wordToString(currentCommand, Command);
+            char Command[NMax]; 
+            wordToString(currentCommand, Command);
             char text[NMax];
             int i = 0;
 
@@ -87,9 +39,42 @@ int main() {
             Command[i] = '\0';
             (&currentWord)->TabWord[i] = '\0';
 
-            char Command[NMax]; wordToString(currentCommand, Command);
-            char text[NMax];
-            int i = 0;
+            if (isEqual(Command, "START")) {
+                session = true;
+                filename = "default.txt";
+                startLoad(filename, barang, &jumlahBarang, user, &jumlahUser);
+            } else if (isEqual(Command, "LOAD")) {
+                i++;
+                int j = i;
+                while(currentWord.TabWord[i] != '\0'){
+                    text[i - j] = currentWord.TabWord[i];
+                    (&currentWord)->TabWord[i] = '\0';
+                    i++;
+                }
+                text[i-j] = '\0';
+                startLoad(text, barang, &jumlahBarang, user, &jumlahUser);
+                session = true;
+            } else if (isEqual(Command, "HELP\0")) {
+                help(state);
+            } else if (isEqual(Command, "QUIT\0")) {
+                quit(filename, barang, &jumlahBarang, user, &jumlahUser);
+                program = false;
+                printf("Keluar dari PURRMART.\n");
+            } else {
+                printf("Perintah tidak dikenali, silahkan coba lagi.\n");
+            }
+        }
+        
+        while (!user->logged && session){
+            state = "Login Menu";
+            help(state);
+            
+            printf(">> ");
+            StartCommand2();
+            printf("\n");
+
+            char Command[NMax]; 
+            wordToString(currentCommand, Command);
 
             if (isEqual(Command, "REGISTER\0")) {
                 registeruser();
@@ -114,7 +99,7 @@ int main() {
             StartCommand2();
             printf("\n");
 
-            char C1[100], C2[100], C3[100];
+            char C1[100], C2[100];
             int i = 0;
             int j = 0;
             int k = 0;
@@ -157,9 +142,9 @@ int main() {
             if (isEqual(C1, "STORE\0")) {
                 store_running();
             } else if (isEqual(C1, "WORK\0")) {
-                work(isiRekening);
+                work(&isiRekening);
             } else if (isEqual(C2, "WORK CHALLENGE")) {
-                workChallenge(isiRekening);
+                workChallenge(&isiRekening);
             } else if (isEqual(C2, "SAVE")) {
                 char text[50];
                 int idx = 0;
@@ -207,7 +192,6 @@ int main() {
                 stringtoint(temp, &n);
                 history(currentUser, n);
             } else if (isEqual(C2, "CART ADD")) {
-                {
                 printf("\n");
                 char name[100], temp[100]; 
                 int jumlah, k=j, space=0;
@@ -241,7 +225,6 @@ int main() {
 
                 stringtoint(temp, &jumlah);
                 cartAdd(currentUser, item, name, jumlah);
-            }
             } else if (isEqual(C2, "CART REMOVE\0")) {
                 printf("\n");
                 char name[100], temp[100]; 
