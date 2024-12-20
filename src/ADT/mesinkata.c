@@ -98,6 +98,23 @@ void StartCommand() {
     }
 }
 
+void StartCommand2(){
+    START(); 
+    IgnoreBlanks();  
+    
+    currentWord.Length = 0;
+    
+    while (currentChar != MARK && currentChar != '\n') {
+        if (currentWord.Length < NMax) {
+            currentWord.TabWord[currentWord.Length] = currentChar;
+            currentWord.Length++;
+        }
+        ADV();  
+    }
+    
+    EndWord = (currentChar == MARK);
+}
+
 void CopyCommand() {
     ResetCommand(); 
     int i = 0;
@@ -150,6 +167,21 @@ boolean IsCommandEqual(Word Input, char * kata)
     }
 }
 
+boolean isEqual(char x[100], char y[100]){
+    boolean cek = true;
+    if(len(x) != len(y)){
+        cek = false;
+        return cek;
+    } else {
+        for(int i = 0; x[i] != '\0'; i++){
+            if(x[i] != y[i]){
+                cek = false;
+            }
+        }
+        return cek;
+    }
+}
+
 void copyString(char dest[], const char src[], int max_length) {
     int i = 0;
     while (*src != '\0' && i < max_length - 1) {
@@ -169,6 +201,15 @@ int stringLen(char *string)
         i++;
     }
     return count;
+}
+
+void stringtoint(char *str, int *result) {
+    *result = 0;
+    int i = 0;
+    while (str[i] != '\0') {
+        *result = (*result * 10) + (str[i] - '0');
+        i++;
+    }
 }
 
 Word stringToWord(char* str) {

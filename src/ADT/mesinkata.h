@@ -3,7 +3,8 @@
 
 #include "mesinkarakter.h"
 
-#define MAX_LEN 50
+#define NMax 50
+#define MAX_LEN 100
 #define BLANK ' '
 #define NEWLINE '\n'
 #define STRIP '-'
@@ -33,6 +34,8 @@ void StartWordFile(char *filename, int type);
 
 void StartCommand();
 
+void StartCommand2();
+
 void CopyCommand();
 
 void ResetCommand();
@@ -43,9 +46,13 @@ void ADVInput();
 
 boolean IsCommandEqual(Word Input, char * kata);
 
+boolean isEqual(char x[100], char y[100]);
+
 void copyString(char dest[], const char src[], int max_length);
 
 int stringLen(char *string);
+
+void stringtoint(char *str, int *result);
 
 Word stringToWord(char* str);
 
