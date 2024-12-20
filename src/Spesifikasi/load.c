@@ -71,6 +71,7 @@ void Load(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
         temp = SplitWordBlank(temp);
         wordToString(temp, user[i].password);
         user[i].logged = false;
+        CreateEmptyMap(&(user[i].keranjang));
         CreateEmptyStack(&user[i].riwayat_pembelian);
 
         ADVLine();

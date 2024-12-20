@@ -4,7 +4,7 @@
 #define map_H
 
 #define Nil 0
-#define MaxElm 100
+#define MaxElm 75
 #define UndefMap -9999
 
 // typedef int bool;
