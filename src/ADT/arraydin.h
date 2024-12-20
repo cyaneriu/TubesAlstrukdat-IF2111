@@ -2,16 +2,12 @@
 #define __ARRAY_DINAMIK__
 
 #include "boolean.h"
+#include "../Spesifikasi/load.h"
 
 #define InitialSize 10
 #define MAX_LEN 100
 
 typedef int IdxType;
-
-typedef struct{
-    char name[MAX_LEN];
-    int price;
-} Barang;
 
 typedef struct {
     Barang *A;

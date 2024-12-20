@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "cart_show.h"
-#include "../ADT/arraydin.h"
 
 void cartShow(User *currentUser){
     if (IsMapEmpty(currentUser->keranjang)){
