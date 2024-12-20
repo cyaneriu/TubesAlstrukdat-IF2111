@@ -2,16 +2,19 @@
 #include <stdlib.h>
 #include "history.h"
 
-void history(Stack *S) {
-    if (IsEmptyStack(*S)) {
+void history(User * currentuser, int n) {
+    Stack purchased = currentuser->riwayat_pembelian;
+    if (IsEmptyStack(purchased)) {
         printf("Kamu belum membeli barang apapun!\n");
         return;
     }
     printf("\nRiwayat pembelian barang:\n");
-    for (int i = 0; i <= S->TOP; i++) {
-        printf("%d. %s %d\n", 
-               i+1, 
-               S->T[i].name, 
-               S->T[i].harga);
+    
+    while (!IsEmptyStack(purchased)) {
+        infotypeStack purchasedItem;
+        *purchasedItem.name = (char *) malloc((strlen(InfoTop(purchased).name) + 1) * sizeof(char));
+        Pop(&purchased, &purchasedItem);
+        printf(" Barang: %s Harga: %d\n", purchasedItem.name, purchasedItem.harga);
+        free(purchasedItem.name);
     }
 }
