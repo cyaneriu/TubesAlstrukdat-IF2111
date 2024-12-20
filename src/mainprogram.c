@@ -95,6 +95,16 @@ int main() {
                     quit(filename, barang, &jumlahBarang, user, &jumlahUser);
                     program = false;
                     printf("Keluar dari PURRMART.\n");
+                
+                } else if (IsCommandEqual(currentWord, "PROFILE\0")) {
+                    welcome_user();
+                    //user_profile(*currentUser);
+                } else if (IsCommandEqual(currentWord, "HISTORY\0")) {
+                   // history(Stack *S);
+                } else if (IsCommandEqual(currentWord, "CART\0")) {
+                    //
+                } else if (IsCommandEqual(currentWord, "WISHLIST\0")) {
+                    driverWL();
                 } else {
                     printf("Perintah tidak dikenali, silahkan coba lagi.\n");
                 }
