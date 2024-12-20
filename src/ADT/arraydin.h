@@ -6,7 +6,7 @@
 #include "../Spesifikasi/load.h"
 
 #define InitialSize 10
-#define MAX_LEN 100
+#define MAX_LEN 50
 
 typedef int IdxType;
 

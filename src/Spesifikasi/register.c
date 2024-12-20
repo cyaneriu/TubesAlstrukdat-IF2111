@@ -2,7 +2,7 @@
 #include "register.h"
 #include "load.h"
 
-#define MAX_USER 100
+#define MAX_USER 50
 #define FILENAME "default.txt"
 
 // fungsi buat ngecek username yg diinput sesuai ato ngga

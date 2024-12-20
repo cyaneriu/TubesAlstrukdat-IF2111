@@ -5,7 +5,7 @@
 #define LISTLINIER_H
 
 #define Nil 0
-#define Maxi 100
+#define Maxi 50
 
 typedef char nama_barang[50];
 typedef struct tElmtlist *address;

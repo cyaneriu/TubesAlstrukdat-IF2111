@@ -12,8 +12,8 @@
 #include <stdlib.h> 
 
 
-#define MAX_USER 100
-#define MAX_BARANG 100
+#define MAX_USER 50
+#define MAX_BARANG 50
 
 // Struktur Barang
 typedef struct {

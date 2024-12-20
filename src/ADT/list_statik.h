@@ -5,8 +5,8 @@
 #include "list.h"
 
 
-#define STAT_CAPACITY 100
-#define STAT_MARK -9999
+#define STAT_CAPACITY 50
+#define STAT_MARK -999
 
 // Struktur data list statik
 typedef struct {

@@ -3,7 +3,7 @@
 
 #include "mesinkarakter.h"
 
-#define MAX_LEN 100
+#define MAX_LEN 50
 #define BLANK ' '
 #define NEWLINE '\n'
 #define STRIP '-'

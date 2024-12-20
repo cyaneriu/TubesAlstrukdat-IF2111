@@ -5,8 +5,8 @@
 #include "mesinkata.h"
 #include "mesinkarakter.h"
 
-#define CAPACITY_QUEUE 100
-#define MAX_LEN_QUEUE 100
+#define CAPACITY_QUEUE 50
+#define MAX_LEN_QUEUE 50
 #define IDX_UNDEF -1
 
 typedef char QueueElType[MAX_LEN_QUEUE]; 

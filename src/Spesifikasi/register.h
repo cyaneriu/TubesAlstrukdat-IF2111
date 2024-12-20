@@ -7,7 +7,7 @@
 #include "load.h"
 
 
-#define MAX_USER 100
+#define MAX_USER 50
 #define FILENAME "user_data.txt"
 
 boolean usernamevalid(char usernames[][MAX_LEN], int userCount, Word usernameword);
