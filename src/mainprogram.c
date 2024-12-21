@@ -13,7 +13,6 @@ int main() {
     int jumlahBarang = 0; 
     int jumlahUser = 0;
     char * filename;
-    int isiRekening = 0;
 
     while (program) {
         while (!state && !session) {
@@ -142,9 +141,9 @@ int main() {
             if (isEqual(C1, "STORE\0")) {
                 store_running();
             } else if (isEqual(C1, "WORK\0")) {
-                work(&isiRekening);
+                work(currentUser->money);
             } else if (isEqual(C2, "WORK CHALLENGE")) {
-                workChallenge(&isiRekening);
+                workChallenge(currentUser->money);
             } else if (isEqual(C2, "SAVE")) {
                 char text[50];
                 int idx = 0;
