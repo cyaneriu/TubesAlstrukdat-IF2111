@@ -9,7 +9,7 @@ void displayStore(Store store) {
         printf("List barang yang ada di toko:\n");
         for (int i = 0; i < listLengthDin(store.barang); i++) {
             Barang * item = ELMTDin(store.barang, i);
-            printf("- %s\n", item->name, item->price);
+            printf("- %s - Harga: %d\n", item->name, item->price);
         }
     }
 }
