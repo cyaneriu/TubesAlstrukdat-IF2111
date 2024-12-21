@@ -99,7 +99,7 @@ int main() {
             StartCommand2();
             printf("\n");
 
-            char C1[100], C2[100];
+            char C1[20], C2[20];
             int i = 0;
             int j = 0;
             int k = 0;
@@ -183,7 +183,7 @@ int main() {
                 welcome_user();
             } else if (isEqual(C1, "HISTORY")) {
                 printf("\n");
-                int n, k = 0; char temp[100];
+                int n, k = 0; char temp[30];
                 while (currentWord.TabWord[j]!='\0')
                 {
                     temp[k++]=currentWord.TabWord[j++];
@@ -193,7 +193,7 @@ int main() {
                 history(currentUser, n);
             } else if (isEqual(C2, "CART ADD")) {
                 printf("\n");
-                char name[100], temp[100]; 
+                char name[30], temp[30]; 
                 int jumlah, k=j, space=0;
 
                 while (currentWord.TabWord[j]!= '\0') {
@@ -227,7 +227,7 @@ int main() {
                 cartAdd(currentUser, item, name, jumlah);
             } else if (isEqual(C2, "CART REMOVE\0")) {
                 printf("\n");
-                char name[100], temp[100]; 
+                char name[30], temp[30]; 
                 int jumlah, k = j, space = 0;
                 printf("%s", C2);
 

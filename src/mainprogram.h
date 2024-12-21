@@ -26,18 +26,18 @@
 #include "Spesifikasi/cart_remove.h" 
 #include "Spesifikasi/cart_show.h" 
 
-#include "../ADT/mesinkata.h"
-#include "../ADT/mesinkarakter.h"
-#include "../ADT/boolean.h"
-#include "../ADT/queue.h"
-#include "../ADT/list_dinamis.h"
-#include "../ADT/list.h"
-#include "../ADT/list_statik.h"
+#include "ADT/mesinkata.h"
+#include "ADT/mesinkarakter.h"
+#include "ADT/boolean.h"
+#include "ADT/queue.h"
+#include "ADT/list_dinamis.h"
+#include "ADT/list.h"
+#include "ADT/list_statik.h"
 
-#include "../ADT/map.h"
-#include "../ADT/arraydin.h"
-#include "../ADT/listlinier.h"
-#include "../ADT/stack.h"
+#include "ADT/map.h"
+#include "ADT/arraydin.h"
+#include "ADT/listlinier.h"
+#include "ADT/stack.h"
 
 #include <stdio.h>
 
