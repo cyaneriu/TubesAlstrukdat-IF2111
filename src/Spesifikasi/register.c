@@ -31,68 +31,62 @@ boolean satukata(Word masukan) {
 }
 
 void registeruser() {
-    Word usernameWord, passwordWord;
-    char usernames[MAX_USER][MAX_LEN];
-    int userCount = 0;
+    Barang barang1[MAX_BARANG];
+    User user1[MAX_USER];
+    int jumlahBarang = 0;
+    int jumlahUser = 0;
 
-    // buka file 
-    FILE *file = fopen(FILENAME, "r");
-    if (file) {
-        // format file uang - username - password
-        while (fscanf(file, "%*d %s %*s", usernames[userCount]) != EOF) {
-            userCount++; // ngitung jumlah user yg udh ada di file
-        }
-        fclose(file);
-    } else {
-        printf("File tidak bisa dibuka\n");
-        return;
-    }
+    // manggil fungsi load
+    Load(FILENAME, barang1, &jumlahBarang, user1, &jumlahUser);
 
-    printf("Enter username: "); 
-    StartWordInput(); // input username pake ADT mesinkata
+    printf("Masukkan username: ");
+    StartWordInput();
     CopyWordinput();
-    usernameWord = currentWord; 
-    if (usernameWord.Length >= MAX_LEN) { // cek apakah input melebihi MAX_LEN (50)
-        printf("Username melebihi batas max!\n");
+    Word usernameWord = currentWord;
+    if(usernameWord.Length >= MAX_LEN){
+        printf("Username is too long!\n");
         return;
     }
 
-    printf("Enter password: ");
-    StartWordInput(); // input username pake ADT mesinkata
+    printf("Masukkan password:");
+    StartWordInput();
     CopyWordinput();
-    passwordWord = currentWord; 
-    if (passwordWord.Length >= MAX_LEN) { // cek password melebihi MAX_LEN (50) ga
-        printf("Password melebihi batas max!\n");
+    Word passwordWord = currentWord;
+    if (passwordWord.Length >= MAX_LEN){
+        printf("Password is too long!\n");
         return;
     }
 
-    // skenario kalo username ato password yg dibikin bkn 1 kata
+    // cek input memenuhi satukata ga
     if (!satukata(usernameWord) || !satukata(passwordWord)) {
-        printf("Username dan password tidak memenuhi ketentuan!\n");
+        printf("Username dan password harus satu kata!\n");
         return;
     }
 
-    // skenario kalo username yg dibikin udh ada di file txt
-    if (!usernamevalid(usernames, userCount, usernameWord)) {
-        char usernameStr[MAX_LEN];
-        wordToString(usernameWord, usernameStr);
-        printf("Akun dengan username %s telah berhasil dibuat. Silakan LOGIN untuk melanjutkan.\n", usernameStr);
-        return;
+    // looping struct user buat cek udh ada blm usn itu
+    for (int i = 0; i < jumlahUser; i++) {
+        if (isEqualWords(stringToWord(user1[i].name), usernameWord.TabWord)) {
+            printf("Akun dengan username ");
+            DisplayWord(usernameWord);
+            printf(" sudah ada. Silakan LOGIN untuk melanjutkan.\n");
+            return;
+        }
     }
 
-    // ngebuka file buat masukin username yg baru
-    file = fopen(FILENAME, "a");
+    FILE *file = fopen(FILENAME, "a");
     if (!file) {
-        printf("File tidak bisa dibuka untuk menulis!.\n");
+        printf("File tidak bisa dibuka untuk menulis!\n");
         return;
     }
-
-    // save data user yg baru ke file dengan uang di set menjadi 0 
-    char usernameStr[MAX_LEN], passwordStr[MAX_LEN];
-    wordToString(usernameWord, usernameStr); // ngeconvert usn biar jd string
-    wordToString(passwordWord, passwordStr); // ngeconvert password biar jd string
-    fprintf(file, "0\t%s\t%s\n", usernameStr, passwordStr); // uang di set 0 
-    fclose(file); // close file
-
-    printf("Akun dengan username %s telah berhasil dibuat dengan saldo awal 0. Silakan LOGIN untuk melanjutkan.\n", usernameStr);
+    char usernameStr[MAX_LEN];
+    char passwordStr[MAX_LEN];
+    // convert ke string
+    wordToString(usernameWord, usernameStr); 
+    wordToString(passwordWord, passwordStr); 
+    // masukin ke file
+    fprintf(file, "0\t%s\t%s\n", usernameStr, passwordStr); // Tambahkan user baru
+    fclose(file);
+    printf("Akun dengan username ");
+    DisplayWord(usernameWord);
+    printf(" telah berhasil dibuat dengan saldo awal 0. Silakan LOGIN untuk melanjutkan.\n");
 }
