@@ -4,6 +4,7 @@
 #include "boolean.h"
 #include <stdio.h>
 #define MARK '\n'
+#define tanda '\0'
 
 /* State Mesin */
 extern char currentChar;
