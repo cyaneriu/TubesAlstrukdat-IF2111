@@ -4,11 +4,11 @@
 #include "work.h"
 
 // int main(){
-//     driverWLLD1();
+//     driverWLLD();
 //     return 0;
 // }
 
-void driverWLLD1(){
+void driverWLLD(){
     // Word testSC;
     // StartWordInput();
     // testSC = currentWord;
@@ -49,11 +49,11 @@ void driverWLLD1(){
     int test = 1;
     while (test)
     {
-        wishlistTest(&wishlist, &daftarBarang);
+        wishlistTestLD(&wishlist, &daftarBarang);
     }
 }
 
-void wishlistTest(ListDin *wishlist, ListDin *daftarBarang){
+void wishlistTestLD(ListDin *wishlist, ListDin *daftarBarang){
     Word input;
     Word cekWishlist;
     StartWordInput();
@@ -101,25 +101,25 @@ void wishlistTest(ListDin *wishlist, ListDin *daftarBarang){
 
         if (commandWL.Length == 3 && commandWL.TabWord[0] == 'A' && commandWL.TabWord[1] == 'D' && commandWL.TabWord[2] == 'D')
         {
-            wlAdd(wishlist, daftarBarang);
-            wlShow(wishlist);
+            wlAddLD(wishlist, daftarBarang);
+            wlShowLD(wishlist);
 
         } else if (commandWL.Length == 4 && commandWL.TabWord[0] == 'S' && commandWL.TabWord[1] == 'H' && commandWL.TabWord[2] == 'O' && commandWL.TabWord[3] == 'W')
         {   
-            wlShow(wishlist);
+            wlShowLD(wishlist);
 
         } else if (commandWL.Length == 5 && commandWL.TabWord[0] == 'C' && commandWL.TabWord[1] == 'L' && commandWL.TabWord[2] == 'E' && commandWL.TabWord[3] == 'A' && commandWL.TabWord[4] == 'R')
         {
-            wlClear(wishlist);
-            wlShow(wishlist);
+            wlClearLD(wishlist);
+            wlShowLD(wishlist);
 
         } else if (commandWL.Length >= 4 && commandWL.TabWord[0] == 'S' && commandWL.TabWord[1] == 'W' && commandWL.TabWord[2] == 'A' && commandWL.TabWord[3] == 'P')
         {
             // siap2 swap
 
             // printf("wlSwap\n");
-            wlSwap(wishlist, commandWL);
-            wlShow(wishlist);
+            wlSwapLD(wishlist, commandWL);
+            wlShowLD(wishlist);
             // pastikan dulu hanya ada 2 segmen setelah ini
             // kalau lebih otomatis dianggap tak valid
             // setelah itu masing2 segmen dicek murni angka atau tidak (jika tidak jadi invalid)
@@ -135,12 +135,12 @@ void wishlistTest(ListDin *wishlist, ListDin *daftarBarang){
             // printf("wlRemove\n");
             if (commandWL.Length == 6)
             {
-                wlRemove(wishlist, daftarBarang);
-                wlShow(wishlist);
+                wlRemoveLD(wishlist, daftarBarang);
+                wlShowLD(wishlist);
             } else
             {   
-                wlRemoveI(wishlist, commandWL);
-                wlShow(wishlist);
+                wlRemoveILD(wishlist, commandWL);
+                wlShowLD(wishlist);
             }
             
             
@@ -202,7 +202,7 @@ int segmentCounter(Word kata){
     return segmenCount;
 }
 
-void wlAdd(ListDin *wishlist, ListDin *daftarBarang){
+void wlAddLD(ListDin *wishlist, ListDin *daftarBarang){
     // perlu dicek barangnya:
     // 1. Apakah memang ada di toko?
     // 2. Sudah ada di wishlist?
@@ -268,7 +268,7 @@ void wlAdd(ListDin *wishlist, ListDin *daftarBarang){
     insertLastDin(wishlist, stringBarang);
 }
 
-void wlClear(ListDin *wishlist){
+void wlClearLD(ListDin *wishlist){
     // semua barang di wishlist dihapus
     for (int i = 0; i < listLengthDin(*wishlist); i++)
     {
@@ -276,7 +276,7 @@ void wlClear(ListDin *wishlist){
     }
 }
 
-void wlSwap(ListDin *wishlist, Word commandWL){    
+void wlSwapLD(ListDin *wishlist, Word commandWL){    
     // Ambil input perintah
     // Cek apakah hanya terdiri atas 3 segmen
     // segmen "SWAP", "<i>", "<j>"
@@ -463,7 +463,7 @@ void wlSwap(ListDin *wishlist, Word commandWL){
     wishlist->items[idxJ] = tempI;
 }
 
-void wlRemove(ListDin *wishlist, ListDin *daftarBarang){
+void wlRemoveLD(ListDin *wishlist, ListDin *daftarBarang){
     // Ambil input nama barang
     Word namaBarang;
     printf("Masukkan nama barang yang akan dihapus: ");
@@ -534,9 +534,9 @@ void wlRemove(ListDin *wishlist, ListDin *daftarBarang){
     deleteAtDin(wishlist, indexBarang);
 }
 
-void wlRemoveI(ListDin *wishlist, Word commandWL){
+void wlRemoveILD(ListDin *wishlist, Word commandWL){
     // Cek input perintah (commandWL)
-    if (commandWL.Length < 8 || commandWL.TabWord[7] == '0' || segmentCounter(commandWL) > 1)
+    if (commandWL.Length < 8 || commandWL.TabWord[7] == '0' || segmentCounter(commandWL) != 2)
     {
         printf("Indeks tak valid!\n");
         return;
@@ -586,8 +586,7 @@ void wlRemoveI(ListDin *wishlist, Word commandWL){
     deleteAtDin(wishlist, angkaIndex-1);
 }
 
-
-void wlShow(ListDin *wishlist){
+void wlShowLD(ListDin *wishlist){
     // setiap barang di wishlist diprint
     // jika kosong bilang aja wishlist kosong
 
