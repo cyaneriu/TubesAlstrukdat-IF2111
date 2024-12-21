@@ -15,6 +15,14 @@ void IgnoreBlank()
     }
 }
 
+void IgnoreBlanks()
+{
+    while (currentChar == BLANK || currentChar == tanda)
+    {
+        ADV();
+    }
+}
+
 void IgnoreNewline()
 {
     while (currentChar == NEWLINE)
@@ -99,12 +107,13 @@ void StartCommand() {
 }
 
 void StartCommand2(){
+    resetWord();
     START(); 
-    IgnoreBlank();  
+    IgnoreBlanks();  
     
     currentWord.Length = 0;
     
-    while (currentChar != MARK && currentChar != '\n') {
+    while (currentChar != tanda && currentChar != '\n') {
         if (currentWord.Length < NMax) {
             currentWord.TabWord[currentWord.Length] = currentChar;
             currentWord.Length++;
@@ -112,7 +121,7 @@ void StartCommand2(){
         ADV();  
     }
     
-    EndWord = (currentChar == MARK);
+    EndWord = (currentChar == tanda);
 }
 
 void CopyCommand() {
@@ -421,4 +430,11 @@ boolean isEqualWords(Word word1, char *str) {
         i++;
     }
     return (i == word1.Length && str[i] == '\0');
+}
+
+void resetWord() {
+    currentWord.Length = 0;
+    for(int i = 0; i < NMax; i++) {
+        currentWord.TabWord[i] = '\0';
+    }
 }

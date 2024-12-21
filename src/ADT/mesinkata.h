@@ -24,6 +24,8 @@ extern Word hasil;
 
 void IgnoreBlank();
 
+void IgnoreBlanks(); 
+
 void IgnoreNewline();
 
 void StartWordInput();
@@ -81,5 +83,7 @@ Word SplitWordLeftBlank(Word word);
 Word SplitWordLeftMark(Word word);
 
 boolean isEqualWords(Word word1, char *str);
+
+void resetWord();
 
 #endif
