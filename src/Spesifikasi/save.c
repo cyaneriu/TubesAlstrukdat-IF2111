@@ -26,10 +26,11 @@ void Save(char *filename, Barang barang[], int *jumlahBarang, User user[], int *
         int jumlahRiwayat = NbElmtStack(user[i].riwayat_pembelian);
         fprintf(pita, "%d\n", jumlahRiwayat);
         Stack temp = user[i].riwayat_pembelian;
+        //InverseStack(&temp);
         while (!IsEmptyStack(temp)) {
             infotypeStack item;
             Pop(&temp, &item);
-            fprintf(pita, "%s %d\n", item.name, item.harga);
+            fprintf(pita, "%d %s\n", item.harga, item.name);
         }
         int jumlahWishlist = NbElmtListLinier(user[i].wishlist);
         fprintf(pita, "%d\n", jumlahWishlist);
