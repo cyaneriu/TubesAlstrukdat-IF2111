@@ -1,5 +1,5 @@
-#ifndef WishlistLD
-#define WishlistLD
+#ifndef WISHLIST_LD_H
+#define WISHLIST_LD_H
 #include "../ADT/boolean.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/list_dinamis.h"

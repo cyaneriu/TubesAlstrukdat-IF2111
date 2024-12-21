@@ -1,5 +1,6 @@
 #include "map.h"
 #include "boolean.h"
+#include "mesinkata.h"
 
 #ifndef LISTLINIER_H
 #define LISTLINIER_H
@@ -143,5 +144,11 @@ void KonkatListLinier(List *L1, List *L2, List *L3);
 /* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
 /* Konkatenasi dua buah list : L1 dan L2 dan menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* L1 serta L2 menjadi list kosong.*/
+
+int strCompare(char *string1, char *string2);
+// Serupa dengan strCmp pada string.h
+
+void SwapNodeListLinier(List *L, address P1, address P2);
+// Menukar 2 node pada list
 
 #endif

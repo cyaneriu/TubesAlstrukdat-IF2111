@@ -1,5 +1,5 @@
-#ifndef WorkFunction
-#define WorkFunction
+#ifndef WORK_H
+#define WORK_H
 #include "../ADT/boolean.h"
 #include "../ADT/mesinkata.h"
 void work(int *isiRekening);

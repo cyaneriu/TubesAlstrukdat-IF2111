@@ -1,5 +1,5 @@
-#ifndef Wishlist
-#define Wishlist
+#ifndef WISHLIST_H
+#define WISHLIST_H
 #include <stdio.h>
 #include <stdlib.h>
 #include "../ADT/boolean.h"

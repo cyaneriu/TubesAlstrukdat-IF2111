@@ -29,14 +29,14 @@ void DealokasiListLinier(address *P){
 address SearchListLinier(List L, nama_barang X){
     address P = First(L);
     while(P->next!=Nil){
-        if(P->info!=X){
+        if(strCompare(P->info, X) != 1){
             P = P->next;
         }
         else{
             return P;
         }
     }
-    if(P->info==X){
+    if(strCompare(P->info, X) == 1){
         return P;
     }
     return Nil;
@@ -106,17 +106,17 @@ void DelFirstListLinier (List *L, address *P){
 }
 
 void DelPListLinier (List *L, nama_barang X){
-    address P = SearchListLinier(*L, X);
-    if(P!=Nil){
-        address P = First(*L);
-        if(P == P){
-            DelFirstListLinier(L, &P);
+    address Pdel = SearchListLinier(*L, X);
+    if(Pdel!=Nil){
+        address Prec = First(*L);
+        if(Pdel == Prec){
+            DelFirstListLinier(L, &Pdel);
         }
         else{
-            while(P->next!=P){
-                P = P->next;
+            while(Prec->next!=Pdel){
+                Prec = Prec->next;
             }
-            DelAfterListLinier(L, &P, P);
+            DelAfterListLinier(L, &Pdel, Prec);
         }
     }
 }
@@ -215,4 +215,151 @@ void KonkatListLinier(List *L1, List *L2, List *L3){
     }
     CreateEmptyListLinier(L2);
     CreateEmptyListLinier(L1);
+}
+
+int strCompare(char *string1, char *string2){
+    boolean equal = true;
+
+    int len1 = stringLen(string1);
+    int len2 = stringLen(string2);
+
+    // TES : cek panjang masing-masing string
+    // printf("Len1, Len2\n");
+    // printf("%d\n", len1);
+    // printf("%d\n", len2);
+
+    if (len1 == len2){
+        for (int i = 0; i < len1; i++){
+            // TES : cek setiap karakter string
+            // printf("%c", string1[i]);
+            // printf("%c", string2[i]);
+            // printf("\n");
+            if (string1[i] != string2[i]){
+                equal = false;
+                break;
+            }
+        }   
+    } else {
+        equal = false;
+    }
+
+    return equal;
+}
+
+void SwapNodeListLinier(List *L, address P1, address P2) {
+    /*
+    if (P1 == Nil || P2 == Nil || P1 == P2) {
+        return;
+    }
+
+    address Prec1 = Nil, Prec2 = Nil, temp;
+    address Curr = First(*L);
+
+    while (Curr != Nil && Next(Curr) != P1 && Next(Curr) != P2) {
+        Curr = Next(Curr);
+    }
+
+    if (Next(Curr) == P1) {
+        Prec1 = Curr;
+    } else if (Next(Curr) == P2) {
+        Prec2 = Curr;
+    }
+
+    // Kasus salah satu node adalah first
+    if (First(*L) == P1 || First(*L) == P2) {
+        if (First(*L) == P1) {
+            Prec2 = P1;
+            P1 = P2;
+        } else {
+            Prec1 = P2;
+            P2 = P1;
+        }
+    }
+
+    // Tukar node
+    if (Prec1 != Nil) {
+        Next(Prec1) = P2;
+    }
+    if (Prec2 != Nil) {
+        Next(Prec2) = P1;
+    }
+
+    temp = Next(P1);
+    Next(P1) = Next(P2);
+    Next(P2) = temp;
+
+    // Ganti first apabila salah satu node adalah first
+    if (First(*L) == P1) {
+        First(*L) = P2;
+    } else if (First(*L) == P2) {
+        First(*L) = P1;
+    }
+    */
+    if (P1 == Nil || P2 == Nil || P1 == P2) {
+        // No swap needed if either node is Nil or both are the same
+        return;
+    }
+
+    address Prev1 = Nil, Prev2 = Nil, temp;
+    address Curr = First(*L);
+
+    // Find predecessors of P1 and P2
+    if (First(*L) != P1 && First(*L) != P2) {
+        while (Curr != Nil && Next(Curr) != P1 && Next(Curr) != P2) {
+            Curr = Next(Curr);
+        }
+
+        if (Next(Curr) == P1) {
+            Prev1 = Curr;
+        } else if (Next(Curr) == P2) {
+            Prev2 = Curr;
+        }
+    }
+
+    // Handle case where one of the nodes is the head
+    if (First(*L) == P1) {
+        Prev2 = P1;  // P1 is the head
+    } else if (First(*L) == P2) {
+        Prev1 = P2;  // P2 is the head
+    }
+
+    // If P1 and P2 are adjacent, handle specially
+    if (Next(P1) == P2 || Next(P2) == P1) {
+        if (Next(P1) == P2) {
+            if (Prev1 != Nil) {
+                Next(Prev1) = P2;
+            } else {
+                First(*L) = P2;
+            }
+            Next(P1) = Next(P2);
+            Next(P2) = P1;
+        } else {
+            if (Prev2 != Nil) {
+                Next(Prev2) = P1;
+            } else {
+                First(*L) = P1;
+            }
+            Next(P2) = Next(P1);
+            Next(P1) = P2;
+        }
+        return;
+    }
+
+    // Swap for non-adjacent nodes
+    if (Prev1 != Nil) {
+        Next(Prev1) = P2;
+    } else {
+        First(*L) = P2;
+    }
+
+    if (Prev2 != Nil) {
+        Next(Prev2) = P1;
+    } else {
+        First(*L) = P1;
+    }
+
+    // Swap their next pointers
+    temp = Next(P1);
+    Next(P1) = Next(P2);
+    Next(P2) = temp;
 }

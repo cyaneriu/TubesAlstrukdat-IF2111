@@ -2,9 +2,36 @@
 #include "wishlist.h"
 
 
-int mainWL(){
+int main(){
     // Nanti untuk di driver perlu buat user dan store
-    driverWL();
+    List L;
+    CreateEmptyListLinier(&L);
+
+    // Insert some values
+    nama_barang value1 = "10";
+    nama_barang value2 = "20";
+    nama_barang value3 = "30";
+    nama_barang value4 = "40";
+    InsVLastListLinier(&L, value1);
+    InsVLastListLinier(&L, value2);
+    InsVLastListLinier(&L, value3);
+    InsVLastListLinier(&L, value4);
+
+    printf("Original list: ");
+    PrintInfoListLinier(L);
+
+    // return 0;
+    // Find nodes to swap
+    address P1 = SearchListLinier(L, value2);
+    address P2 = SearchListLinier(L, value4);
+    
+
+    // Swap nodes
+    SwapNodeListLinier(&L, P1, P2);
+
+    printf("List after swapping 20 and 40: ");
+    PrintInfoListLinier(L);
+    // driverWL();
     return 0;
 }
 
@@ -36,7 +63,7 @@ void driverWL(){
     }
     printf("\n\n");
 
-    printf("Wishlist berisi:\n");
+    printf("Wishlist seharusnya berisi:\n");
     printf("1. Doom Inator\n");
     printf("2. Restoran Najwa Shihab\n");
     Barang barang1;
@@ -51,7 +78,7 @@ void driverWL(){
     InsVFirstListLinier(&userTestWL.wishlist, namaBarang4);
     wlShow(&userTestWL.wishlist);
 
-    printf("Store berisi:\n");
+    printf("Store seharusnya berisi:\n");
     printf("1. Doom Inator\n");
     printf("2. Payung Platipus\n");
     printf("3. Bendungan Cikapundung\n");
@@ -86,15 +113,23 @@ void driverWL(){
     }
 
     printf("-------------------------------------------------------\n\n");
+    Word command;
+    StartWordInput();
+    command = currentWord;
+    wishlist(&userTestWL, &storeTestWL, command);
+    return;
 
     // TES SHOW
+    /*
     // Menampilkan isi wishlist
     printf("TES SHOW\n");
     printf("-------------------------------------------------------\n");
     wlShow(&userTestWL.wishlist);
     printf("-------------------------------------------------------\n\n");
+    */
 
     // TES ADD
+    /*
     // Menambahkan barang ke wishlist
     printf("TES ADD\n");
     printf("-------------------------------------------------------\n");
@@ -102,7 +137,6 @@ void driverWL(){
     printf("Uji ADD dengan input valid:\n");
     wlAdd(&userTestWL.wishlist, &storeTestWL.barang);
     wlShow(&userTestWL.wishlist);
-    return;
 
     // 2. Input invalid (barang tak ada di store)
     printf("Uji ADD dengan input invalid (barang tak ada di store):\n");
@@ -114,16 +148,18 @@ void driverWL(){
     wlAdd(&userTestWL.wishlist, &storeTestWL.barang);
     wlShow(&userTestWL.wishlist);
     printf("-------------------------------------------------------\n\n");
+    */
 
     // TES SWAP
+    
     // Menukar 2 barang di wishlist menggunakan indeks keduanya
     printf("TES SWAP\n");
     printf("-------------------------------------------------------\n");
-    Word swap1 = stringToWord("WISHLIST SWAP 1 2");
-    Word swap2 = stringToWord("WISHLIST SWAP 1");
-    Word swap3 = stringToWord("WISHLIST SWAP 1 2 3");
-    Word swap4 = stringToWord("WISHLIST SWAP 1 200");
-    Word swap5 = stringToWord("WISHLIST SWAP 1 1");
+    Word swap1 = stringToWord("SWAP 1 2");
+    Word swap2 = stringToWord("SWAP 1");
+    Word swap3 = stringToWord("SWAP 1 2 3");
+    Word swap4 = stringToWord("SWAP 1 200");
+    Word swap5 = stringToWord("SWAP 1 1");
     
     printf("TES SWAP 1: Input valid -> |WISHLIST SWAP 1 2|\n");
     wlSwap(&userTestWL.wishlist, swap1);
@@ -145,8 +181,10 @@ void driverWL(){
     wlSwap(&userTestWL.wishlist, swap5);
     wlShow(&userTestWL.wishlist);
     printf("-------------------------------------------------------\n\n");
+    
 
     // TES REMOVE
+    /*
     // Menghapus barang dari wishlist menggunakan namanya
     printf("TES REMOVE\n");
     printf("-------------------------------------------------------\n");
@@ -154,6 +192,7 @@ void driverWL(){
     printf("Uji REMOVE dengan input valid:\n");
     wlRemove(&userTestWL.wishlist, &storeTestWL.barang);
     wlShow(&userTestWL.wishlist);
+    return;
 
     // 2.Input invalid (barang tak ada di store)
     printf("Uji REMOVE dengan input invalid (barang tak ada di store):\n");
@@ -165,8 +204,10 @@ void driverWL(){
     wlRemove(&userTestWL.wishlist, &storeTestWL.barang);
     wlShow(&userTestWL.wishlist);
     printf("-------------------------------------------------------\n\n");
+    */
 
     // TES REMOVE I
+    /*
     // Menghapus barang dari wishlist menggunakan indeksnya
     printf("TES REMOVE I\n");
     printf("-------------------------------------------------------\n");
@@ -177,28 +218,30 @@ void driverWL(){
     Word remove5 = stringToWord("REMOVE xy");
 
 
-    printf("TES SWAP 1: Input valid -> |REMOVE 1|\n");
+    printf("TES REMOVE I 1: Input valid -> |REMOVE 1|\n");
     wlRemoveI(&userTestWL.wishlist, remove1);
     wlShow(&userTestWL.wishlist);
 
-    printf("TES SWAP 2: Input invalid -> |REMOVE|\n");
+    printf("TES REMOVE I 2: Input invalid -> |REMOVE|\n");
     wlRemoveI(&userTestWL.wishlist, remove2);
     wlShow(&userTestWL.wishlist);
 
-    printf("TES SWAP 3: Input invalid -> |REMOVE 1 2|\n");
+    printf("TES REMOVE I 3: Input invalid -> |REMOVE 1 2|\n");
     wlRemoveI(&userTestWL.wishlist, remove3);
     wlShow(&userTestWL.wishlist);
 
-    printf("TES SWAP 4: Input invalid -> |REMOVE 200|\n");
+    printf("TES REMOVE I 4: Input invalid -> |REMOVE 200|\n");
     wlRemoveI(&userTestWL.wishlist, remove4);
     wlShow(&userTestWL.wishlist);
 
-    printf("TES SWAP 5: Input invalid -> |REMOVE xy|\n");
+    printf("TES REMOVE I 5: Input invalid -> |REMOVE xy|\n");
     wlRemoveI(&userTestWL.wishlist, remove5);
     wlShow(&userTestWL.wishlist);
     printf("-------------------------------------------------------\n\n");
+    */
 
     // TES CLEAR
+    /**/
     // Menghapus semua barang di wishlist
     printf("TES CLEAR\n");
     printf("-------------------------------------------------------\n");
@@ -218,6 +261,12 @@ void wishlist(User *currentUser, Store *store, Word currentCommand){
     {
         commandWL.TabWord[i] = currentCommand.TabWord[i+9];
     }
+    // Kosongkan sisa buffer commandWL
+    for (int i = commandWL.Length; i < 50; i++)
+    {
+        commandWL.TabWord[i] = '\0';
+    }
+    
 
     // Cek perintah apa yang dipanggil
     if (commandWL.Length == 3 && commandWL.TabWord[0] == 'A' && commandWL.TabWord[1] == 'D' && commandWL.TabWord[2] == 'D'){
@@ -237,7 +286,7 @@ void wishlist(User *currentUser, Store *store, Word currentCommand){
     {
         wlSwap(&wishlist, commandWL);
         wlShow(&wishlist);
-        // pastikan dulu hanya ada 2 segmen setelah ini
+        // pastikan dulu hanya ada 2 segmen indeks
         // kalau lebih otomatis dianggap tak valid
         // setelah itu masing2 segmen dicek murni angka atau tidak (jika tidak jadi invalid)
         // terakhir segmen yang valid sudah boleh dijadikan indeks
@@ -271,7 +320,6 @@ void wishlist(User *currentUser, Store *store, Word currentCommand){
     }
     printf("|\n\n");
 }
-
 
 int segmentCounter(Word kata){
     int segmenCount = 0;
@@ -364,33 +412,8 @@ void wlAdd(List *wishlist, ListDin *daftarBarang){
     }
 
     // Cek apakah barang memang ada di wishlist
-    printf("|");
-    for (int i = 0; i < stringLen(stringBarang); i++)
-    {
-        printf("%c", stringBarang[i]);
-    }
-    printf("|\n");
+    address alamatbarang = SearchListLinier(*wishlist, stringBarang);
 
-    printf("|");
-    for (int i = 0; i < stringLen(wishlist->First->next->info); i++)
-    {
-        printf("%c", wishlist->First->next->info[i]);
-    }
-    printf("|\n");
-
-    boolean barangDiWishlist = false;
-    address P = wishlist->First;
-    while (P != Nil)
-    {
-        if (stringCompare(P->info, stringBarang) == 1)
-        {
-            printf("Ketemu\n");
-        }
-        P = Next(P);
-    }
-    return;
-    address alamatbarang = SearchListLinier(*wishlist, wishlist->First->info);
-    printf("%s\n", alamatbarang);
     // Jika barang ada di wishlist
     // penambahan tak akan dilakukan
     if (alamatbarang != Nil)
@@ -420,7 +443,14 @@ void wlSwap(List *wishlist, Word commandWL){
     // Cek apakah hanya terdiri atas 3 segmen
     // segmen "SWAP", "<i>", "<j>"
     int segmentCount = segmentCounter(commandWL);
-    printf("%d\n", segmentCount);
+
+    printf("commandWL |");
+    for (int i = 0; i < stringLen(commandWL.TabWord); i++)
+    {
+        printf("%c", commandWL.TabWord[i]);
+    }
+    printf("|\n");
+    printf("segmentCount for commandWl:%d\n", segmentCount);
 
     // Jika input tak terdiri atas 3 segmen, ditolak
     if (segmentCount != 3)
@@ -496,7 +526,7 @@ void wlSwap(List *wishlist, Word commandWL){
     // Akuisisi semua string di indeks i
     while (currentCharacter != ' ')
     {
-        printf("idxWordI: %d\n", idxWordI);
+        // printf("idxWordI: %d\n", idxWordI);
         indeksI.TabWord[idxWordI] = currentCharacter;
         idxWordI++;
         indeksI.Length = idxWordI;
@@ -541,7 +571,7 @@ void wlSwap(List *wishlist, Word commandWL){
     // Akuisisi semua string di indeks j
     while (currentCharacter != ' ' && currentCharacter != '\0')
     {
-        printf("idxWordJ: %d\n", idxWordJ);
+        // printf("idxWordJ: %d\n", idxWordJ);
         indeksJ.TabWord[idxWordJ] = currentCharacter;
         idxWordJ++;
         indeksJ.Length = idxWordJ;
@@ -593,7 +623,7 @@ void wlSwap(List *wishlist, Word commandWL){
     idxJ--;
     
     // TES: cek hasil konversi indeks menjadi integer
-    // printf("idxI: %d | idxJ: %d\n\n", idxI, idxJ);
+    printf("idxI: %d | idxJ: %d\n\n", idxI, idxJ);
 
     // Pastikan idx i dan j:
     // 1. Valid (dalam rentang ukuran wishlist)
@@ -608,44 +638,53 @@ void wlSwap(List *wishlist, Word commandWL){
     int idxWL;
 
     idxWL = 0;
-    alamatBarang = Nil;
-    address PrecI = wishlist->First;
-    while (idxWL != idxI-1)
+    address PI = wishlist->First;
+    while (idxWL != idxI)
     {
-        PrecI = PrecI->next;
+        PI = PI->next;
         idxWL++;
     }
-    address PI = PrecI->next;
+    printf("Info(PI): |");
+    for (int i = 0; i < stringLen(PI->info); i++)
+    {
+        printf("%c", PI->info[i]);
+    }
+    printf("|\n");
 
     idxWL = 0;
-    alamatBarang = Nil;
-    address PrecJ = wishlist->First;
-    while (idxWL != idxJ-1)
-    {
-        PrecJ = PrecJ->next;
+    address PJ = wishlist->First;
+    while (idxWL != idxJ)
+    {   
+        PJ = PJ->next;
         idxWL++;
     }
-    address PJ = PrecJ->next;
-
-    // NAMA BARANG MASIH INVALID INITIALIZER
-    // nama_barang barangI = PI->info;
-    nama_barang barangI;
-    nama_barang barangJ;
-    for (int i = 0; i < 50; i++)
+    printf("Info(PJ): |");
+    for (int i = 0; i < stringLen(PJ->info); i++)
     {
-        barangI[i] = PI->info[i];
-        barangJ[i] = PJ->info[i];
+        printf("%c", PJ->info[i]);
     }
+    printf("|\n");
+
+    SwapNodeListLinier(wishlist, PI, PJ);
+    wlShow(wishlist);
+    printf("Berhasil?\n");
+
+    // nama_barang barangI;
+    // nama_barang barangJ;
+    // for (int i = 0; i < 50; i++)
+    // {
+    //     barangI[i] = PI->info[i];
+    //     barangJ[i] = PJ->info[i];
+    // }
     
-    DelPListLinier(wishlist, barangI);
-    // nama_barang barangJ = PJ->info;
-    DelPListLinier(wishlist, barangJ);
-
-    address Ibaru = AlokasiListLinier(barangI);
-    address Jbaru = AlokasiListLinier(barangJ);
-
-    InsertAfterListLinier(wishlist, Ibaru, PrecJ);
-    InsertAfterListLinier(wishlist, Jbaru, PrecI);
+    // address Ibaru = AlokasiListLinier(barangI);
+    // address Jbaru = AlokasiListLinier(barangJ);
+    // DelPListLinier(wishlist, barangI);
+    // InsertAfterListLinier(wishlist, Ibaru, PrecJ);
+    // wlShow(wishlist);
+    // DelPListLinier(wishlist, barangJ);
+    // InsertAfterListLinier(wishlist, Jbaru, PrecI);
+    // wlShow(wishlist);
 }
 
 void wlRemove(List *wishlist, ListDin *daftarBarang){
@@ -655,15 +694,8 @@ void wlRemove(List *wishlist, ListDin *daftarBarang){
     StartWordInput();
     namaBarang = currentWord;
 
-    char stringBarang[50];
+    nama_barang stringBarang;
     wordToStringWork(&namaBarang, stringBarang);
-
-    // TES: cek string barang
-    // for (int i = 0; i < stringLen(stringBarang); i++)
-    // {
-    //     printf("%c", stringBarang[i]);
-    // }
-    // printf("|\n");
 
     // Cek apakah barang ada dalam daftar barang yang ada di toko
     boolean barangAda = false;
@@ -695,6 +727,10 @@ void wlRemove(List *wishlist, ListDin *daftarBarang){
     // penambahan tak akan dilakukan
     if (alamatbarang == Nil)
     {
+        for (int i = 0; i < stringLen(stringBarang); i++)
+        {
+            printf("%c", stringBarang[i]);
+        }
         printf(" tak ada dalam wishlist!\n");
         return;
     }
