@@ -72,7 +72,7 @@ void driverWL(User *currentUser, Store *store, Word currentCommand){
     printf("|\n\n");
 }
 
-void wlAdd(List *wishlist, ListDin *daftarBarang){
+/*void wlAdd(List *wishlist, ListDin *daftarBarang){
     // perlu dicek barangnya:
     // 1. Apakah memang ada di toko?
     // 2. Sudah ada di wishlist?
@@ -270,3 +270,4 @@ void wlRemoveI(List *wishlist, Word commandWL){
 void wlShow(List *wishlist){
     PrintInfoListLinier(*wishlist);
 }
+*/

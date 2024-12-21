@@ -13,9 +13,10 @@ int main() {
     int jumlahBarang = 0; 
     int jumlahUser = 0;
     char * filename;
+    int isiRekening = 0;
 
     while (program) {
-        while (!state && !session) {
+        while (!session) {
             welcome_perry();
 
             state = "Welcome Menu";
@@ -26,7 +27,7 @@ int main() {
             printf("\n");
 
             char Command[NMax]; 
-            wordToString(currentCommand, Command);
+            printf("Command: %s\n", Command);
             char text[NMax];
             int i = 0;
 
@@ -38,6 +39,7 @@ int main() {
             Command[i] = '\0';
             (&currentWord)->TabWord[i] = '\0';
 
+            printf("%s\n", Command);
             if (isEqual(Command, "START")) {
                 session = true;
                 filename = "default.txt";
@@ -72,8 +74,14 @@ int main() {
             StartCommand2();
             printf("\n");
 
-            char Command[NMax]; 
-            wordToString(currentCommand, Command);
+            char Command[NMax];
+            int i = 0; 
+            while(currentWord.TabWord[i] != ' ' && currentWord.TabWord[i] != '\0'){
+                Command[i] = currentWord.TabWord[i];
+                i++;
+            }
+            Command[i] = '\0';
+            
 
             if (isEqual(Command, "REGISTER\0")) {
                 registeruser();
@@ -98,15 +106,15 @@ int main() {
             StartCommand2();
             printf("\n");
 
-            char C1[20], C2[20];
+            char C1[100], C2[100], C3[100];
             int i = 0;
             int j = 0;
             int k = 0;
             while (currentWord.TabWord[k] != '\0') {
-                C2[k] = currentWord.TabWord[k];
+                C3[k] = currentWord.TabWord[k];
                 k++;
             }
-            C2[k] = '\0';
+            C3[k] = '\0';
 
             while (1) {
                 if (i == j) {
@@ -141,9 +149,9 @@ int main() {
             if (isEqual(C1, "STORE\0")) {
                 store_running();
             } else if (isEqual(C1, "WORK\0")) {
-                work(currentUser->money);
+                work(&isiRekening);
             } else if (isEqual(C2, "WORK CHALLENGE")) {
-                workChallenge(currentUser->money);
+                workChallenge(&isiRekening);
             } else if (isEqual(C2, "SAVE")) {
                 char text[50];
                 int idx = 0;
@@ -182,7 +190,7 @@ int main() {
                 welcome_user();
             } else if (isEqual(C1, "HISTORY")) {
                 printf("\n");
-                int n, k = 0; char temp[30];
+                int n, k = 0; char temp[100];
                 while (currentWord.TabWord[j]!='\0')
                 {
                     temp[k++]=currentWord.TabWord[j++];
@@ -192,11 +200,11 @@ int main() {
                 history(currentUser, n);
             } else if (isEqual(C2, "CART ADD")) {
                 printf("\n");
-                char name[30], temp[30]; 
-                int jumlah, k=j, space=0;
+                char name[100], temp[100]; 
+                int jumlah, k = j, space = 0;
 
                 while (currentWord.TabWord[j]!= '\0') {
-                    if (currentWord.TabWord[j] ==' ') {
+                    if (currentWord.TabWord[j] == ' ') {
                         space++;
                         j++;
                     }
@@ -204,7 +212,7 @@ int main() {
                 j = k; 
                 k = 0;
 
-                while (space!=0) {
+                while (space != 0) {
                     name[k++] = currentWord.TabWord[j++];
                     if (currentWord.TabWord[j] == ' ') {
                         space--;
@@ -213,20 +221,20 @@ int main() {
                     }
                 }
                 
-                name[k]='\0'; 
+                name[k] = '\0'; 
                 j++; 
-                k=0;
+                k = 0;
 
                 while (currentWord.TabWord[j]!= '\0') {
                     temp[k++] = currentWord.TabWord[j++];
                 }
-                temp[k]='\0'; 
+                temp[k]= '\0'; 
 
                 stringtoint(temp, &jumlah);
-                cartAdd(currentUser, item, name, jumlah);
+                cartAdd(user, item, name, jumlah);
             } else if (isEqual(C2, "CART REMOVE\0")) {
                 printf("\n");
-                char name[30], temp[30]; 
+                char name[100], temp[100]; 
                 int jumlah, k = j, space = 0;
                 printf("%s", C2);
 
