@@ -149,9 +149,9 @@ int main() {
             if (isEqual(C1, "STORE\0")) {
                 store_running();
             } else if (isEqual(C1, "WORK\0")) {
-                work(&isiRekening);
+                work(user->money);
             } else if (isEqual(C2, "WORK CHALLENGE")) {
-                workChallenge(&isiRekening);
+                workChallenge(user->money);
             } else if (isEqual(C2, "SAVE")) {
                 char text[50];
                 int idx = 0;
@@ -260,13 +260,13 @@ int main() {
                 }
                 temp[k]='\0'; 
                 stringtoint(temp, &jumlah);
-                cartRemove(currentUser, name, jumlah);
+                cartRemove(user, name, jumlah);
             } else if (isEqual(C2, "CART PAY\0")) {
                 printf("\n");
-                cartPay(currentUser);
+                cartPay(user);
             } else if (isEqual(C2, "CART SHOW\0")) {
                 printf("\n");
-                cartShow(currentUser);
+                cartShow(user);
             } else if (isEqual(C1, "WISHLIST\0")) {
                 driverWL();
             } else {
